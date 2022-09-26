@@ -1,9 +1,11 @@
-import ShowData from './ShowData/ShowData';
+import React from 'react'
+import Home from './pages/Home/Home';
+import ChartType from './pages/ChartType/ChartType';
 
 function App() {
   return (
     <div >
-      Welcome!
+      <Home />
     </div>
   );
 }
