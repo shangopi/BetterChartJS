@@ -1,0 +1,78 @@
+/* .drag-n-drop {
+    padding-left: 100px;
+    padding-right:50px;
+    display: grid;
+    gap: 0.1%;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(auto-fill, 500px);
+    align-items: start;
+  } */
+
+  .csvtable {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .csvth,.csvtd {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .csvtr:nth-child(even) {background-color: #bdbff3;}
+  
+  .drag-n-drop:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* .dnd-group {
+    background-color: #49505e;
+    border-radius: 10px;
+    padding: 10px;
+    width:20%
+  } */
+  
+  .dnd-group{
+    content: "";
+    display: table;
+    
+    float: left;
+    width: 30%;
+    margin: 60px;;
+    padding: 10px;
+    background-color: #678fdd;
+  }
+  
+
+  .dnd-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    background-color: white;
+    border-radius: 5px;
+    color: #282c34;
+    font-weight: bold;
+    width:100%;
+  }
+  .dnd-item:not(:last-of-type) {
+    margin-bottom: 15px;
+    
+  }
+  .dnd-item * {  
+    margin: 0;
+    font-size: 1.2rem;
+    
+  }
+  .group-title {
+    text-align: center;
+    margin-bottom: .5rem;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .current {
+    background-color: #282c34;
+  }
