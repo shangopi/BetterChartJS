@@ -8,8 +8,8 @@ import { useState } from 'react';
 const BubbleChartView = ()=>{
     const [x_grid, set_x_grid] = useState(true);
     const [y_grid, set_y_grid] = useState(true);
-    const [step_size_x,set_x_step] = useState(5);
-    const [step_size_y,set_y_step] = useState(5);
+    const [step_size_x,set_x_step] = useState(10);
+    const [step_size_y,set_y_step] = useState(10);
     const [text_size,set_text_size] = useState(14);
     const [title_size,set_title_size] = useState(30);
     const [font,set_font] = useState('Raleway');
@@ -42,7 +42,7 @@ const BubbleChartView = ()=>{
           },
          
           ticks: {
-              stepSize: step_size_x,   
+            maxTicksLimit: step_size_x,   
               maxRotation: orientation, // changing direction.. change both values to 0 if u want to change.. 
               minRotation: orientation,
               
@@ -60,7 +60,7 @@ const BubbleChartView = ()=>{
             display: y_grid //x axis grid show
         },
         ticks: {
-                stepSize: step_size_y,  
+            maxTicksLimit: step_size_y,  
                 maxRotation: orientation, // changing direction.. change both values to 0 if u want to change.. 
                 minRotation: orientation,
             font: {

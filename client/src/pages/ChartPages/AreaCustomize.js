@@ -33,8 +33,8 @@ import { useState } from 'react';
 
     const [x_grid, set_x_grid] = useState(true);
     const [y_grid, set_y_grid] = useState(true);
-    const [step_size_x,set_x_step] = useState(5);
-    const [step_size_y,set_y_step] = useState(5);
+    const [step_size_x,set_x_step] = useState(10);
+    const [step_size_y,set_y_step] = useState(10);
     const [bar_orientation,set_bar_orientation] = useState('x');
     const [text_size,set_text_size] = useState(14);
     const [title_size,set_title_size] = useState(30);
@@ -55,7 +55,7 @@ import { useState } from 'react';
             },
            
             ticks: {
-                stepSize: step_size_x,   
+              maxTicksLimit: step_size_x,   
                 maxRotation: orientation, // changing direction.. change both values to 0 if u want to change.. 
                 minRotation: orientation,
                 
@@ -73,7 +73,7 @@ import { useState } from 'react';
                 display: y_grid //x axis grid show
             },
             ticks: {
-                    stepSize: step_size_y,  
+              maxTicksLimit: step_size_y,  
                     maxRotation: orientation, // changing direction.. change both values to 0 if u want to change.. 
                     minRotation: orientation,
                 font: {
@@ -139,7 +139,7 @@ import { useState } from 'react';
                             <Row>
                             <Col>  <Form.Label>Step Size X </Form.Label> </Col>
                             <Col> 
-                                <Form.Range  onChange={(e) => {set_x_step(e.target.value)}} defaultValue={5} min='2'  max='50' />
+                                <Form.Range  onChange={(e) => {set_x_step(e.target.value)}}  defaultValue={5} min='2'  max='50' />
                                
                             </Col>
                             </Row>

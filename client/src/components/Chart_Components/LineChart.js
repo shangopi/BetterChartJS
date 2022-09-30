@@ -10,8 +10,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import Line_data from '../graph_data/Line_data';
-import LineCustomize from '../Customize/LineCustomize';
+import { useCallback, useRef } from 'react';
+import {Button} from 'react-bootstrap';
 
 ChartJS.register(
   CategoryScale,
@@ -23,15 +23,23 @@ ChartJS.register(
   Legend
 );
 
-const options = LineCustomize;    
-const data = Line_data;
-
-const LineChart = () => {    
+const LineChart = (props) => {   
+  
+  //code for downloading the chart
+  const ref = useRef(null);
+  const downloadImage = useCallback(()=>{
+      const link = document.createElement("a");
+      link.download = "bar_chart.png";
+      link.href = ref.current.toBase64Image();
+      link.click()
+  },[]);
 
     return ( 
         <div> 
             
-            <Line options={options} data={data} />        
+            <Line options={props.config} ref={ref} data={props.data} /> 
+            {<br></br>}
+            <Button className="float-right" variant="outline-danger"  onClick={downloadImage}>  Export Chart</Button>{' '}       
         </div>
      );
      
