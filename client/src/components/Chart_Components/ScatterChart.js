@@ -8,21 +8,29 @@ import {
   Legend,
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
-import ScatterCustomize from '../Customize/ScatterCustomize';
-import Scatter_data from '../graph_data/Scatter_data';
+import { useCallback, useRef } from 'react';
+import {Button} from 'react-bootstrap';
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const options = ScatterCustomize;
 
-const data = Scatter_data;
- 
+const ScatterChart = (props) => {    
 
-const ScatterChart = () => {    
+  //code for downloading the chart
+  const ref = useRef(null);
+  const downloadImage = useCallback(()=>{
+      const link = document.createElement("a");
+      link.download = "bar_chart.png";
+      link.href = ref.current.toBase64Image();
+      link.click()
+  },[]);
+
 
     return ( 
         <div> 
-            <Scatter options={options} data={data} />
+            <Scatter options={props.config} ref={ref} data={props.data} />
+            {<br></br>}
+            <Button className="float-right" variant="outline-danger"  onClick={downloadImage}>  Export Chart</Button>{' '}    
         </div>
      );
      
