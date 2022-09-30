@@ -5,7 +5,7 @@ import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 
 
-const AreaChartView = () => {    
+const ArcChartView = () => {    
     const [show_heading, set_show_heading] = useState(true);    
     const [width,set_width] = useState(950);
     const [circle_size,set_circle_size] = useState(5);
@@ -189,5 +189,5 @@ const AreaChartView = () => {
      
 }
  
-export default AreaChartView;
+export default ArcChartView;
 

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDropzone } from "react-dropzone";
 import { saveCSV } from "../../redux/csvhandler";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-function Drop() {
+function Drop(props) {
+  const { setSelectedFile, selectedFile, routeToPage } = props;
+  const dispatch = useDispatch();
+
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
     accept: {
@@ -13,22 +16,28 @@ function Drop() {
     },
   });
 
-  const files = acceptedFiles.map((file) => (
-    <li key={file.path}>
-      {file.path} - {file.size} bytes
-    </li>
-  ));
-
-  const csv = useSelector((state) => state.csvhandler.csv);
-  const dispatch = useDispatch();
-  console.log(csv);
+  const files = acceptedFiles.map((file) => {
+    // console.log("File is: ", file);
+    setSelectedFile(file);
+    // dispatch(saveCSV(file));
+    return (
+      <li key={file.path}>
+        {file.path} - {file.size} bytes
+      </li>
+    );
+  });
 
   return (
     <section className="container border">
       <div {...getRootProps({ className: "dropzone" })}>
         <input
           {...getInputProps()}
-          // onChange={(event) => dispatch(saveCSV(event))}
+          onChange={(event) => {
+            console.log("Event is: ", event);
+            if (event?.target.files.length) {
+              dispatch(saveCSV(event.target.files[0]));
+            }
+          }}
         />
         <div className="container py-2 px-0">
           <div
@@ -50,8 +59,9 @@ function Drop() {
       <div className="col offset-10 pb-3">
         <Link
           style={{ textDecoration: "none" }}
-          onClick={() => dispatch(saveCSV())}
-          to="/charttype"
+          to={{ pathname: "/charttype" }}
+          state={{ data: selectedFile }}
+          // onClick={routeToPage}
         >
           <Button variant="outline-dark">Submit</Button>
         </Link>

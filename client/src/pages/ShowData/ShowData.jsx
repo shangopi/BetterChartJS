@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const charts = [
   "area",
@@ -18,11 +19,14 @@ const charts = [
 var chartType;
 
 const ShowData = () => {
-  const csvFile = useSelector((state) => state.csvhandler.csv);
+  const location = useLocation();
+  console.log("Location is: ", location.state);
+  const csvFile = URL.createObjectURL(location.state?.file);
+  console.log("Data is: ", csvFile);
   console.log(csvFile);
   const chart = useSelector((state) => state.csvhandler.charttype);
   console.log(chart);
-  
+
   if (charts.includes(chart)) {
     chartType = "ChartJs";
   } else {

@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import Drop from "../Drop/Drop";
 import ChartSet from "../ChartSet/ChartSet";
+import { useNavigate } from "react-router-dom";
 
 function TabPanel() {
+  const navigate = useNavigate();
+  const [selectedFile, setSelectedFile] = useState();
+
+  function routeToPage() {
+    // to={{ pathname: "/charttype", state: selectedFile }}
+    console.log("Selected file is: ", selectedFile);
+    // , { state: { file: selectedFile } }
+    console.log("Navigate IS ", navigate);
+    navigate("/charttype");
+  }
   return (
     <div className="container">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -24,7 +35,11 @@ function TabPanel() {
           <Col sm={7}>
             <Tab.Content>
               <Tab.Pane eventKey="first">
-                <Drop />
+                <Drop
+                  setSelectedFile={setSelectedFile}
+                  selectedFile={selectedFile}
+                  routeToPage={routeToPage}
+                />
               </Tab.Pane>
               <Tab.Pane eventKey="second">
                 <ChartSet />
