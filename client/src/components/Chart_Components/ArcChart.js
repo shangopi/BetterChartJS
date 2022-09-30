@@ -1,35 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react'
+import ArcLogic from './Logic/ArcLogic';
 
 
 const Canvas = props => {
-    const data= props.data
-    const sourceNode=[];
-    const targetNode=[];
-    const weights=[];
+    const data = props.data;
     const [radius_max,set_max] = useState(50);
-    var allNodesNo;
-    for(var i=0;i<data.length;i++){
-        if(data[i][2]===''){
-            weights.push(Number(0));
-        }
-        else{
-            weights.push(Number(data[i][2]));
-        }
-        
-        if(!sourceNode.includes(data[i][0])){
-            sourceNode.push(data[i][0]);
-        }
-    }
-
-    for(let i=0;i<data.length;i++){
-        if(!sourceNode.includes(data[i][1]) && !targetNode.includes(data[i][1])){
-            targetNode.push(data[i][1]);
-        }
-    }
-    allNodesNo=sourceNode.length+targetNode.length;
-    const allNodeList=[...sourceNode,...targetNode];
-
-  const canvasRef = useRef(null);
+    let [sourceNode,targetNode,weights,allNodeList,allNodesNo] = ArcLogic(data); 
+    const canvasRef = useRef(null);
   
   
   const draw = ctx => {
@@ -85,7 +62,7 @@ const Canvas = props => {
         var radius = ((target_position-source_position)*l/2);
         if(Math.abs(radius)>radius_max){
             set_max(Math.abs(radius)+40);
-            console.log(radius_max);
+            
         }
         
         ctx.beginPath();

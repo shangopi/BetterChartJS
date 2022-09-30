@@ -261,7 +261,7 @@ const Bar_data = {
             
                 
          </Col> 
-        <Col lg={8}><BarChart config={BarCustomize} data={Bar_data} />  </Col>
+        <Col lg={8}><BarChart  config={BarCustomize} data={Bar_data} />  </Col>
       </Row>
       </div>
      );
