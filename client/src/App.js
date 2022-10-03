@@ -1,5 +1,8 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
+import {Route} from "react-router-dom";
+import {Routes} from "react-router-dom";
 import Home from "./pages/Home/Home";
 import ChartType from "./pages/ChartType/ChartType";
 import ShowData from "./pages/ShowData/ShowData";

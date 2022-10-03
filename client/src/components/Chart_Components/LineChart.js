@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,10 +8,11 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import Line_data from '../graph_data/Line_data';
-import LineCustomize from '../Customize/LineCustomize';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import Line_data from "../graph_data/Line_data";
+import LineCustomize from "../Customize/LineCustomize";
+
 
 ChartJS.register(
   CategoryScale,
@@ -23,17 +24,14 @@ ChartJS.register(
   Legend
 );
 
-const options = LineCustomize;    
+const options = LineCustomize;
 const data = Line_data;
 
-const LineChart = () => {    
-
-    return ( 
-        <div> 
-            
-            <Line options={options} data={data} />        
-        </div>
-     );
-     
-}
+const LineChart = () => {
+  return (
+    <div>
+      <Line options={options} data={data} />
+    </div>
+  );
+};
 export default LineChart;

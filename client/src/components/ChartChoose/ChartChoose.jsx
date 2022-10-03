@@ -19,7 +19,7 @@ import chordImg from "../../assets/graphImages/chord.PNG";
 function ChartSet() {
   const location = useLocation();
   const dispatch = useDispatch();
-  console.log("State is: ", location.state?.data);
+  console.log("State is: ", location);
   return (
     <div className="container">
       <div className="row">

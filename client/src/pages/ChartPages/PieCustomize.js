@@ -1,9 +1,5 @@
-
-
 const PieCustomize = {
-
-    type: 'doughnut',
+  type: "doughnut",
 };
- 
-export default PieCustomize;
 
+export default PieCustomize;

@@ -3,9 +3,13 @@ import ChordChart from '../../components/Chart_Components/ChordChart';
 import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import {SliderPicker } from 'react-color';
 import { useState } from 'react';
+import { useSelector } from "react-redux";
 
 
 const ChordChartView = () => {    
+    const x_axis = useSelector((state) => state.csvhandler.x_data);
+    const y_axis = useSelector((state) => state.csvhandler.y_data);
+    
     const [show_heading, set_show_heading] = useState(true);    
     const [width,set_width] = useState(950);
     const [circle_size,set_circle_size] = useState(5);

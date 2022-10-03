@@ -1,5 +1,3 @@
-const PolarAreaCustomize = {
-    
-  };
+const PolarAreaCustomize = {};
 
 export default PolarAreaCustomize;
