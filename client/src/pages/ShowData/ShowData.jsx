@@ -3,8 +3,9 @@ import "./ShowData.css";
 import React, { useState, useRef } from "react";
 import { useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import { saveXdata, saveYdata, saveArcdata } from "../../redux/csvhandler";
 
 const charts = [
   "area",
@@ -19,13 +20,16 @@ const charts = [
 var chartType;
 
 const ShowData = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
-  console.log("Location is: ", location.state);
-  const csvFile = URL.createObjectURL(location.state?.file);
+  console.log("Location is: ", location);
+  const csvFile = window.URL.createObjectURL(location.state?.file);
   console.log("Data is: ", csvFile);
   console.log(csvFile);
   const chart = useSelector((state) => state.csvhandler.charttype);
   console.log(chart);
+
+  const pathname = "\\" + chart + "_chart";
 
   if (charts.includes(chart)) {
     chartType = "ChartJs";
@@ -73,7 +77,7 @@ const ShowData = () => {
               break;
             }
           }
-          if (state == true) {
+          if (state === true) {
             textY_arr.push(va);
           }
         });
@@ -100,9 +104,9 @@ const ShowData = () => {
   const arrayPush = function (axis) {
     const arr = [];
     var j;
-    if (axis == "x") {
+    if (axis === "x") {
       j = text.indexOf(xVariable);
-      if (j != -1) {
+      if (j !== -1) {
         const sub_arr = [];
         tableData.map((row) => {
           sub_arr.push(row[j]);
@@ -111,7 +115,7 @@ const ShowData = () => {
         setX_axis(arr);
         console.log("ARrAY", arr);
       }
-    } else if (axis == "y") {
+    } else if (axis === "y") {
       yVariable.map((label) => {
         j = text.indexOf(label);
         if (j !== -1) {
@@ -187,13 +191,13 @@ const ShowData = () => {
     const xvariable = text[currentItem["variNameI"]];
     const y_variable = textY[currentItem["variNameI"]];
     if (params === "X") {
-      if (i == 0) {
+      if (i === 0) {
         setXVariable(xvariable);
-      } else if (i == 1) {
+      } else if (i === 1) {
         setSourceNode(xvariable);
-      } else if (i == 2) {
+      } else if (i === 2) {
         setTargetNode(xvariable);
-      } else if (i == 3) {
+      } else if (i === 3) {
         setWeight(xvariable);
       }
 
@@ -300,7 +304,7 @@ const ShowData = () => {
               );
             })}
           </div>
-          {chartType == "ChartJs" && (
+          {chartType === "ChartJs" && (
             <div>
               <div className="dnd-group">
                 <div className="group-title">X-Axis</div>
@@ -437,7 +441,7 @@ const ShowData = () => {
         )}
 
         {chartType === "ChartJs" &&
-          (xVariable == "X" || yVariable.length == 0) && (
+          (xVariable === "X" || yVariable.length === 0) && (
             <div style={{ margin: "50px" }}>
               <h3 style={{ color: "red" }}>
                 Fill x axis and y axis with variables
@@ -445,9 +449,22 @@ const ShowData = () => {
             </div>
           )}
         {chartType === "ChartJs" &&
-          !(xVariable == "X" || yVariable.length == 0) && (
+          !(xVariable === "X" || yVariable.length === 0) && (
             <div style={{ margin: "50px" }}>
-              <button onClick={load}>Okay</button>
+              <Link
+                style={{ textDecoration: "none" }}
+                to={{ pathname: { pathname } }}
+              >
+                <button
+                  onClick={() => {
+                    load();
+                    dispatch(saveXdata(x_axis));
+                    dispatch(saveYdata(y_axis));
+                  }}
+                >
+                  Okay
+                </button>
+              </Link>
             </div>
           )}
         {console.log(checkBool)}
@@ -460,7 +477,19 @@ const ShowData = () => {
         )}
         {chartType === "ArcChart" && checkBool && !fullfill() && (
           <div style={{ margin: "50px" }}>
-            <button onClick={load}>Okay</button>
+            <Link
+              style={{ textDecoration: "none" }}
+              to={{ pathname: { pathname } }}
+            >
+              <button
+                onClick={() => {
+                  load();
+                  dispatch(saveArcdata(arcData));
+                }}
+              >
+                Okay
+              </button>
+            </Link>
           </div>
         )}
       </div>

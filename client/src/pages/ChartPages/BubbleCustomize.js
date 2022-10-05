@@ -3,9 +3,13 @@ import BubbleChart from '../../components/Chart_Components/BubbleChart';
 import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import {SliderPicker } from 'react-color';
 import { useState } from 'react';
+import { useSelector } from "react-redux";
 
 
 const BubbleChartView = ()=>{
+    const x_axis = useSelector((state) => state.csvhandler.x_data);
+    const y_axis = useSelector((state) => state.csvhandler.y_data);
+    
     const [x_grid, set_x_grid] = useState(true);
     const [y_grid, set_y_grid] = useState(true);
     const [step_size_x,set_x_step] = useState(10);
