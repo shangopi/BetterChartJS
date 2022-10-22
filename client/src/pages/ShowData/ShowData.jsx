@@ -1,4 +1,5 @@
 import Papa from "papaparse";
+import csvFile from "./test.csv"
 import "./ShowData.css";
 import React, { useState, useRef } from "react";
 import { useEffect } from "react";
@@ -17,25 +18,25 @@ const charts = [
   "radar",
   "scatter",
 ];
-var chartType;
+// var chartType;
 
 const ShowData = () => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  console.log("Location is: ", location);
-  const csvFile = window.URL.createObjectURL(location.state?.file);
-  console.log("Data is: ", csvFile);
-  console.log(csvFile);
-  const chart = useSelector((state) => state.csvhandler.charttype);
-  console.log(chart);
+//   const dispatch = useDispatch();
+//   const location = useLocation();
+//   console.log("Location is: ", location);
+//   const csvFile = window.URL.createObjectURL(location.state?.file);
+//   console.log("Data is: ", csvFile);
+//   console.log(csvFile);
+//   const chart = useSelector((state) => state.csvhandler.charttype);
+//   console.log(chart);
 
-  const pathname = "\\" + chart + "_chart";
+//   const pathname = "\\" + chart + "_chart";
 
-  if (charts.includes(chart)) {
-    chartType = "ChartJs";
-  } else {
-    chartType = "ArcChart";
-  }
+//   if (charts.includes(chart)) {
+//     chartType = "ChartJs";
+//   } else {
+//     chartType = "ArcChart";
+//   }
 
   const [text, setText] = useState([]); //all the labels for x axis
   const [textY, setTextY] = useState([]); //all the lables for Yaxis
@@ -53,7 +54,8 @@ const ShowData = () => {
   const [arcData, setArcData] = useState([]); // [[sourceNode1,TargetNode1,weight1],[sourceNode2,TargetNode2,weight2],[sourceNode3,TargetNode3,weight3]]
   //const arr=[];
   // var count;
-  // var chartType = "ChartJs"; // chart types are 'ChartJS' and ArcChart
+  var chartType = "ChartJs"; // chart types are 'ChartJS' and ArcChart
+  //var chartType ='ArcChart'
   const [checkBool, setCheckBool] = useState(false);
 
   useEffect(() => {
@@ -451,20 +453,20 @@ const ShowData = () => {
         {chartType === "ChartJs" &&
           !(xVariable === "X" || yVariable.length === 0) && (
             <div style={{ margin: "50px" }}>
-              <Link
+              {/* <Link
                 style={{ textDecoration: "none" }}
                 to={{ pathname: { pathname } }}
-              >
+              > */}
                 <button
                   onClick={() => {
                     load();
-                    dispatch(saveXdata(x_axis));
-                    dispatch(saveYdata(y_axis));
+                    // dispatch(saveXdata(x_axis));
+                    // dispatch(saveYdata(y_axis));
                   }}
                 >
                   Okay
                 </button>
-              </Link>
+              {/* </Link> */}
             </div>
           )}
         {console.log(checkBool)}
@@ -477,19 +479,19 @@ const ShowData = () => {
         )}
         {chartType === "ArcChart" && checkBool && !fullfill() && (
           <div style={{ margin: "50px" }}>
-            <Link
+            {/* <Link
               style={{ textDecoration: "none" }}
               to={{ pathname: { pathname } }}
-            >
+            > */}
               <button
                 onClick={() => {
                   load();
-                  dispatch(saveArcdata(arcData));
+                //   dispatch(saveArcdata(arcData));
                 }}
               >
                 Okay
               </button>
-            </Link>
+            {/* </Link> */}
           </div>
         )}
       </div>
