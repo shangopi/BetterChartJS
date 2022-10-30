@@ -1,7 +1,6 @@
 import Papa from "papaparse";
 import "./ShowData.css";
-import React, { useState, useRef } from "react";
-import { useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
@@ -29,7 +28,11 @@ const ShowData = () => {
   const chart = useSelector((state) => state.csvhandler.charttype);
   console.log(chart);
 
-  const pathname = "\\" + chart + "_chart";
+  const [pathname, setPathname] = useState("");
+
+  useEffect(() => {
+    // setPathname("\\" + chart + "_chart");
+  }, [chart]);
 
   if (charts.includes(chart)) {
     chartType = "ChartJs";
