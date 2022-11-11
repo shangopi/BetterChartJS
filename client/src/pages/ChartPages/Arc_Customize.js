@@ -25,7 +25,7 @@ const ArcChartView = () => {
 
     const Arc_data = [["Colombo","Galle",100],["Colombo","Kandy",20],["Kandy","Galle",120],["Colombo","Rathnapura",50],["Kandy","Rathnapura",89],["Rathnapura",'Kurunegala',300],["Galle","Rathnapura",70],['Kurunegala',"Jaffna",300]];
 
-
+    //will be sent to chart component for customization purpose
     const Arc_customize = {
         show_heading : show_heading,
         width : width,

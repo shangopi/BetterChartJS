@@ -2,26 +2,32 @@ import React, { useRef, useEffect } from 'react'
 
 
 const Canvas = props => {
+    //labels for the cahrt
     const label=['Source','Target','Volume'];
+    //data will be given from chartSet.jsx
     const data1=[['mars','venus',100],['venus','mars',25],['venus','earth',299],['earth','mars',200],['mars','jupiter',500],['jupiter','venus',200],['venus','mercury',100],['mercury','venus',50],['earth','jupiter',200],['jupiter','mercury',800],['venus','jupiter',100],['neptune','pluto',200],['pluto','mars',800],['satum','neptune',100],['satum','venus',130],['earth','pluto',200],['mercury','earth',300],['neptune','venus',200],['venus','neptune',300],['pluto','neptune',400]];
     const space = 10;
     let total =0;
     var in_out = {};
     var out ={};
      
-
+    //in_out list will consist the all the data between in and out data
+    // out will contain only consist all the data which goes out of the node    
     for(var i=0;i<data1.length;i++){
         if(data1[i][2]!=''){
+            //if weight is empty skip it
             if(!(data1[i][0] in in_out)){
+                //if already in the list no initialization
                 in_out[data1[i][0]] =0;
             }
             if(!(data1[i][0] in out)){
+                //not in out , intiialize
                 out[data1[i][0]] =[0];
             }
             if(!(data1[i][1] in in_out)){
                 in_out[data1[i][1]] =0;
             }
-            
+            //if already intialized then increment the weights
             in_out[data1[i][0]] += data1[i][2];
             in_out[data1[i][1]] += data1[i][2];
             out[data1[i][0]].push([data1[i][1],data1[i][2]])
@@ -31,7 +37,7 @@ const Canvas = props => {
     }
 
     
-
+//need to be changed .. copied from the code
     const data= props.data
     const sourceNode=[];
     const targetNode=[];
@@ -58,6 +64,8 @@ const Canvas = props => {
     allNodesNo=sourceNode.length+targetNode.length;
     const allNodeList=[...sourceNode,...targetNode];
 
+    //above needed to be change
+
   const canvasRef = useRef(null);
   
   
@@ -68,45 +76,47 @@ const Canvas = props => {
     let coordinate = [];
     
     for(var key in in_out) {
-        
-            oldsum = sum;
+            //to use sum's previous data we declare oldsum
+            oldsum = sum;            
+            //implementing spaces
             sum = oldsum + 2*Math.PI*space/(100*(Object.keys(in_out).length))
+             //drawing spaces
             ctx.beginPath();
             ctx.strokeStyle  = "#FFF"  ;
             ctx.arc(550,350,250,oldsum,sum);
             ctx.lineWidth = 80;
             ctx.stroke();
             
-            
+            //implementing nodes
 
-            
+            oldsum=sum
             sum = oldsum + 2*Math.PI*in_out[key]*(100-space)/(100*total);
+
+            //implementing title
             angle = (oldsum + sum )/2;
             coordinate = [550+350*Math.sin(angle+Math.PI/2),350-300*Math.cos(angle+Math.PI/2)];
-            out[key][0] = oldsum;
+            if(out[key]){
+                out[key][0]= oldsum;
+            }
             
             ctx.beginPath();
-            ctx.strokeStyle  = "#" + ((1<<24)*Math.random() | 0).toString(16) ;
+            ctx.strokeStyle  = '#' + (Math.random().toString(16) + "000000").substring(2,8)
             ctx.arc(550,350,250,oldsum,sum);
             ctx.lineWidth = 80;
             ctx.stroke();
 
             let dest_list = out[key];
-            
+                        
 
             for(var temp in dest_list){
-                if(temp!=0){
-                console.log("source",key);
-                console.log("source angle", dest_list[0]);
-                let source_coordinate = [550+250*Math.sin(dest_list[0]+Math.PI/2),350-250*Math.cos(dest_list[0]+Math.PI/2)];
-                console.log("soruce coord",source_coordinate);
-                let dest=dest_list[temp][0];
-                
-                console.log("dest",dest);
-                console.log("Dest angle", out[dest][0]);
+                if(temp!=0){               
+               
+                let source_coordinate = [550+250*Math.sin(dest_list[0]+Math.PI/2),350-250*Math.cos(dest_list[0]+Math.PI/2)];           
+                let dest=dest_list[temp][0];              
+             
+               
                 let dest_coordinate = [550+250*Math.sin(out[dest][0]+Math.PI/2),350-250*Math.cos(out[dest][0]+Math.PI/2)];
-                console.log("dest_coord",dest_coordinate);
-                console.log("weight",dest_list[temp][1]);
+                
 
                 let cent =[0,0]
                 cent[0]= (source_coordinate[0]+dest_coordinate[0])/2;
@@ -186,7 +196,7 @@ const Canvas = props => {
    return ( 
        <div>
         
-        {props.config.show_heading && <h2 className={'mt-5 text-center '} style={{fontFamily : props.config.title_font, fontSize: props.config.title_size}}> Sample Arc Chart</h2> }
+        {props.config.show_heading && <h2 className={'mt-5 text-center '} style={{fontFamily : props.config.title_font, fontSize: props.config.title_size}}> Sample Chord Diagram</h2> }
         <div  style={{
      display: "flex",    justifyContent: "center",
     alignItems: "center"}}><canvas className='{canvas1}'  ref={canvasRef} {...props}/></div>

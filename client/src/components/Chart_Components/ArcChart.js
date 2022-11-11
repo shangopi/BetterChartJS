@@ -5,7 +5,7 @@ import ArcLogic from './Logic/ArcLogic';
 const Canvas = props => {
     const data = props.data;
     const [radius_max,set_max] = useState(50);
-    let [sourceNode,targetNode,weights,allNodeList,allNodesNo] = ArcLogic(data); 
+    let [weights,allNodeList,allNodesNo] = ArcLogic(data); 
     const canvasRef = useRef(null);
   
   
