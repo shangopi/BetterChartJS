@@ -5,7 +5,7 @@ import ArcLogic from './Logic/ArcLogic';
 const Canvas = props => {
     const data = props.data;
     const [radius_max,set_max] = useState(50);
-    let [weights,allNodeList,allNodesNo] = ArcLogic(data); 
+    let [sourceNode,targetNode,weights,allNodeList,allNodesNo] = ArcLogic(data); 
     const canvasRef = useRef(null);
   
   
@@ -119,4 +119,4 @@ const Canvas = props => {
 
 
 
-export default Canvas
+export default Canvas

@@ -1,46 +1,74 @@
 import React from 'react';
 import ChordChart from '../../components/Chart_Components/ChordChart';
-import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
-import {SliderPicker } from 'react-color';
-import { useState } from 'react';
+import {
+    Row,
+    Col,
+    Accordion,
+    Card,
+    Form
+} from 'react-bootstrap';
+import {
+    SliderPicker
+} from 'react-color';
+import {
+    useState
+} from 'react';
 
 
-const ChordChartView = () => {    
-    const [show_heading, set_show_heading] = useState(true);    
-    const [width,set_width] = useState(950);
-    const [circle_size,set_circle_size] = useState(5);
-    const [arc_size,set_arc_size] = useState(25);
+const ChordChartView = () => {
+        const [show_heading, set_show_heading] = useState(true);
+        const [width, set_width] = useState(950);
+        const [circle_size, set_circle_size] = useState(5);
+        const [arc_size, set_arc_size] = useState(25);
 
-    const [text_size,set_text_size] = useState("1.5");
-    const [title_size,set_title_size] = useState("2");
-    const [font,set_font] = useState('Raleway');
-    const [font2,set_font2] = useState('Raleway');
-    const [orientation,set_orientation] = useState(0);    
-    const [color,setcolor] = useState("#BBB3F8");
-    const [color2,setcolor2] = useState("#76F943");
-
-
+        const [text_size, set_text_size] = useState("1.5");
+        const [title_size, set_title_size] = useState("2");
+        const [font, set_font] = useState('Raleway');
+        const [font2, set_font2] = useState('Raleway');
+        const [orientation, set_orientation] = useState(0);
+        const [color, setcolor] = useState("#BBB3F8");
+        const [color2, setcolor2] = useState("#76F943");
 
 
+        const Chord_data = [
+            ['mars', 'venus', 100],
+            ['venus', 'mars', 25],
+            ['venus', 'earth', 299],
+            ['earth', 'mars', 200],
+            ['mars', 'jupiter', 500],
+            ['jupiter', 'venus', 200],
+            ['venus', 'mercury', 100],
+            ['mercury', 'venus', 50],
+            ['earth', 'jupiter', 200],
+            ['jupiter', 'mercury', 800],
+            ['venus', 'jupiter', 100],
+            ['neptune', 'pluto', 200],
+            ['pluto', 'mars', 800],
+            ['satum', 'neptune', 100],
+            ['satum', 'venus', 130],
+            ['earth', 'pluto', 200],
+            ['mercury', 'earth', 300],
+            ['neptune', 'venus', 200],
+            ['venus', 'neptune', 300],
+            ['pluto', 'neptune', 400]
+        ];
 
-    const Arc_data = [['mars','venus',100],['venus','mars',25],['venus','earth',299],['earth','mars',200],['mars','jupiter',500],['jupiter','venus',200],['venus','mercury',100],['mercury','venus',50],['earth','jupiter',200],['jupiter','mercury',800],['venus','jupiter',100],['neptune','pluto',200],['pluto','mars',800],['satum','neptune',100],['satum','venus',130],['earth','pluto',200],['mercury','earth',300],['neptune','venus',200],['venus','neptune',300],['pluto','neptune',400]];
+
+        const Chord_customize = {
+            show_heading: show_heading,
+            width: width,
+            label_size: text_size + "vw",
+            label_font: font,
+            circle_size: circle_size,
+            arc_strength: arc_size,
+            color1: color,
+            color2: color2,
+            title_font: font2,
+            title_size: title_size + "vw",
+            orientation: orientation,
 
 
-    const Arc_customize = {
-        show_heading : show_heading,
-        width : width,
-        label_size : text_size+"vw",
-        label_font : font,
-        circle_size : circle_size,
-        arc_strength : arc_size,
-        color1 : color,
-        color2 :color2,
-        title_font : font2,
-        title_size : title_size+"vw",
-        orientation : orientation,
-
-        
-    };
+        };
 
 
 
@@ -127,6 +155,7 @@ const ChordChartView = () => {
                                     </Col>
                                     </Row>
                                     <Row>
+
                                     <Col>  <Form.Label>Title Size</Form.Label> </Col>
                                     <Col> 
                                        <Form.Range onChange={(e) => {set_title_size(e.target.value)}} step={0.1} defaultValue={2} min='1'  max='5' />
@@ -166,10 +195,7 @@ const ChordChartView = () => {
                                         <option value="90">Vertically</option>
                                     </Form.Select>
                                     </Col>
-                                    </Row>
-
-
-                                    
+                                    </Row>                                
                                     
                                     
                             </Accordion.Body>
@@ -182,7 +208,7 @@ const ChordChartView = () => {
             
                 
          </Col> 
-        <Col lg={8}><ChordChart config={Arc_customize} data={Arc_data} />  </Col>
+        <Col lg={8}><ChordChart config={Chord_customize} data={Chord_data} />  </Col>
       </Row>
       </div>
      );
