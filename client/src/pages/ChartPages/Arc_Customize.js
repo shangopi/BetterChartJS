@@ -5,7 +5,7 @@ import { SliderPicker } from "react-color";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-const ArcChartView = () => {
+const ArcChartView = (props) => {
   const arcData = useSelector((state) => state.csvhandler.arc_data);
 
   const [show_heading, set_show_heading] = useState(true);
@@ -21,16 +21,19 @@ const ArcChartView = () => {
   const [color, setcolor] = useState("#BBB3F8");
   const [color2, setcolor2] = useState("#76F943");
 
-  const Arc_data = [
-    ["Colombo", "Galle", 100],
-    ["Colombo", "Kandy", 20],
-    ["Kandy", "Galle", 120],
-    ["Colombo", "Rathnapura", 50],
-    ["Kandy", "Rathnapura", 89],
-    ["Rathnapura", "Kurunegala", 300],
-    ["Galle", "Rathnapura", 70],
-    ["Kurunegala", "Jaffna", 300],
-  ];
+  // const Arc_data = [
+  //   ["Colombo", "Galle", 100],
+  //   ["Colombo", "Kandy", 20],
+  //   ["Kandy", "Galle", 120],
+  //   ["Colombo", "Rathnapura", 50],
+  //   ["Kandy", "Rathnapura", 89],
+  //   ["Rathnapura", "Kurunegala", 300],
+  //   ["Galle", "Rathnapura", 70],
+  //   ["Kurunegala", "Jaffna", 300],
+  // ];
+
+
+  const Arc_data = props.data_array;
 
   const Arc_customize = {
     show_heading: show_heading,

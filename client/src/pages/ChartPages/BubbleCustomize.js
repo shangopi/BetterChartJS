@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useSelector } from "react-redux";
 
 
-const BubbleChartView = ()=>{
+const BubbleChartView = (props)=>{
     const x_axis = useSelector((state) => state.csvhandler.x_data);
     const y_axis = useSelector((state) => state.csvhandler.y_data);
     
@@ -20,18 +20,13 @@ const BubbleChartView = ()=>{
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
     const [color2,setcolor2] = useState("#124490");
-
+    console.log("In the bubble",props.dataarray)
     const Bubble_data = {
       datasets: [
         {
-          label: 'Red dataset',
-          data: [{x: 100,y: 0, r: 10}, {x: 60, y: 30,r: 20 }, { x: 40,y: 60, r: 25}, {x: 80,y: 80,r: 50}, {x: 20,y: 30,r: 25}, { x: 0, y: 100,r: 5}],
+          label: props.dataset,
+          data: props.dataarray,
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-        {
-          label: 'Blue dataset',
-          data:[{x: 10,y: 100, r: 10}, {x: 40, y: 30,r: 20 }, { x: -40,y: 30, r: 25}, {x: 80,y: -80,r: 50}, {x: 10,y: 70,r: 25}, { x: -90, y: 100,r: 5}],
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
         },
       ],
     };
