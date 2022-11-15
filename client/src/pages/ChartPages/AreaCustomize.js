@@ -4,29 +4,7 @@ import { Row, Col, Accordion, Card, Form } from "react-bootstrap";
 import { SliderPicker } from "react-color";
 import { useState } from "react";
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-const Area_data = {
-  labels,
-  datasets: [
-    {
-      fill: true,
-      label: "Dataset 2",
-      data: [12, 12, 32, 45, 67, 45, 23],
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-    {
-      fill: true,
-      label: "Dataset 3",
-      data: [22, 2, 42, 25, 37, 15, 43],
-      borderColor: "rgb(223, 122, 235)",
-      backgroundColor: "rgba(223, 112, 235, 0.5)",
-    },
-  ],
-};
-
-const AreaChartView = () => {
+const AreaChartView = (props) => {
   const [x_grid, set_x_grid] = useState(true);
   const [y_grid, set_y_grid] = useState(true);
   const [step_size_x, set_x_step] = useState(10);
@@ -38,6 +16,21 @@ const AreaChartView = () => {
   const [orientation, set_orientation] = useState(0);
   const [color, setcolor] = useState("#234400");
   const [color2, setcolor2] = useState("#124490");
+
+  const labels = props.xlabel;
+
+  const Area_data = {
+    labels,
+    datasets: [
+      {
+        fill: true,
+        label: props.dataset,
+        data:props.dataarray,
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
 
   const AreaCustomize = {
     indexAxis: bar_orientation,

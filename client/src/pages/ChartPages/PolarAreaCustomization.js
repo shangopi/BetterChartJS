@@ -4,7 +4,7 @@ import { Row, Col, Accordion, Card, Form } from "react-bootstrap";
 import { SliderPicker } from "react-color";
 import { useState } from "react";
 
-const PolarAreaChartView = () => {
+const PolarAreaChartView = (props) => {
   const [title_size, set_title_size] = useState(30);
   const [font, set_font] = useState("Raleway");
   const [color, setcolor] = useState("#234400");
@@ -13,11 +13,11 @@ const PolarAreaChartView = () => {
   const [show_legend, set_show_legend] = useState(true);
 
   const Pie_data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: props.xlabel,
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: props.dataset,
+        data: props.dataarray,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",

@@ -4,7 +4,7 @@ import { Row, Col, Accordion, Card, Form } from "react-bootstrap";
 import { SliderPicker } from "react-color";
 import { useState } from "react";
 
-const ScatterChartView = () => {
+const ScatterChartView = (props) => {
   const [x_grid, set_x_grid] = useState(true);
   const [y_grid, set_y_grid] = useState(true);
   const [step_size_x, set_x_step] = useState(10);
@@ -15,28 +15,17 @@ const ScatterChartView = () => {
   const [orientation, set_orientation] = useState(0);
   const [color, setcolor] = useState("#234400");
   const [color2, setcolor2] = useState("#124490");
-
+  const daarray=[];
+  console.log("x label",props.xlabel);
+  for(var i=0;i<props.xlabel.length;i++){
+    daarray[i]={x:props.xlabel[i],y:props.dataarray[i]}
+  }
   const Scatter_data = {
     datasets: [
       {
-        label: "A dataset",
-        data: [
-          { x: -10, y: 0 },
-          { x: 0, y: 10 },
-          { x: 10, y: 5 },
-          { x: 0.5, y: 5.5 },
-        ],
+        label:props.dataset,
+        data:daarray,
         backgroundColor: "rgba(255, 99, 132, 1)",
-      },
-      {
-        label: "A another dataset",
-        data: [
-          { x: -8, y: 2 },
-          { x: 4, y: 3 },
-          { x: -2, y: 5 },
-          { x: 2, y: -5 },
-        ],
-        backgroundColor: "rgba(25, 199, 32, 1)",
       },
     ],
   };

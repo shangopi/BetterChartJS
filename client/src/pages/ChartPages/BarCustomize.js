@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useSelector } from "react-redux";
 
 
-const BarChartView = () => {  
+const BarChartView = (props) => {  
     const x_axis = useSelector((state) => state.csvhandler.x_data);
     const y_axis = useSelector((state) => state.csvhandler.y_data);
     
@@ -23,22 +23,25 @@ const BarChartView = () => {
     const [color2,setcolor2] = useState("#124490");
 
 
-    const labels =['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+    // const labels =['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+    const labels = props.xlabel;
 
 
 const Bar_data = {
     labels,
     datasets: [
         {
-            label: 'Dataset 1',
-            data: [12, 19, 3, 5, 2, 3],
+            // label: 'Dataset 1',
+            // data: [12, 19, 3, 5, 2, 3],
+            label: props.dataset,
+            data:props.dataarray,
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
           },
-          {
-            label: 'Dataset 2',
-            data: [9, 21, 4, 2, 4, 6],
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-          },    
+        //   {
+        //     label: 'Dataset 2',
+        //     data: [9, 21, 4, 2, 4, 6],
+        //     backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        //   },    
     ],
   };
 
