@@ -21,6 +21,7 @@ var chartType;
 const ShowData = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const [pathname, setPathname] = useState("chart/bar_chart");
   console.log("Location is: ", location);
   const csvFile = window.URL.createObjectURL(location.state?.file);
   console.log("Data is: ", csvFile);
@@ -28,11 +29,9 @@ const ShowData = () => {
   const chart = useSelector((state) => state.csvhandler.charttype);
   console.log(chart);
 
-  const [pathname, setPathname] = useState("");
+  
 
-  useEffect(() => {
-    // setPathname("\\" + chart + "_chart");
-  }, [chart]);
+  
 
   if (charts.includes(chart)) {
     chartType = "ChartJs";
@@ -456,7 +455,7 @@ const ShowData = () => {
             <div style={{ margin: "50px" }}>
               <Link
                 style={{ textDecoration: "none" }}
-                to={{ pathname: { pathname } }}
+                to={{ pathname: "../chart/"+chart+"_chart" }}
               >
                 <button
                   onClick={() => {

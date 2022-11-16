@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { chooseChart } from "../../redux/csvhandler";
 import { useLocation } from "react-router-dom";
 import Card from "react-bootstrap/Card";
