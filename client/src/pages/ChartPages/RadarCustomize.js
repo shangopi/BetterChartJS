@@ -4,7 +4,7 @@ import { Row, Col, Accordion, Card, Form } from "react-bootstrap";
 import { SliderPicker } from "react-color";
 import { useState } from "react";
 
-const RadarChartView = () => {
+const RadarChartView = (props) => {
   const [title_size, set_title_size] = useState(30);
   const [label_size, set_label_size] = useState(15);
   const [font, set_font] = useState("Raleway");
@@ -15,20 +15,13 @@ const RadarChartView = () => {
   const [show_legend, set_show_legend] = useState(true);
 
   const RadarData = {
-    labels: ["Thing 1", "Thing 2", "Thing 3", "Thing 4", "Thing 5", "Thing 6"],
+    labels: props.xlabel,
     datasets: [
       {
-        label: "# of Votes",
-        data: [2, 9, 3, 5, 2, 3],
+        label: props.dataset,
+        data: props.dataarray,
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 1,
-      },
-      {
-        label: "# of Votes",
-        data: [32, 12, 3, 21, 1, 2],
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(32, 29, 12, 1)",
         borderWidth: 1,
       },
     ],
