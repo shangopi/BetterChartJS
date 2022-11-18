@@ -42,7 +42,8 @@ const Canvas = props => {
         const label = ['Source', 'Target', 'Volume'];
         //data will be given from chartSet.jsx
         let data1 = props.data;
-        const space = 10;
+        
+        const space = props.config.width;
         let total = 0;
         var in_out = {};
         let out = {};
@@ -76,13 +77,15 @@ const Canvas = props => {
 
 
         const draw = ctx => {
-           
-
+            let radius = props.config.radius;
+            let lineWidth = props.config.lineWidth;
             let sum = -Math.PI / 2;
             let oldsum = -Math.PI / 2;
             let angle = 0;
             let coordinate = [];
+           
             for (var key in in_out) {
+               
                 //to use sum's previous data we declare oldsum
                 oldsum = sum;
                 //implementing spaces
@@ -90,8 +93,8 @@ const Canvas = props => {
                 //drawing spaces
                 ctx.beginPath();
                 ctx.strokeStyle = "#FFF";
-                ctx.arc(550, 350, 250, oldsum, sum);
-                ctx.lineWidth = 80;
+                ctx.arc(550, 350, radius, oldsum, sum);
+                ctx.lineWidth = lineWidth;
                 ctx.stroke();
 
                 //implementing nodes
@@ -100,17 +103,22 @@ const Canvas = props => {
 
                 //implementing title
                 angle = (oldsum + sum) / 2;
-                coordinate = [550 + 350 * Math.sin(angle + Math.PI / 2), 350 - 300 * Math.cos(angle + Math.PI / 2)];
+                coordinate = [550 + 350 * Math.sin(angle + Math.PI / 2), 350 - 320 * Math.cos(angle + Math.PI / 2)];
 
                 if (out[key]) {
                     out[key][0] = oldsum;
                 }
                 ctx.beginPath();
+                
+                let color1 = props.config.color1[key] ;
+                
+                     
 
-                let color1 = '#' + (Math.random().toString(16) + "000000").substring(2, 8)
+              
                 ctx.strokeStyle = color1;
-                ctx.arc(550, 350, 250, oldsum, sum);
-                ctx.lineWidth = 80;
+                ctx.arc(550, 350, radius, oldsum, sum);
+                
+                ctx.lineWidth = lineWidth;
                 ctx.stroke();
                 let dest_list = [...out[key]];
            
@@ -124,8 +132,8 @@ const Canvas = props => {
                         let dest_final_angle = dest_initial_angle + 2 * Math.PI * dest_list[temp][1] * (100 - space) / (100 * total);
                         let source_angle = (source_initial_angle + source_final_angle) / 2;
                         let dest_angle = (dest_initial_angle + dest_final_angle) / 2;
-                        let source_coordinate = [550 + 210 * Math.sin(source_angle), 350 - 210 * Math.cos(source_angle)];
-                        let dest_coordinate = [550 + 210 * Math.sin(dest_angle), 350 - 210 * Math.cos(dest_angle)];
+                        let source_coordinate = [550 + (radius-lineWidth/2) * Math.sin(source_angle), 350 - (radius-lineWidth/2) * Math.cos(source_angle)];
+                        let dest_coordinate = [550 + (radius-lineWidth/2) * Math.sin(dest_angle), 350 - (radius-lineWidth/2) * Math.cos(dest_angle)];
                         let output = drawArc(550, 350, source_coordinate[0], source_coordinate[1], dest_coordinate[0], dest_coordinate[1]);
                       
                         let arc_start_angle = findAngle(output[0], output[1], output[2], source_coordinate[0], source_coordinate[1]);
@@ -149,41 +157,22 @@ const Canvas = props => {
                             }
 
                         }
-
-                        ctx.lineWidth = 204 * 2 * Math.PI * dest_list[temp][1] * (100 - space) / (100 * total);
-                        ctx.globalAlpha = 0.5;
+                        ctx.lineWidth = props.config.arc_strength * 2 * Math.PI * dest_list[temp][1] * (100 - space) / (100 * total);
+                        ctx.globalAlpha = props.config.opacity;
 
                         ctx.stroke();
-                        ctx.globalAlpha = 1;
-                        if(key=="mercury" ){
-                            console.log("venus vefore",out['venus']);
-                            
-                        }
-                       
+                        ctx.globalAlpha = 1;                       
                         out[key][0] = source_final_angle - Math.PI / 2;
                         out[dest_list[temp][0]][0] = dest_final_angle - Math.PI / 2;
-                        if(key=="mercury" ){
-                            console.log(dest_list[temp][0]);
-                            console.log(dest_final_angle);
-                            // console.log("after",out[dest_list[temp][0]][0]);
-                            //console.log(out[dest_list[temp][0]]);
-                            // console.log(out['venus']);
-                            
-                        }
+                       
 
 
                     }
-                    if(key=="mercury" ){
-                        
-                        console.log("venus aftrer" ,out['venus']);
-                        
-                    }
-
                     
                 }
 
                 ctx.beginPath();
-                ctx.font = "5vh Roboto";
+                ctx.font = props.config.label_size + " "+ props.config.label_font;
                 ctx.fillStyle = "#00000";
                 ctx.textAlign = "center";
                 ctx.fillText(key, coordinate[0], coordinate[1]);
@@ -217,8 +206,9 @@ const Canvas = props => {
 
         return ( 
             <div>
-             
              {props.config.show_heading && <h2 className={'mt-5 text-center '} style={{fontFamily : props.config.title_font, fontSize: props.config.title_size}}> Sample Chord Diagram</h2> }
+            
+             <br></br>
              <div  style={{ display: "flex",    justifyContent: "center", alignItems: "center"}}>
 
             <canvas className='{canvas1}'  ref={canvasRef} {...props}/>
