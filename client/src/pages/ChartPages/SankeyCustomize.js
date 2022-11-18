@@ -1,11 +1,11 @@
 import React from 'react';
-import ArcChart from '../../components/Chart_Components/ArcChart';
+import SankeyChart from '../../components/Chart_Components/SankeyChart';
 import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 
 
-const ArcChartView = () => {    
+const SankeyChartView = () => {    
     const [show_heading, set_show_heading] = useState(true);    
     const [width,set_width] = useState(950);
     const [circle_size,set_circle_size] = useState(5);
@@ -23,7 +23,7 @@ const ArcChartView = () => {
 
 
 
-    const Arc_data = [["Colombo","Galle",100],["Colombo","Kandy",20],["Kandy","Galle",120],["Colombo","Rathnapura",50],["Kandy","Rathnapura",89],["Rathnapura",'Kurunegala',300],["Galle","Rathnapura",70],['Kurunegala',"Jaffna",300]];
+    const Arc_data = [["Extraction","Manufacturing",3],["Extraction","Gopi",3],["Manufacturing","Use",1],["Use","Waste collection",1],["Use","Stock",1],["Stock","Waste collection",1],["Waste collection","Landfill",1],["Waste collection","Incineration",1],["Waste collection","Anaerobic digestion",1],["Waste collection","Composting",1],["Imports","Use",1]];
 
     //will be sent to chart component for customization purpose
     const Arc_customize = {
@@ -163,9 +163,8 @@ const ArcChartView = () => {
                                     <Col> <Form.Label>Text Orientation </Form.Label> </Col>
                                     <Col> 
                                     <Form.Select size="sm"  onChange={(e) => {set_orientation(e.target.value)}} >
-                                        <option value="90">Vertically</option>
                                         <option value="0">Horizontally</option>
-                                        
+                                        <option value="90">Vertically</option>
                                     </Form.Select>
                                     </Col>
                                     </Row>
@@ -184,12 +183,12 @@ const ArcChartView = () => {
             
                 
          </Col> 
-        <Col className="pl-5" lg={8}><ArcChart config={Arc_customize} data={Arc_data} />  </Col>
+        <Col className="pl-5" lg={8}><SankeyChart config={Arc_customize} data={Arc_data} />  </Col>
       </Row>
       </div>
      );
      
 }
  
-export default ArcChartView;
+export default SankeyChartView;
 
