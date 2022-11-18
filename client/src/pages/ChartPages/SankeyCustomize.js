@@ -23,7 +23,7 @@ const SankeyChartView = () => {
 
 
 
-    const Arc_data = [["Extraction","Manufacturing",3],["Extraction","Gopi",3],["Manufacturing","Use",1],["Use","Waste collection",1],["Use","Stock",1],["Stock","Waste collection",1],["Waste collection","Landfill",1],["Waste collection","Incineration",1],["Waste collection","Anaerobic digestion",1],["Waste collection","Composting",1],["Imports","Use",1]];
+    const Arc_data = [["Extraction","Manufacturing",1],["Manufacturing","Use",1],["Use","Waste collection",2],["Use","Stock",4],["Stock","Waste collection",2],["Waste collection","Landfill",1],["Waste collection","Incineration",1],["Waste collection","Anaerobic digestion",1],["Waste collection","Composting",1],["Imports","Use",5]];
 
     //will be sent to chart component for customization purpose
     const Arc_customize = {
@@ -47,9 +47,11 @@ const SankeyChartView = () => {
 
     return ( 
         <div className='pr-5 '>            
-        <Row>
-        <Col lg={1}> </Col>
-        <Col lg={3}> 
+        
+       <SankeyChart config={Arc_customize} data={Arc_data} /> 
+        <br></br>
+        <br></br>
+        
             <Card >
                 <Card.Header>Customize the Graph</Card.Header>
                 <Card.Body>
@@ -182,9 +184,7 @@ const SankeyChartView = () => {
                 </Card>
             
                 
-         </Col> 
-        <Col className="pl-5" lg={8}><SankeyChart config={Arc_customize} data={Arc_data} />  </Col>
-      </Row>
+         
       </div>
      );
      

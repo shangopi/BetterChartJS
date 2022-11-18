@@ -16,10 +16,10 @@ import SankeyChartView  from './pages/ChartPages/SankeyCustomize';
 const App =() => {
   return (
     <div className="App">
-      <ChordChartView/>
-      <br></br>
-      <hr />   
       <SankeyChartView/>
+      <br></br>
+      <hr />
+      <ChordChartView/>
       <br></br>
       <hr />   
       <ArcChartView/>
