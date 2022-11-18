@@ -4,6 +4,18 @@ import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 
+function hexToRGB(hex, alpha) {
+    var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    if (alpha) {
+        return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+    } else {
+        return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
+}
+
 
 const ScatterChartView = ()=>{
     const [x_grid, set_x_grid] = useState(true);
@@ -15,23 +27,17 @@ const ScatterChartView = ()=>{
     const [font,set_font] = useState('Raleway');
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
-    const [color2,setcolor2] = useState("#124490");
+    
 
     const Scatter_data = {
       datasets: [
         {
           label: 'A dataset',
           data: [{ x: -10, y: 0 }, { x: 0, y: 10 }, { x: 10, y: 5 }, { x: 0.5, y: 5.5 }],
-          backgroundColor: 'rgba(255, 99, 132, 1)',
-        },
-        {
-            label: 'A another dataset',
-            data: [{ x: -8, y: 2}, { x: 4, y: 3 }, { x: -2, y: 5 }, { x: 2, y: -5 }],
-            backgroundColor: 'rgba(25, 199, 32, 1)',
-          },
+          backgroundColor:  hexToRGB(color,1),
+        }
       ],
     }
-
     const ScatterCustomize = {   
 
       scales: {
@@ -80,6 +86,9 @@ const ScatterChartView = ()=>{
     responsive: true,
     
     plugins: {
+        legend :{
+            display:false,
+        },
           title: {
             display: true,
             text: 'Products with most number of sales in a given period',
@@ -94,8 +103,9 @@ const ScatterChartView = ()=>{
     };
 
     return ( 
-      <div className='pr-5'>            
+      <div className='pr-5 container'>            
       <Row>
+        
       <Col> 
           <Card>
               <Card.Header>Customize the Graph</Card.Header>
@@ -147,37 +157,13 @@ const ScatterChartView = ()=>{
                           <Accordion.Body>
                                   
                                   <Row>
-                                      <Form.Label>Color For Attribute 1  </Form.Label>                                        
-                                      <SliderPicker color={color} onChange={setcolor} /> 
+                                      <Form.Label>Color For Attribute   </Form.Label>                                        
+                                      <SliderPicker color={color} onChange={(color) => {setcolor(color.hex); }} />  
                                      
                                   </Row>
-                                  {<br></br>} 
-                                  <Row>
-                                      <Form.Label>Color For Attribute 2  </Form.Label>                                         
-                                      <SliderPicker color={color2} onChange={setcolor2} /> 
-
-                                  </Row>
+                                  
                       
-                                  <Row>
-                                      <Col>Show Y Axis Grids</Col>
-                                      <Col> <Form.Check 
-                                          type="switch"
-                                          id="custom-switchY"
-                                          defaultChecked="true"
-
-                                      /></Col>
-
-                                  </Row>                      
-                                  {<br></br>}         
-                                  <Row>
-                                  <Col> <Form.Label>Bars Orientation </Form.Label> </Col>
-                                  <Col> 
-                                  <Form.Select size="sm" >
-                                      <option value="1">Vertically</option>
-                                      <option value="2">Horizontally</option>
-                                  </Form.Select>
-                                  </Col>
-                                  </Row>
+                                
                                   
                                   
                           </Accordion.Body>

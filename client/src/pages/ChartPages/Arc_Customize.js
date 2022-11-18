@@ -46,10 +46,11 @@ const ArcChartView = () => {
 
 
     return ( 
-        <div className='pr-5'>            
+        <div className='pr-5 '>            
         <Row>
-        <Col> 
-            <Card>
+        <Col lg={1}> </Col>
+        <Col lg={3}> 
+            <Card >
                 <Card.Header>Customize the Graph</Card.Header>
                 <Card.Body>
                 <Form className='ml-4'>
@@ -182,7 +183,7 @@ const ArcChartView = () => {
             
                 
          </Col> 
-        <Col lg={8}><ArcChart config={Arc_customize} data={Arc_data} />  </Col>
+        <Col className="pl-5" lg={8}><ArcChart config={Arc_customize} data={Arc_data} />  </Col>
       </Row>
       </div>
      );

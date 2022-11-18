@@ -24,7 +24,6 @@ const ArcLogic = (data) =>{
     }
     allNodesNo=sourceNode.length+targetNode.length;
     const allNodeList=[...sourceNode,...targetNode];
-    console.log([sourceNode,targetNode,weights,allNodeList,allNodesNo]);
     return [sourceNode,targetNode,weights,allNodeList,allNodesNo]
 
 }

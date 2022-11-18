@@ -1,16 +1,24 @@
 import React from 'react';
 import PolarArea from '../../components/Chart_Components/PolarAreaChart';
 import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
-import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 
+function hexToRGB(hex, alpha) {
+  var r = parseInt(hex.slice(1, 3), 16),
+      g = parseInt(hex.slice(3, 5), 16),
+      b = parseInt(hex.slice(5, 7), 16);
+
+  if (alpha) {
+      return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+  } else {
+      return "rgb(" + r + ", " + g + ", " + b + ")";
+  }
+}
  
 const PolarAreaChartView = ()=>{
 
     const [title_size,set_title_size] = useState(30);
     const [font,set_font] = useState('Raleway');
-    const [color,setcolor] = useState("#234400");
-    const [color2,setcolor2] = useState("#124490");
     const [show_heading, set_show_heading] = useState(true); 
     const [show_legend, set_show_legend] = useState(true);    
    
@@ -23,6 +31,7 @@ const PolarAreaChartView = ()=>{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
+              
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
               'rgba(255, 206, 86, 0.2)',
@@ -30,14 +39,7 @@ const PolarAreaChartView = ()=>{
               'rgba(153, 102, 255, 0.2)',
               'rgba(255, 159, 64, 0.2)',
             ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
+            
             borderWidth: 1,
           },
         ]
@@ -73,7 +75,7 @@ const PolarAreaChartView = ()=>{
     };
 
     return ( 
-      <div className='pr-5'>            
+      <div className='pr-5 container'>            
       <Row>
       <Col> 
           <Card>
@@ -105,39 +107,8 @@ const PolarAreaChartView = ()=>{
                       
                       </Accordion.Body>
                       </Accordion.Item>
-                      <Accordion.Item eventKey="1">
-                          <Accordion.Header>Change the Colors</Accordion.Header>
-                          <Accordion.Body>
-                                  
-                                  <Row>
-                                      <Form.Label>Color For Attribute 1  </Form.Label>                                        
-                                      <SliderPicker color={color} onChange={setcolor} /> 
-                                     
-                                  </Row>
-                                  {<br></br>} 
-                                  <Row>
-                                      <Form.Label>Color For Attribute 2  </Form.Label>                                         
-                                      <SliderPicker color={color2} onChange={setcolor2} /> 
-
-                                  </Row>
                       
-                                  <Row>
-                                      <Col>Show Y Axis Grids</Col>
-                                      <Col> <Form.Check 
-                                          type="switch"
-                                          id="custom-switchY"
-                                          defaultChecked="true"
-
-                                      /></Col>
-
-                                  </Row>                      
-                                          
-                                  
-                                  
-                                  
-                          </Accordion.Body>
-                      </Accordion.Item>
-                      <Accordion.Item eventKey="2">
+                      <Accordion.Item eventKey="1">
                           <Accordion.Header>Modify the Text</Accordion.Header>
                           <Accordion.Body>   
                                  

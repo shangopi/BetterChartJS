@@ -4,6 +4,17 @@ import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 
+function hexToRGB(hex, alpha) {
+    var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    if (alpha) {
+        return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+    } else {
+        return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
+}
 
 const BubbleChartView = ()=>{
     const [x_grid, set_x_grid] = useState(true);
@@ -15,20 +26,15 @@ const BubbleChartView = ()=>{
     const [font,set_font] = useState('Raleway');
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
-    const [color2,setcolor2] = useState("#124490");
 
     const Bubble_data = {
       datasets: [
         {
           label: 'Red dataset',
           data: [{x: 100,y: 0, r: 10}, {x: 60, y: 30,r: 20 }, { x: 40,y: 60, r: 25}, {x: 80,y: 80,r: 50}, {x: 20,y: 30,r: 25}, { x: 0, y: 100,r: 5}],
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          backgroundColor:  hexToRGB(color,1),
         },
-        {
-          label: 'Blue dataset',
-          data:[{x: 10,y: 100, r: 10}, {x: 40, y: 30,r: 20 }, { x: -40,y: 30, r: 25}, {x: 80,y: -80,r: 50}, {x: 10,y: 70,r: 25}, { x: -90, y: 100,r: 5}],
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
+        
       ],
     };
 
@@ -80,6 +86,9 @@ const BubbleChartView = ()=>{
     responsive: true,
     
     plugins: {
+        legend :{
+            display:false,
+        },
           title: {
             display: true,
             text: 'Products with most number of sales in a given period',
@@ -94,7 +103,7 @@ const BubbleChartView = ()=>{
     };
 
     return ( 
-      <div className='pr-5'>            
+      <div className='pr-5 container'>            
       <Row>
       <Col> 
           <Card>
@@ -148,36 +157,12 @@ const BubbleChartView = ()=>{
                                   
                                   <Row>
                                       <Form.Label>Color For Attribute 1  </Form.Label>                                        
-                                      <SliderPicker color={color} onChange={setcolor} /> 
+                                      <SliderPicker color={color} onChange={(color) => {setcolor(color.hex); }} />  
                                      
                                   </Row>
-                                  {<br></br>} 
-                                  <Row>
-                                      <Form.Label>Color For Attribute 2  </Form.Label>                                         
-                                      <SliderPicker color={color2} onChange={setcolor2} /> 
-
-                                  </Row>
+                                  
                       
-                                  <Row>
-                                      <Col>Show Y Axis Grids</Col>
-                                      <Col> <Form.Check 
-                                          type="switch"
-                                          id="custom-switchY"
-                                          defaultChecked="true"
-
-                                      /></Col>
-
-                                  </Row>                      
-                                  {<br></br>}         
-                                  <Row>
-                                  <Col> <Form.Label>Bars Orientation </Form.Label> </Col>
-                                  <Col> 
-                                  <Form.Select size="sm" >
-                                      <option value="1">Vertically</option>
-                                      <option value="2">Horizontally</option>
-                                  </Form.Select>
-                                  </Col>
-                                  </Row>
+                                 
                                   
                                   
                           </Accordion.Body>
