@@ -8,6 +8,10 @@ import Home from "./pages/Home/Home";
 import ChartType from "./pages/ChartType/ChartType";
 import ShowData from "./pages/ShowData/ShowData";
 import Navbar from "./components/Navbar/Navbar";
+import SavedCharts from "./pages/SavedCharts/SavedCharts";
+import Login from "./pages/Login/login";
+import Register from "./pages/Register/register";
+
 // import Arc_Customize from "./pages/ChartPages/Arc_Customize";
 // import AreaCustomize from "./pages/ChartPages/AreaCustomize";
 //import BarCustomize from "./pages/ChartPages/BarCustomize";
@@ -25,9 +29,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         <Route path="charttype" element={<ChartType />} />
         <Route path="ShowData" element={<ShowData/>}/>
+        <Route path="savedCharts" element={<SavedCharts/>}/>
         <Route path="chart" element={<Navbar />}>
+       
           {/* <Route path="arc_chart" element={<Arc_Customize />} /> */}
           {/* <Route path="area_chart" element={<AreaCustomize />} /> */}
           {/* <Route path="bar_chart" element={<BarCustomize />} /> */}
