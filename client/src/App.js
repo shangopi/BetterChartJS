@@ -17,6 +17,8 @@ import BeginnerScatterChart from "./pages/BeginnerPages/BeginnerScatterChart";
 import BeginnerArcChart from "./pages/BeginnerPages/BeginnerArcChart";
 import BeginnerChordChart from "./pages/BeginnerPages/BeginnerChordChart";
 import BeginnerSankeyChart from "./pages/BeginnerPages/BeginnerSankeyChart";
+import Register from "./pages/Register/register"
+import Login from "./pages/Login/login";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="charttype" element={<ChartType />} />
         <Route path="showdata" element={<ShowData />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
         <Route path="areachart" element={<BeginnerAreaChart />} />
         <Route path="barchart" element={<BeginnerBarChart />} />
         <Route path="bubblechart" element={<BeginnerBubbleChart />} />

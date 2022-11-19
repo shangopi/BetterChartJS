@@ -1,9 +1,16 @@
 import React from "react";
 import PieCustomize from "./../ChartPages/PieCustomize";
-import Nav from "../../components/Navbar/Navbar";
+import Nav from "../../components/Navbar/Nav";
 
-const label = ["Celtic", "Barcelona", "Real Madrid", "Manchester United", "Juventus","Santos"];
-const dataset = [150, 91, 91, 60,30, 10];
+const label = [
+  "Celtic",
+  "Barcelona",
+  "Real Madrid",
+  "Manchester United",
+  "Juventus",
+  "Santos",
+];
+const dataset = [150, 91, 91, 60, 30, 10];
 
 const Graph = function () {
   return (

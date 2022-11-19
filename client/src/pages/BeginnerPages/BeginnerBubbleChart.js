@@ -1,14 +1,17 @@
 import React from "react";
 import BubbleCustomize from "./../ChartPages/BubbleCustomize";
-import Nav from "../../components/Navbar/Navbar";
+import Nav from "../../components/Navbar/Nav";
 
-
-const dataset = [[5,5500,3], [14,12200,12], [20,60000,33], [18,24400,10], [22,32000,42]];
+const dataset = [
+  [5, 5500, 3],
+  [14, 12200, 12],
+  [20, 60000, 33],
+  [18, 24400, 10],
+  [22, 32000, 42],
+];
 
 const Graph = function () {
-  return (
-    <BubbleCustomize dataset="Market Share" dataarray={dataset} />
-  );
+  return <BubbleCustomize dataset="Market Share" dataarray={dataset} />;
 };
 
 function BeginnerBubbleChart() {

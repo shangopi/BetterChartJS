@@ -1,6 +1,6 @@
 import React from "react";
 import ArcCustomize from "./../ChartPages/Arc_Customize";
-import Nav from "../../components/Navbar/Navbar";
+import Nav from "../../components/Navbar/Nav";
 
 const dataset = [
   ["Fire", "Machine 1", 5],

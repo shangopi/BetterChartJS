@@ -1,8 +1,8 @@
 import React from "react";
 import LineCustomize from "./../ChartPages/LineCustomize";
-import Nav from "../../components/Navbar/Navbar";
+import Nav from "../../components/Navbar/Nav";
 
-const label = [0,1,2,3,4,5,6];
+const label = [0, 1, 2, 3, 4, 5, 6];
 const dataset = [0, 3, 7, 12, 18, 30, 45.6];
 
 const Graph = function () {

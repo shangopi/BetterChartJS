@@ -1,6 +1,6 @@
 import React from "react";
 import RadarCustomize from "./../ChartPages/RadarCustomize";
-import Nav from "../../components/Navbar/Navbar";
+import Nav from "../../components/Navbar/Nav";
 
 const label = ["Comedy", "Romance", "Action", "Drama", "SciFi"];
 const dataset = [4, 5, 6, 1, 4];

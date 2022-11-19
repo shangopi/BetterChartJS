@@ -1,23 +1,17 @@
-import React from 'react'
-import BarCustomize from "./../ChartPages/BarCustomize"
-import Nav from "../../components/Navbar/Navbar";
+import React from "react";
+import BarCustomize from "./../ChartPages/BarCustomize";
+import Nav from "../../components/Navbar/Nav";
 
 const label = ["Comedy", "Romance", "Action", "Drama", "SciFi"];
 const dataset = [4, 5, 6, 1, 4];
 
 const Graph = function () {
-       return (
-         <BarCustomize
-           xlabel={label}
-           dataset='Movie Types'
-           dataarray={dataset}
-         />
-       );
-    
- };
+  return (
+    <BarCustomize xlabel={label} dataset="Movie Types" dataarray={dataset} />
+  );
+};
 
 function BeginnerBarChart() {
-  
   return (
     <div>
       <Nav />
@@ -107,4 +101,3 @@ function BeginnerBarChart() {
 }
 
 export default BeginnerBarChart;
-

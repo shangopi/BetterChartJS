@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 function ChartSet() {
   return (
     <div className="container border p-3">
-      <div className="row justify-content-center">
+      <div className="row m-auto">
         <div className="col-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/areachart">
             <Card style={{ width: "8rem" }} className="m-0">
@@ -58,7 +58,7 @@ function ChartSet() {
           </Link>
         </div>
       </div>
-      <div className="row mt-2 justify-content-center">
+      <div className="row mt-2 m-auto">
         <div className="col-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/piechart">
             <Card style={{ width: "8rem" }} className="m-0">
