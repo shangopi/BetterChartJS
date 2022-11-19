@@ -1,29 +1,53 @@
 import React from 'react';
-import ArcChart from '../../components/Chart_Components/ArcChart';
+import SankeyChart from '../../components/Chart_Components/SankeyChart';
 import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 
 
-const ArcChartView = () => {    
-    const [show_heading, set_show_heading] = useState(true);    
-    const [width,set_width] = useState(950);
-    const [circle_size,set_circle_size] = useState(5);
-    const [arc_size,set_arc_size] = useState(25);
+const SankeyChartView = () => {    
+   
 
+
+
+
+
+    const Sankey_data = [["Use","Waste collection",2],["Manufacturing","Use",1],["Extraction","Manufacturing",1],["Use","Stock",4],["Stock","Waste collection",2],["Waste collection","Landfill",1],["Waste collection","Incineration",1],["Waste collection","Anaerobic digestion",1],["Waste collection","Composting",1],["Imports","Use",5]];
+    let nodes =  new Set();
+    for (var i = 0; i < Sankey_data.length; i++) {            
+        nodes.add( Sankey_data[i][0]);
+        nodes.add(Sankey_data[i][1]);
+    }
+    nodes = Array.from(nodes);
+    let color_array = [];
+    var color_dict = {};
+    let random_color = "#FFF";
+    for (var i = 0; i < nodes.length; i++) {           
+        random_color = '#' + (Math.random().toString(16) + "000000").substring(2, 8);
+        color_array.push(random_color);
+        color_dict[nodes[i]]= random_color;
+    }
+
+    const [show_heading, set_show_heading] = useState(true);    
+    const [width,set_width] = useState(1);
+    const [height,set_height] = useState(0.7);
+    const [arc_size,set_arc_size] = useState(0.7);
+    const [opacity,set_opacity] = useState(0.4);
     const [text_size,set_text_size] = useState("1.5");
     const [title_size,set_title_size] = useState("2");
     const [font,set_font] = useState('Raleway');
     const [font2,set_font2] = useState('Raleway');
     const [orientation,set_orientation] = useState(90);    
-    const [color,setcolor] = useState("#BBB3F8");
-    const [color2,setcolor2] = useState("#76F943");
+    const [color,setcolor] = useState(color_dict);
 
 
-
-
-
-    const Arc_data = [["Colombo","Galle",100],["Colombo","Kandy",20],["Kandy","Galle",120],["Colombo","Rathnapura",50],["Kandy","Rathnapura",89],["Rathnapura",'Kurunegala',300],["Galle","Rathnapura",70],['Kurunegala',"Jaffna",300]];
+    function handle_color_change(i,color1){
+        color_array[nodes.findIndex(rank => rank === i)] = color1;
+        let temp = nodes[i] ;
+        //console.log(i,color1);
+        setcolor({...color, [i] : color1});
+        
+    }
 
     //will be sent to chart component for customization purpose
     const Arc_customize = {
@@ -31,13 +55,13 @@ const ArcChartView = () => {
         width : width,
         label_size : text_size+"vw",
         label_font : font,
-        circle_size : circle_size,
+        height : height,
         arc_strength : arc_size,
         color1 : color,
-        color2 :color2,
         title_font : font2,
         title_size : title_size+"vw",
         orientation : orientation,
+        opacity : opacity,
 
         
     };
@@ -46,10 +70,12 @@ const ArcChartView = () => {
 
 
     return ( 
-        <div className='pr-5 '>            
-        <Row>
-        <Col lg={1}> </Col>
-        <Col lg={3}> 
+        <div className='pr-5 container '>            
+        
+       <SankeyChart config={Arc_customize} data={Sankey_data} /> 
+        <br></br>
+        <br></br>
+        
             <Card >
                 <Card.Header>Customize the Graph</Card.Header>
                 <Card.Body>
@@ -73,21 +99,28 @@ const ArcChartView = () => {
                             <Row>
                             <Col>  <Form.Label> Adjust Graph Width </Form.Label> </Col>
                             <Col> 
-                                <Form.Range  onChange={(e) => {set_width(e.target.value)}} defaultValue={950} min='400'  max='950' />
+                                <Form.Range  onChange={(e) => {set_width(e.target.value)}} step={0.01} defaultValue={1} min='0.5'  max='1' />
                                
                             </Col>
                             </Row>
                             <Row>
-                            <Col>  <Form.Label>Adjust Circle Size </Form.Label> </Col>
+                            <Col>  <Form.Label>Adjust Graph Height </Form.Label> </Col>
                             <Col> 
-                            <Form.Range  onChange={(e) => {set_circle_size(e.target.value)}} defaultValue={5} min='2'  max='12' />
+                            <Form.Range  onChange={(e) => {set_height(e.target.value)}}  step={0.01} defaultValue={0.7} min='0.5'  max='1' />
                             </Col>
                             </Row>
 
                             <Row>
-                            <Col>  <Form.Label>Adjust Arc Strength </Form.Label> </Col>
+                            <Col>  <Form.Label>Adjust Line Strength </Form.Label> </Col>
                             <Col> 
-                            <Form.Range  onChange={(e) => {set_arc_size(e.target.value)}} defaultValue={25} min='10'  max='50' />
+                            <Form.Range  onChange={(e) => {set_arc_size(e.target.value)}} step={0.01} defaultValue={0.7} min='0.1'  max='1' />
+                            </Col>
+                            </Row>
+
+                            <Row>
+                            <Col>  <Form.Label>Adjust Opacity </Form.Label> </Col>
+                            <Col> 
+                            <Form.Range  onChange={(e) => {set_opacity(e.target.value)}} step={0.01} defaultValue={0.4} min='0.1'  max='1' />
                             </Col>
                             </Row>
 
@@ -100,17 +133,20 @@ const ArcChartView = () => {
                         <Accordion.Item eventKey="1">
                             <Accordion.Header>Change the Colors</Accordion.Header>
                             <Accordion.Body>
-                                    <Row>
-                                        <Form.Label>Color for forward direction  </Form.Label>                                        
-                                        <SliderPicker color={color} onChange={(color) => {setcolor(color.hex); }} /> 
-                                       
-                                    </Row>
-                                    {<br></br>} 
-                                    <Row>
-                                        <Form.Label>Color for backward direction  </Form.Label>                                         
-                                        <SliderPicker color={color2} onChange={(color) => {setcolor2(color.hex); }} /> 
-
-                                    </Row>
+                            <Row className="ml-5 pl-5">
+                                    {nodes.map((i) =>                                     
+                                        <Col sm={6} >
+                                    
+                                        
+                                        <Form.Label>Color for {i} </Form.Label>                                        
+                                        <SliderPicker  color={color[i]} onChange={(e) => {                                          
+                                            handle_color_change(i,e.hex)}} />     
+                                            <br></br>                                   
+                                                                     
+                                        </Col>
+                                    
+                                    )}
+                                   </Row>  
                         
                                                          
                                     
@@ -163,9 +199,8 @@ const ArcChartView = () => {
                                     <Col> <Form.Label>Text Orientation </Form.Label> </Col>
                                     <Col> 
                                     <Form.Select size="sm"  onChange={(e) => {set_orientation(e.target.value)}} >
-                                        <option value="90">Vertically</option>
                                         <option value="0">Horizontally</option>
-                                        
+                                        <option value="90">Vertically</option>
                                     </Form.Select>
                                     </Col>
                                     </Row>
@@ -183,13 +218,11 @@ const ArcChartView = () => {
                 </Card>
             
                 
-         </Col> 
-        <Col className="pl-5" lg={8}><ArcChart config={Arc_customize} data={Arc_data} />  </Col>
-      </Row>
+         
       </div>
      );
      
 }
  
-export default ArcChartView;
+export default SankeyChartView;
 
