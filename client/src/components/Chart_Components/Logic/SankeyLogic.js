@@ -12,6 +12,7 @@ const SankeyLogic = (data) =>{
     let source = { 
         0 : {}
     }
+    let position = {};
     let y_value = 0;
     all_sources.forEach(function select_unique_source(val1,val2,set){
         if(!(all_destinations.has(val2) )){
@@ -21,19 +22,30 @@ const SankeyLogic = (data) =>{
               }
             added_sources.push(val2);
             source[0][[val2]] = {};
+            position[[val2]] = {};
             source[0][[val2]]["destination"] = [];
             source[0][[val2]]["total"] = 0;
             source[0][[val2]]["graph_y_value"] = 0;
+            position[[val2]]["index"] = 0;
+            position[[val2]]["left_y"] = 0;
+            position[[val2]]["right_y"] = 0;
+            
         }
     })
 
     for (let i =0; i < added_sources.length ; i++ ){
+        
+
         source[0][[added_sources[i]]]["graph_y_value"] = y_value;
+        position[[added_sources[i]]]["left_y"] = y_value;
+        position[[added_sources[i]]]["right_y"] = y_value;
+       
         let filtered_result = data.filter((input)=> input[0]== added_sources[i] );
         for (let result in filtered_result){
             y_value += filtered_result[result][2];
             source[0][[added_sources[i]]]["total"] += filtered_result[result][2];
             source[0][[added_sources[i]]]["destination"].push([filtered_result[result][1],filtered_result[result][2]]);
+
         }
     }
     let output_y_value = y_value;
@@ -70,9 +82,13 @@ const SankeyLogic = (data) =>{
                         toBeAddedSources.splice(index, 1);
                     }
                     source[[k]][[node]] = {};
+                    position[[node]] = {};
                     source[[k]][[node]]["destination"] = [];
                     source[[k]][[node]]["total"] = 0;
                     source[[k]][[node]]["graph_y_value"] = y_value;
+                    position[[node]]["index"] = k;
+                    position[[node]]["left_y"] = y_value;
+                    position[[node]]["right_y"] = y_value;
                     let filtered_result = data.filter((input)=> input[0]== node );
                     for (let result in filtered_result){
                         y_value += filtered_result[result][2];
@@ -94,24 +110,28 @@ const SankeyLogic = (data) =>{
     }
     let non_source = all_destinations_arr.filter(n => !added_sources.includes(n));
     y_value = 0;
-    source['d'] = {}
+    source[[k]] = {};
+    
     for(let m in non_source){
-        
-        source['d'][[non_source[m]]] = {};
-        source['d'][[non_source[m]]]["destination"] = [];
-        source['d'][[non_source[m]]]["total"] = 0;
-        source['d'][[non_source[m]]]["graph_y_value"] = y_value;
+        position[[non_source[m]]]={};
+        source[[k]][[non_source[m]]] = {};
+        source[[k]][[non_source[m]]]["destination"] = [];
+        source[[k]][[non_source[m]]]["total"] = 0;
+        source[[k]][[non_source[m]]]["graph_y_value"] = y_value;
+        position[[non_source[m]]]["index"] = k;
+        position[[non_source[m]]]["left_y"] = y_value;
+        position[[non_source[m]]]["right_y"] = y_value;
 
         let filtered_result = data.filter((input)=> input[1]== non_source[m] );
         for (let result in filtered_result){
             y_value += filtered_result[result][2];
-            source['d'][[[non_source[m]]]]["total"] += filtered_result[result][2];
+            source[k][[[non_source[m]]]]["total"] += filtered_result[result][2];
         }
 
     }
 
-
-    return [source,output_y_value];
+console.log(position);
+    return [source,output_y_value,position];
 
 }
 
