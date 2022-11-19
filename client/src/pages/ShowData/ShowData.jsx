@@ -15,6 +15,9 @@ import PolarAreaCustomization from "../ChartPages/PolarAreaCustomization";
 import RadarCustomize from "../ChartPages/RadarCustomize";
 import ScatterCustomize from "../ChartPages/ScatterCustomize";
 import Arc_Customize from "../ChartPages/Arc_Customize";
+import { useNavigate } from 'react-router-dom';
+import jwtdecode from 'jwt-decode';
+
 
 const chartsFromChartJs = ["area", "bar", "line", "pie", "polar", "radar"];
 
@@ -35,8 +38,12 @@ const chartFromArc=[
 const ShowData = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log("Location is: ", location);
-  const csvFile = window.URL.createObjectURL(location.state?.file);
+  console.log("Location is: ", location.state?.file);
+  const localfile=location.state?.file;
+
+  const csvFile= window.URL.createObjectURL(location.state?.file);
+ 
+  
   console.log("Data is: ", csvFile);
   console.log(csvFile);
   const chart = useSelector((state) => state.csvhandler.charttype);
@@ -61,6 +68,12 @@ const ShowData = () => {
   const [r_axis,setR_axis]  = useState([])
   const [arcData, setArcData] = useState([]); // [[sourceNode1,TargetNode1,weight1],[sourceNode2,TargetNode2,weight2],[sourceNode3,TargetNode3,weight3]]
   const [showCustomize,setShowCustomize]=useState(false)
+  const [isLogged,setIsLogged]=useState(false);
+  const [email,setEmail]=useState('')
+  const [title,setTitle]=useState('')
+  const [inputTitle,setInputTitle]=useState('')
+  let chartdataarray=[]
+  const navigate =useNavigate();
   const arr=[];
   //const arr=[];
   // var count;
@@ -97,9 +110,39 @@ else if(chartBubble.includes(chart)){chartType="Bubble"}
         //   }
         // });
         //setTextY(textY_arr);
-       
+        const token = localStorage.getItem('token');
+        if(token){
+            const user = jwtdecode(token)
+            console.log("The token ",user)
+            if(!user){
+                localStorage.removeItem('token');
+    
+            }else{
+                const user = jwtdecode(token)
+                setEmail(user.email)
+                console.log("User is here")
+                setIsLogged(true)
+            }
+        }
       });
   }, []);
+
+  async function saveChart(){
+    const response = await fetch('http://localhost:4001/api/chart/saveChart',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+      },
+
+      body: JSON.stringify({
+        email,
+        title,
+        chart,
+        chartdataarray,
+      }),
+    })
+    const data=await response.json();
+  }
 
   // const load = async function(){
   //     await fetch( csvFile )
@@ -171,6 +214,7 @@ else if(chartBubble.includes(chart)){chartType="Bubble"}
       arrayPush("r")
     }
     setShowCustomize(true)
+    console.log('Im hereeee')
   };
 
 
@@ -327,25 +371,52 @@ else if(chartBubble.includes(chart)){chartType="Bubble"}
   const show=function(){
     switch(chart){
       case 'bar':
+        chartdataarray=[x_axis[xVariable],yVariable,y_axis[yVariable]];
         return <BarCustomize xlabel={x_axis[xVariable]} dataset={yVariable} dataarray={y_axis[yVariable]}/>
       case 'bubble':
+        chartdataarray=[yVariable,r_axis];
         return <BubbleCustomize  dataset={yVariable} dataarray={r_axis}/>
       case 'line':
+        chartdataarray=[x_axis[xVariable],yVariable,y_axis[yVariable]];
         return <LineCustomize xlabel={x_axis[xVariable]} dataset={yVariable} dataarray={y_axis[yVariable]}/>
       case 'pie':
+        chartdataarray=[x_axis[xVariable],yVariable,y_axis[yVariable]];
         return <PieCustomize xlabel={x_axis[xVariable]} dataset={yVariable} dataarray={y_axis[yVariable]}/>
       case 'ploarArea':
+        chartdataarray=[x_axis[xVariable],yVariable,y_axis[yVariable]];
         return <PolarAreaCustomization xlabel={x_axis[xVariable]} dataset={yVariable} dataarray={y_axis[yVariable]}/>
       case 'radar':
+        chartdataarray=[x_axis[xVariable],yVariable,y_axis[yVariable]];
         return <RadarCustomize xlabel={x_axis[xVariable]} dataset={yVariable} dataarray={y_axis[yVariable]}/>
       case 'scatter':
+        chartdataarray=[x_axis[xVariable],yVariable,y_axis[yVariable]];
         return <ScatterCustomize xlabel={x_axis[xVariable]} dataset={yVariable} dataarray={y_axis[yVariable]}/>
       case 'area':
+        chartdataarray=[x_axis[xVariable],yVariable,y_axis[yVariable]];
         return <AreaCustomize xlabel={x_axis[xVariable]} dataset={yVariable} dataarray={y_axis[yVariable]}/>
       case 'arc':
+        chartdataarray=arcData;
         return <Arc_Customize data_array ={arcData}/>
       case 'chord':
+        chartdataarray=arcData;
         return <Chord_Customize data_array ={arcData}/>          
+    }
+  }
+  function logOut(){
+    localStorage.removeItem('token');
+    setIsLogged(false);
+}
+
+  async function checkSizeTitle(){
+   
+    if(title.length>0){
+      //setTitle(inputTitle)
+      //setInputTitle('')
+      await saveChart();
+      setTitle('')
+    }
+    else{
+      alert("Enter a Title");
     }
   }
 
@@ -620,6 +691,19 @@ else if(chartBubble.includes(chart)){chartType="Bubble"}
          {/* <BarCustomize xlabel={x_axis[xVariable]} dataset={yVariable[0]} dataarray={y_axis[yVariable[0]]}/>}  */}
         {/* {showCustomize==true && <BarCustomize/>}  */}
       </div>
+      {isLogged && showCustomize &&
+      <div>
+                <input type='text' placeholder='Title' value={title} onChange={(e)=>setTitle(e.target.value)} />
+                <button onClick={()=>{checkSizeTitle();}}>Save</button>
+      </div>
+      }
+      {isLogged && 
+      <div>
+          <form onSubmit={logOut}>
+                <input type='submit' value='Log Out'/>
+          </form>
+      </div>
+      }
     </>
   );
 };
