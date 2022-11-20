@@ -40,6 +40,9 @@ const SankeyChartView = (props) => {
     const targetNode = props.targetNode;
     const sourceNode = props.sourceNode; //////////////////////////////////////////////////////
     const weight =props.weight;
+
+    const heading = "How " + sourceNode + "and " + targetNode + " interconnects";
+
     function handle_color_change(i,color1){
         color_array[nodes.findIndex(rank => rank === i)] = color1;
         let temp = nodes[i] ;
@@ -71,7 +74,7 @@ const SankeyChartView = (props) => {
     return ( 
         <div className='pr-5 container '>            
         
-       <SankeyChart config={Arc_customize} data={Sankey_data} /> 
+       <SankeyChart heading={heading} config={Arc_customize} data={Sankey_data} /> 
         <br></br>
         <br></br>
         

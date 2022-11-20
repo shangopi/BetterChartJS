@@ -9,7 +9,7 @@ const chartController =require('./Routers/chartRouter')
 app.use(cors())
 app.use(json())
 
-mongoose.connect('mongodb://localhost:27017/ChartJs')
+var MongoDB = mongoose.connect('mongodb+srv://gopiadmin:gopigopi123@atlascluster.v3nwvkb.mongodb.net/ChartJs');
 
 app.use('/api/registerUser',registerRouter)
 app.use('/api/loginUser',loginRouter)

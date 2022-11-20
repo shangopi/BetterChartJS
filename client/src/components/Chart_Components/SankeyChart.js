@@ -97,7 +97,7 @@ const Canvas = props => {
    return ( 
        <div>
         
-        {props.config.show_heading && <h2 className={'mt-5 text-center '} style={{fontFamily : props.config.title_font, fontSize: props.config.title_size}}> Sample Sankey Chart</h2> }
+        {props.config.show_heading && <h2 className={'mt-5 text-center '} style={{fontFamily : props.config.title_font, fontSize: props.config.title_size}}> {props.heading}</h2> }
         <div  style={{
      display: "flex",    justifyContent: "center",
     alignItems: "center"}}><canvas className='{canvas1}'  ref={canvasRef} {...props}/></div>

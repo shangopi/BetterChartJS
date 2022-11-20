@@ -32,6 +32,8 @@ const BubbleChartView = (props)=>{
     const [color,setcolor] = useState("#234400");
     const xaxis=props.xaxis; //////////////////////////////////////////////////////////////
     const raxis=props.raxis; ///////////////////////////////////////////////////////////////
+    const heading = "some heading here";
+
     const Bubble_data = {
       datasets: [
         {
@@ -95,7 +97,7 @@ const BubbleChartView = (props)=>{
         },
           title: {
             display: true,
-            text: 'Products with most number of sales in a given period',
+            text: heading,
             font: {
                 
                 size: title_size,

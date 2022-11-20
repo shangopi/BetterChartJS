@@ -30,6 +30,7 @@ const LineChartView = (props) => {
      const labels = props.xlabel;
      const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
 
+     const heading = "How "+ xaxis + " Changes with "+props.dataset ;
 
   const Line_data = {
     labels,
@@ -98,7 +99,7 @@ const LineChartView = (props) => {
         },
           title: {
             display: true,
-            text: 'Products with most number of sales in a given period',
+            text: heading,
             font: {
                 
                 size: title_size,
