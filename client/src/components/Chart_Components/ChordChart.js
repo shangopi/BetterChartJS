@@ -60,14 +60,18 @@ const Canvas = props => {
                     //not in out , intiialize
                     out[data1[i][0]] = [0];
                 }
+                if (!(data1[i][1] in out)) {
+                    //not in out , intiialize
+                    out[data1[i][1]] = [0];
+                }
                 if (!(data1[i][1] in in_out)) {
                     in_out[data1[i][1]] = 0;
                 }
                 //if already intialized then increment the weights
-                in_out[data1[i][0]] += data1[i][2];
-                in_out[data1[i][1]] += data1[i][2];
+                in_out[data1[i][0]] += data1[i][2]*1;
+                in_out[data1[i][1]] += data1[i][2]*1;
                 out[data1[i][0]].push([data1[i][1], data1[i][2]])
-                total += data1[i][2] * 2
+                total += data1[i][2] * 2;
             }
 
         }
@@ -83,7 +87,6 @@ const Canvas = props => {
             let oldsum = -Math.PI / 2;
             let angle = 0;
             let coordinate = [];
-           
             for (var key in in_out) {
                
                 //to use sum's previous data we declare oldsum
@@ -99,7 +102,10 @@ const Canvas = props => {
 
                 //implementing nodes
                 oldsum = sum
+                console.log(total);
+                console.log(in_out[key]);
                 sum = oldsum + 2 * Math.PI * in_out[key] * (100 - space) / (100 * total);
+                console.log(sum);
 
                 //implementing title
                 angle = (oldsum + sum) / 2;
@@ -112,7 +118,6 @@ const Canvas = props => {
                 
                 let color1 = props.config.color1[key] ;
                 
-                     
 
               
                 ctx.strokeStyle = color1;
@@ -121,7 +126,6 @@ const Canvas = props => {
                 ctx.lineWidth = lineWidth;
                 ctx.stroke();
                 let dest_list = [...out[key]];
-           
                 
                 for (var temp in dest_list) {
                                      
