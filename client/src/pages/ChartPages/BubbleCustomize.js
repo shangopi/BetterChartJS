@@ -36,7 +36,7 @@ const BubbleChartView = (props)=>{
         {
           label: props.dataset,
           data: props.dataarray,
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          backgroundColor: color,
         },
       ],
     };

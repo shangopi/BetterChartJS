@@ -45,7 +45,7 @@ const Bar_data = {
             
             label: props.dataset,
             data:props.dataarray,
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: color,
           },
          
     ],
