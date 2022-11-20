@@ -256,6 +256,7 @@ const ChordChartView = (props) => {
       </Row>
       </div>
      );
+
      
 }
  
