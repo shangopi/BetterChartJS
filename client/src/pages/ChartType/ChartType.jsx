@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "../../components/Navbar/Navbar";
+import Nav from "../../components/Navbar/Nav";
 import ChartChoose from "../../components/ChartChoose/ChartChoose";
 
 function ChartType() {
