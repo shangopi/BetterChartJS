@@ -20,6 +20,7 @@ const ChordChartView = (props) => {
 
         for (var i = 0; i < Chord_data.length; i++) {            
             nodes.add( Chord_data[i][0]);
+            nodes.add( Chord_data[i][1]);
         }
         nodes = Array.from(nodes);
         let color_array = [];
