@@ -15,6 +15,7 @@ import PolarAreaCustomization from "../ChartPages/PolarAreaCustomization";
 import RadarCustomize from "../ChartPages/RadarCustomize";
 import ScatterCustomize from "../ChartPages/ScatterCustomize";
 import Arc_Customize from "../ChartPages/Arc_Customize";
+import SankeyCustomize from "../ChartPages/SankeyCustomize"
 import { useNavigate } from "react-router-dom";
 import jwtdecode from "jwt-decode";
 import { TabTitle } from "../../utils/GeneralFunctions";
@@ -25,7 +26,7 @@ const chartScatter = ["scatter"];
 
 const chartBubble = ["bubble"];
 
-const chartFromArc = ["arc", "chord"];
+const chartFromArc = ["arc", "chord","sankey"];
 // var chartType;
 
 const ShowData = () => {
@@ -538,6 +539,10 @@ const ShowData = () => {
       case "chord":
         chartdataarray = arcData;
         return <Chord_Customize data_array={arcData} />;
+      case "sankey":
+        chartdataarray = arcData;
+        return <SankeyCustomize data_array={arcData} />;
+      
     }
   };
   function logOut() {
