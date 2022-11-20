@@ -15,6 +15,9 @@ app.use('/api/registerUser',registerRouter)
 app.use('/api/loginUser',loginRouter)
 app.use('/api/chart',chartController)
 
+app.get('/',(req,res)=>{
+    res.send("result");
+})
 
 const port = process.env.PORT || 4001;
 

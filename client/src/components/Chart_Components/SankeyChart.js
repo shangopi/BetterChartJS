@@ -52,7 +52,7 @@ const Canvas = props => {
 
                         ctx.beginPath();
                         ctx.strokeStyle = color;
-                        ctx.lineWidth = 50 * props.config.arc_strength;
+                        ctx.lineWidth = 10 * props.config.arc_strength;
                         ctx.globalAlpha = props.config.opacity;
 
                         ctx.moveTo(source_x, source_y);

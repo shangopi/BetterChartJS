@@ -8,10 +8,12 @@ import { useState } from 'react';
 const SankeyChartView = (props) => {    
 
     const Sankey_data =  props.data_array;
+    console.log(Sankey_data);
     let nodes =  new Set();
     for (var i = 0; i < Sankey_data.length; i++) {            
         nodes.add( Sankey_data[i][0]);
         nodes.add(Sankey_data[i][1]);
+        Sankey_data[i][2] = parseInt(Sankey_data[i][2]);
     }
     nodes = Array.from(nodes);
     let color_array = [];
