@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Nav from "../../components/Navbar/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { TabTitle } from "../../utils/GeneralFunctions";
+
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -32,6 +34,7 @@ function Login() {
     }
     console.log(data);
   }
+  TabTitle("Login - BetterChartJS");
 
   return (
     <div>

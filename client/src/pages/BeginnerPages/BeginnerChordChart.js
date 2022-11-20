@@ -1,14 +1,29 @@
 import React from "react";
 import ChordCustomize from "./../ChartPages/Chord_Customize";
 import Nav from "../../components/Navbar/Nav";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const dataset = [
-  ["Fire", "Machine 1", 5],
-  ["Fire", "Machine 2", 7],
-  ["Fire", "Machine 3", 6],
-  ["Water", "Machine 1", 2],
-  ["Water", "Machine 2", 9],
-  ["Water", "Machine 3", 4],
+  ["mars", "venus", 100],
+  ["venus", "mars", 25],
+  ["venus", "earth", 299],
+  ["earth", "mars", 200],
+  ["mars", "jupiter", 500],
+  ["jupiter", "venus", 200],
+  ["venus", "mercury", 100],
+  ["mercury", "venus", 50],
+  ["earth", "jupiter", 200],
+  ["jupiter", "mercury", 800],
+  ["venus", "jupiter", 100],
+  ["neptune", "pluto", 200],
+  ["pluto", "mars", 800],
+  ["saturn", "neptune", 100],
+  ["saturn", "venus", 130],
+  ["earth", "pluto", 200],
+  ["mercury", "earth", 300],
+  ["neptune", "venus", 200],
+  ["venus", "neptune", 300],
+  ["pluto", "neptune", 400],
 ];
 
 const Graph = function () {
@@ -16,6 +31,8 @@ const Graph = function () {
 };
 
 function BeginnerChordChart() {
+  TabTitle("Chord Diagram - BetterChartJS");
+
   return (
     <div>
       <Nav />
@@ -43,30 +60,131 @@ function BeginnerChordChart() {
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Film Type</th>
-                  <th scope="col">Vote</th>
+                  <th scope="col">Starting Planet</th>
+                  <th scope="col">Destination Planet</th>
+                  <th scope="col">Time to Travel</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Comedy</td>
-                  <td>4</td>
+                  <td>Mars</td>
+                  <td>Venus</td>
+                  <td>100</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
-                  <td>Romance</td>
-                  <td>6</td>
+                  <td>Venus</td>
+                  <td>Mars</td>
+                  <td>25</td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
-                  <td>Drama</td>
-                  <td>1</td>
+                  <td>venus</td>
+                  <td>earth</td>
+                  <td>299</td>
                 </tr>
                 <tr>
                   <th scope="row">4</th>
-                  <td>SciFi</td>
-                  <td>4</td>
+                  <td>Earth</td>
+                  <td>Mars</td>
+                  <td>200</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Mars</td>
+                  <td>Jupiter</td>
+                  <td>500</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>Jupiter</td>
+                  <td>Venus</td>
+                  <td>200</td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>Venus</td>
+                  <td>Mercury</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td>Mercury</td>
+                  <td>Venus</td>
+                  <td>50</td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td>Earth</td>
+                  <td>Jupiter</td>
+                  <td>200</td>
+                </tr>
+                <tr>
+                  <th scope="row">10</th>
+                  <td>Jupiter</td>
+                  <td>Mercury</td>
+                  <td>800</td>
+                </tr>
+                <tr>
+                  <th scope="row">11</th>
+                  <td>Venus</td>
+                  <td>Jupiter</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <th scope="row">12</th>
+                  <td>Neptune</td>
+                  <td>Pluto</td>
+                  <td>200</td>
+                </tr>
+                <tr>
+                  <th scope="row">13</th>
+                  <td>Pluto</td>
+                  <td>Mars</td>
+                  <td>800</td>
+                </tr>
+                <tr>
+                  <th scope="row">14</th>
+                  <td>Saturn</td>
+                  <td>Neptune</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <th scope="row">15</th>
+                  <td>Saturn</td>
+                  <td>Venus</td>
+                  <td>130</td>
+                </tr>
+                <tr>
+                  <th scope="row">16</th>
+                  <td>Earth</td>
+                  <td>Pluto</td>
+                  <td>200</td>
+                </tr>
+                <tr>
+                  <th scope="row">17</th>
+                  <td>Mercury</td>
+                  <td>Earth</td>
+                  <td>300</td>
+                </tr>
+                <tr>
+                  <th scope="row">18</th>
+                  <td>Neptune</td>
+                  <td>Venus</td>
+                  <td>200</td>
+                </tr>
+                <tr>
+                  <th scope="row">19</th>
+                  <td>Venus</td>
+                  <td>Neptune</td>
+                  <td>300</td>
+                </tr>
+                <tr>
+                  <th scope="row">20</th>
+                  <td>Pluto</td>
+                  <td>Neptune</td>
+                  <td>400</td>
                 </tr>
               </tbody>
             </table>

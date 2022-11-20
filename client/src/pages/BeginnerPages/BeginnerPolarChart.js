@@ -1,6 +1,7 @@
 import React from "react";
 import PolarAreaCustomize from "./../ChartPages/PolarAreaCustomization";
 import Nav from "../../components/Navbar/Nav";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const label = ["Comedy", "Romance", "Action", "Drama", "SciFi"];
 const dataset = [4, 5, 6, 1, 4];
@@ -16,6 +17,8 @@ const Graph = function () {
 };
 
 function BeginnerPolarAreaChart() {
+  TabTitle("Polar Area Chart - BetterChartJS");
+
   return (
     <div>
       <Nav />

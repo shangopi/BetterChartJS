@@ -1,6 +1,7 @@
 import React from "react";
-import ChordCustomize from "./../ChartPages/Chord_Customize";
+import SankeyCustomize from "./../ChartPages/SankeyCustomize";
 import Nav from "../../components/Navbar/Nav";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const dataset = [
   ["Fire", "Machine 1", 5],
@@ -12,10 +13,12 @@ const dataset = [
 ];
 
 const Graph = function () {
-  return <div></div>;
+  return <SankeyCustomize data_array={dataset} />;
 };
 
 function BeginnerSankeyChart() {
+  TabTitle("Sankey Chart - BetterChartJS");
+
   return (
     <div>
       <Nav />
@@ -44,29 +47,46 @@ function BeginnerSankeyChart() {
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Film Type</th>
-                  <th scope="col">Vote</th>
+                  <th scope="col">Element</th>
+                  <th scope="col">Machine</th>
+                  <th scope="col">Power</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Comedy</td>
-                  <td>4</td>
+                  <td>Fire</td>
+                  <td>Machine 1</td>
+                  <td>5</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
-                  <td>Romance</td>
-                  <td>6</td>
+                  <td>Fire</td>
+                  <td>Machine 2</td>
+                  <td>7</td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
-                  <td>Drama</td>
-                  <td>1</td>
+                  <td>Fire</td>
+                  <td>Machine 3</td>
+                  <td>6</td>
                 </tr>
                 <tr>
                   <th scope="row">4</th>
-                  <td>SciFi</td>
+                  <td>Water</td>
+                  <td>Machine 1</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Water</td>
+                  <td>Machine 2</td>
+                  <td>9</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>Water</td>
+                  <td>Machine 3</td>
                   <td>4</td>
                 </tr>
               </tbody>

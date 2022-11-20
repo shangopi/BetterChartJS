@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import React from "react";
 import jwtdecode from 'jwt-decode'
 import {useNavigate} from 'react-router-dom'
+import { TabTitle } from "../../utils/GeneralFunctions";
+import Nav from "../../components/Navbar/Nav";
 
 function SavedCharts(){
+  TabTitle("Saved Charts - BetterChartJS");
+
     const [chartArray,setChartarray]=useState([])
     var charta=[]
     async function getCharts(){
@@ -28,6 +32,7 @@ function SavedCharts(){
     console.log(charta);
     return(
         <div>
+            <Nav />
            <h1>Hello</h1>
            <div>
            {
