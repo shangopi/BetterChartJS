@@ -1,8 +1,21 @@
 const User=require('../Models/regUserModel')
 const Chart=require('../Models/chartModel')
+const jwt =require('jsonwebtoken')
 
 const getChart =async(req,res)=>{
+    const token = req.headers['x-access-token']
+    
+    try {
+        const decoded = jwt.verify(token,'secret12345')
+        const email=decoded.email;
+        const user = await User.findOne({email:email})
+        return res.json({status:'ok',user:user})
 
+    } catch (error) {
+        console.log(error)
+        res.json({status:'error',error:'invalid token'})
+        
+    }
 }
 
 const createChart = async(req,res)=>{
