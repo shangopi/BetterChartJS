@@ -30,7 +30,8 @@ const BubbleChartView = (props)=>{
     const [font,set_font] = useState('Raleway');
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
-
+    const xaxis=props.xaxis; //////////////////////////////////////////////////////////////
+    const raxis=props.raxis; ///////////////////////////////////////////////////////////////
     const Bubble_data = {
       datasets: [
         {

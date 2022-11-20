@@ -28,7 +28,7 @@ const LineChartView = (props) => {
     const [color,setcolor] = useState("#234400");
     const [color2,setcolor2] = useState("#a47400");
      const labels = props.xlabel;
-
+     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
 
 
   const Line_data = {

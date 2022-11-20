@@ -12,7 +12,9 @@ const ChordChartView = (props) => {
     const y_axis = useSelector((state) => state.csvhandler.y_data);
 
     const Chord_data = props.data_array;
-
+    const targetNode = props.targetNode;
+    const sourceNode = props.sourceNode; //////////////////////////////////////////////////////
+    const weight =props.weight;
 
         let nodes =  new Set();
 

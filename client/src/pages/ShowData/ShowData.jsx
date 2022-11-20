@@ -468,80 +468,88 @@ const ShowData = () => {
   const show = function () {
     switch (chart) {
       case "bar":
-        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable]];
+        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable],xVariable];
         return (
           <BarCustomize
             xlabel={x_axis[xVariable]}
             dataset={yVariable}
             dataarray={y_axis[yVariable]}
+            xaxis={xVariable}
           />
         );
       case "bubble":
-        chartdataarray = [yVariable, r_axis];
-        return <BubbleCustomize dataset={yVariable} dataarray={r_axis} />;
+        chartdataarray = [yVariable, r_axis,xVariable,rVariable];
+        console.log("raxis,",r_axis)
+        return <BubbleCustomize dataset={yVariable} dataarray={r_axis} xaxis={xVariable} raxis={rVariable} />;
       case "line":
-        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable]];
+        chartdataarray =  [x_axis[xVariable], yVariable, y_axis[yVariable],xVariable];
         return (
           <LineCustomize
-            xlabel={x_axis[xVariable]}
-            dataset={yVariable}
-            dataarray={y_axis[yVariable]}
+          xlabel={x_axis[xVariable]}
+          dataset={yVariable}
+          dataarray={y_axis[yVariable]}
+          xaxis={xVariable}
           />
         );
       case "pie":
-        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable]];
+        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable],xVariable];
         return (
           <PieCustomize
-            xlabel={x_axis[xVariable]}
-            dataset={yVariable}
-            dataarray={y_axis[yVariable]}
+          xlabel={x_axis[xVariable]}
+          dataset={yVariable}
+          dataarray={y_axis[yVariable]}
+          xaxis={xVariable}
           />
         );
       case "ploarArea":
-        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable]];
+        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable],xVariable];
         return (
           <PolarAreaCustomization
-            xlabel={x_axis[xVariable]}
-            dataset={yVariable}
-            dataarray={y_axis[yVariable]}
+          xlabel={x_axis[xVariable]}
+          dataset={yVariable}
+          dataarray={y_axis[yVariable]}
+          xaxis={xVariable}
           />
         );
       case "radar":
-        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable]];
+        chartdataarray =  [x_axis[xVariable], yVariable, y_axis[yVariable],xVariable];
         return (
           <RadarCustomize
-            xlabel={x_axis[xVariable]}
-            dataset={yVariable}
-            dataarray={y_axis[yVariable]}
+          xlabel={x_axis[xVariable]}
+          dataset={yVariable}
+          dataarray={y_axis[yVariable]}
+          xaxis={xVariable}
           />
         );
       case "scatter":
-        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable]];
+        chartdataarray =  [x_axis[xVariable], yVariable, y_axis[yVariable],xVariable];
         return (
           <ScatterCustomize
-            xlabel={x_axis[xVariable]}
-            dataset={yVariable}
-            dataarray={y_axis[yVariable]}
+          xlabel={x_axis[xVariable]}
+          dataset={yVariable}
+          dataarray={y_axis[yVariable]}
+          xaxis={xVariable}
           />
         );
       case "area":
-        chartdataarray = [x_axis[xVariable], yVariable, y_axis[yVariable]];
+        chartdataarray =  [x_axis[xVariable], yVariable, y_axis[yVariable],xVariable];
         return (
           <AreaCustomize
-            xlabel={x_axis[xVariable]}
-            dataset={yVariable}
-            dataarray={y_axis[yVariable]}
+          xlabel={x_axis[xVariable]}
+          dataset={yVariable}
+          dataarray={y_axis[yVariable]}
+          xaxis={xVariable}
           />
         );
       case "arc":
-        chartdataarray = arcData;
-        return <Arc_Customize data_array={arcData} />;
+        chartdataarray = [arcData,sourceNode,targetNode,weight];
+        return <Arc_Customize data_array={arcData} sourceNode={sourceNode} targetNode={targetNode} weighht={weight}/>;
       case "chord":
-        chartdataarray = arcData;
-        return <Chord_Customize data_array={arcData} />;
+        chartdataarray =  [arcData,sourceNode,targetNode,weight];
+        return <Chord_Customize data_array={arcData}sourceNode={sourceNode} targetNode={targetNode} weighht={weight}/>;
       case "sankey":
-        chartdataarray = arcData;
-        return <SankeyCustomize data_array={arcData} />;
+        chartdataarray = [arcData,sourceNode,targetNode,weight];
+        return <SankeyCustomize data_array={arcData} sourceNode={sourceNode} targetNode={targetNode} weighht={weight}/>;
       
     }
   };
@@ -560,6 +568,9 @@ const ShowData = () => {
       alert("Enter a Title");
     }
   }
+  function gotoHome(){
+    navigate('/')
+}
 
   return (
     <>
@@ -889,6 +900,10 @@ const ShowData = () => {
           </form>
         </div>
       )}
+
+        <div>
+          <button style={{width:"100px"}} onClick={() => gotoHome()}>Home Page</button>
+        </div>
     </>
   );
 };

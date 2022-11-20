@@ -20,7 +20,9 @@ const ArcChartView = (props) => {
     const [orientation,set_orientation] = useState(90);    
     const [color,setcolor] = useState("#BBB3F8");
     const [color2,setcolor2] = useState("#76F943");
-
+    const targetNode = props.targetNode;
+    const sourceNode = props.sourceNode; //////////////////////////////////////////////////////
+    const weight =props.weight;
   const Arc_data = props.data_array;
 
   const Arc_customize = {
