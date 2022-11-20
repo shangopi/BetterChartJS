@@ -5,9 +5,9 @@ import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 
 
-const SankeyChartView = () => {    
+const SankeyChartView = (props) => {    
 
-    const Sankey_data = [["Use","Waste collection",2],["Manufacturing","Use",1],["Extraction","Manufacturing",1],["Use","Stock",4],["Stock","Waste collection",2],["Waste collection","Landfill",1],["Waste collection","Incineration",1],["Waste collection","Anaerobic digestion",1],["Waste collection","Composting",1],["Imports","Use",5]];
+    const Sankey_data =  props.data_array;
     let nodes =  new Set();
     for (var i = 0; i < Sankey_data.length; i++) {            
         nodes.add( Sankey_data[i][0]);

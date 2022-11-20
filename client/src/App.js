@@ -19,6 +19,7 @@ import BeginnerChordChart from "./pages/BeginnerPages/BeginnerChordChart";
 import BeginnerSankeyChart from "./pages/BeginnerPages/BeginnerSankeyChart";
 import Register from "./pages/Register/register"
 import Login from "./pages/Login/login";
+import SavedCharts from "./pages/SavedCharts/SavedCharts";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="showdata" element={<ShowData />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
+        <Route path="savedCharts" element={<SavedCharts />} />
         <Route path="areachart" element={<BeginnerAreaChart />} />
         <Route path="barchart" element={<BeginnerBarChart />} />
         <Route path="bubblechart" element={<BeginnerBubbleChart />} />
