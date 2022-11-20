@@ -13,9 +13,12 @@ import RadarCustomize from "../ChartPages/RadarCustomize";
 import ScatterCustomize from "../ChartPages/ScatterCustomize";
 import Arc_Customize from "../ChartPages/Arc_Customize";
 import SankeyCustomize from "../ChartPages/SankeyCustomize"
-
+import { TabTitle } from "../../utils/GeneralFunctions";
+import Nav from "../../components/Navbar/Nav";
 
 function SavedCharts(){
+  TabTitle("Saved Charts - BetterChartJS");
+
     const [chartArray,setChartarray]=useState([])
     const [title,setTitle]=useState('')
     const  [chartType,setChartType]=useState('')
@@ -137,6 +140,7 @@ function SavedCharts(){
 
     return(
         <div>
+            <Nav />
            <h1>Hello</h1>
            <div>
            {

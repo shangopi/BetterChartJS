@@ -233,6 +233,9 @@ const ChordChartView = (props) => {
          
         <Col lg={8}><ChordChart config={Chord_customize} data={Chord_data} />  </Col>
       </Row>
+      <br></br>
+      <br></br>
+      <br></br> 
       </div>
      );
 

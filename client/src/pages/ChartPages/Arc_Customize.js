@@ -181,6 +181,8 @@ const ArcChartView = (props) => {
         <Col className="pl-5" lg={8}><ArcChart config={Arc_customize} data={Arc_data} />  </Col>
 
       </Row>
+      <br></br>
+      <br></br>
     </div>
   );
 };

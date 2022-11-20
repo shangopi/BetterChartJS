@@ -249,6 +249,8 @@ function hexToRGB(hex, alpha) {
     
     
     </Row>
+    <br></br>
+      <br></br>
     </div>
   )
 

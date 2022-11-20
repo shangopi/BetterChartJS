@@ -1,6 +1,7 @@
 import React from "react";
 import PieCustomize from "./../ChartPages/PieCustomize";
 import Nav from "../../components/Navbar/Nav";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const label = [
   "Celtic",
@@ -19,6 +20,8 @@ const Graph = function () {
 };
 
 function BeginnerPieChart() {
+  TabTitle("Pie Chart - BetterChartJS");
+
   return (
     <div>
       <Nav />

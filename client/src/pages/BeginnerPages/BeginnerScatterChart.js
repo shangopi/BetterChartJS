@@ -1,6 +1,7 @@
 import React from "react";
 import ScatterCustomize from "./../ChartPages/ScatterCustomize";
 import Nav from "../../components/Navbar/Nav";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const label = [0, 1, 2, 3, 4, 5, 6];
 const dataset = [0, 3, 7, 12, 18, 30, 45.6];
@@ -12,6 +13,8 @@ const Graph = function () {
 };
 
 function BeginnerScatterChart() {
+  TabTitle("Scatter Chart - BetterChartJS");
+
   return (
     <div>
       <Nav />

@@ -1,6 +1,7 @@
 import React from "react";
 import BarCustomize from "./../ChartPages/BarCustomize";
 import Nav from "../../components/Navbar/Nav";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const label = ["Comedy", "Romance", "Action", "Drama", "SciFi"];
 const dataset = [4, 5, 6, 1, 4];
@@ -12,6 +13,8 @@ const Graph = function () {
 };
 
 function BeginnerBarChart() {
+  TabTitle("Bar Chart - BetterChartJS");
+
   return (
     <div>
       <Nav />

@@ -39,7 +39,7 @@ const ScatterChartView = (props)=>{
       {
         label:props.dataset,
         data:daarray,
-        backgroundColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: color,
       },
     ],
   };
@@ -230,6 +230,9 @@ const ScatterChartView = (props)=>{
      </Col> 
     <Col lg={8}><ScatterChart config={ScatterCustomize} data={Scatter_data} />  </Col>
   </Row>
+  <br></br>
+      <br></br>
+      <br></br> 
   </div>
  );
 

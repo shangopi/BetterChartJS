@@ -225,6 +225,8 @@ const BubbleChartView = (props)=>{
        </Col> 
       <Col lg={8}><BubbleChart config={BubbleCustomize} data={Bubble_data} />  </Col>
     </Row>
+    <br></br>
+      <br></br>
     </div>
    );
 

@@ -1,6 +1,7 @@
 import React from "react";
 import BubbleCustomize from "./../ChartPages/BubbleCustomize";
 import Nav from "../../components/Navbar/Nav";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const dataset = [
   [5, 5500, 3],
@@ -15,6 +16,8 @@ const Graph = function () {
 };
 
 function BeginnerBubbleChart() {
+  TabTitle("Bubble Chart - BetterChartJS");
+
   return (
     <div>
       <Nav />

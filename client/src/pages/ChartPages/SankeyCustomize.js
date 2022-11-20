@@ -212,7 +212,9 @@ const SankeyChartView = (props) => {
                 </Card.Body>
                 </Card>
             
-                
+                <br></br>
+      <br></br>
+      <br></br>  
          
       </div>
      );

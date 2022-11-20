@@ -18,6 +18,7 @@ import Arc_Customize from "../ChartPages/Arc_Customize";
 import SankeyCustomize from "../ChartPages/SankeyCustomize"
 import { useNavigate } from "react-router-dom";
 import jwtdecode from "jwt-decode";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const chartsFromChartJs = ["area", "bar", "line", "pie", "polar", "radar"];
 
@@ -29,6 +30,8 @@ const chartFromArc = ["arc", "chord","sankey"];
 // var chartType;
 
 const ShowData = () => {
+  TabTitle("Show Data - BetterChartJS");
+
   const dispatch = useDispatch();
   const location = useLocation();
   console.log("Location is: ", location.state?.file);

@@ -253,6 +253,9 @@ const LineChartView = (props) => {
          </Col> 
         <Col lg={8}><LineChart config={LineCustomize} data={Line_data} />  </Col>
       </Row>
+      <br></br>
+      <br></br>
+      <br></br> 
       </div>
      );
      
