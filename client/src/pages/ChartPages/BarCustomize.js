@@ -35,7 +35,7 @@ const BarChartView = (props) => {
 
     // const labels =['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
     const labels = props.xlabel;
-
+    const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
 
 const Bar_data = {
     labels,

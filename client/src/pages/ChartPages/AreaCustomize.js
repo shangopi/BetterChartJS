@@ -34,7 +34,7 @@ function hexToRGB(hex, alpha) {
 
 
     const labels = props.xlabel;
-
+    const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
   const Area_data = {
     labels,
     datasets: [

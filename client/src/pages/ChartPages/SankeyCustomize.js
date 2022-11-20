@@ -35,7 +35,9 @@ const SankeyChartView = (props) => {
     const [orientation,set_orientation] = useState(90);    
     const [color,setcolor] = useState(color_dict);
 
-
+    const targetNode = props.targetNode;
+    const sourceNode = props.sourceNode; //////////////////////////////////////////////////////
+    const weight =props.weight;
     function handle_color_change(i,color1){
         color_array[nodes.findIndex(rank => rank === i)] = color1;
         let temp = nodes[i] ;
