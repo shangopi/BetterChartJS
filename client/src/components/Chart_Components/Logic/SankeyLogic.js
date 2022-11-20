@@ -130,7 +130,6 @@ const SankeyLogic = (data) =>{
 
     }
 
-console.log(position);
     return [source,output_y_value,position];
 
 }
