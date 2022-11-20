@@ -32,7 +32,7 @@ const RadarChartView = (props)=>{
       {
         label: props.dataset,
         data: props.dataarray,
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        backgroundColor: color,
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
       },

@@ -39,7 +39,7 @@ const ScatterChartView = (props)=>{
       {
         label:props.dataset,
         data:daarray,
-        backgroundColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: color,
       },
     ],
   };
