@@ -197,6 +197,9 @@ plugins: {
       <Col lg={6}><RadarChart config={RadarCustomize} data={RadarData} />  </Col>
       <Col lg={1}></Col>
     </Row>
+    <br></br>
+      <br></br>
+      <br></br> 
 
     </div>
   );

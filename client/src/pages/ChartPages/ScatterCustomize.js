@@ -230,6 +230,9 @@ const ScatterChartView = (props)=>{
      </Col> 
     <Col lg={8}><ScatterChart config={ScatterCustomize} data={Scatter_data} />  </Col>
   </Row>
+  <br></br>
+      <br></br>
+      <br></br> 
   </div>
  );
 

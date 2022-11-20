@@ -162,6 +162,9 @@ const PieChartView = (props)=>{
       <Col lg={6}><PieChart config={PieCustomize} data={Pie_data} />  </Col>
       <Col lg={1}></Col>
     </Row>
+    <br></br>
+      <br></br>
+      <br></br> 
     </div>
    );
 
