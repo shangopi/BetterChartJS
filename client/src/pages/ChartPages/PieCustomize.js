@@ -40,7 +40,7 @@ const PieChartView = (props)=>{
             ],
             borderWidth: 1,
           },
-         
+
         ],
       };
 
@@ -73,7 +73,7 @@ const PieChartView = (props)=>{
     };
 
     return ( 
-      <div className='pr-5'>            
+      <div className='pr-5 container'>            
       <Row>
       <Col> 
           <Card>
