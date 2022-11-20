@@ -1,8 +1,11 @@
 import React from "react";
 import Nav from "../../components/Navbar/Nav";
 import ChartChoose from "../../components/ChartChoose/ChartChoose";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 function ChartType() {
+  TabTitle("Chart Type - BetterChartJS");
+
   return (
     <div>
       <Nav />
