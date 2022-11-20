@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Nav from "../../components/Navbar/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 function Register() {
   const [firstName,setFirstName]=useState('');
@@ -33,6 +34,7 @@ function Register() {
         navigate('/login')
     }
   }
+  TabTitle("SignUp - BetterChartJS");
 
   return (
     <div>

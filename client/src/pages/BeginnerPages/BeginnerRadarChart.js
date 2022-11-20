@@ -1,6 +1,7 @@
 import React from "react";
 import RadarCustomize from "./../ChartPages/RadarCustomize";
 import Nav from "../../components/Navbar/Nav";
+import { TabTitle } from "../../utils/GeneralFunctions";
 
 const label = ["Comedy", "Romance", "Action", "Drama", "SciFi"];
 const dataset = [4, 5, 6, 1, 4];
@@ -12,6 +13,8 @@ const Graph = function () {
 };
 
 function BeginnerRadarChart() {
+  TabTitle("Radar Chart - BetterChartJS");
+
   return (
     <div>
       <Nav />
