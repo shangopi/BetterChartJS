@@ -13,7 +13,7 @@ const PieChartView = (props)=>{
     const [color2,setcolor2] = useState("#124490");
     const [show_heading, set_show_heading] = useState(true); 
     const [show_legend, set_show_legend] = useState(true);    
-   
+    const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
 
 
     const Pie_data = {

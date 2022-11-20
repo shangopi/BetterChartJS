@@ -39,6 +39,9 @@ export function Nav() {
     setIsLogged(false);
     localStorage.removeItem("token");
   }
+  function viewCharts(){
+    navigate('/savedCharts')
+  }
 
   return (
     <div>
@@ -86,6 +89,17 @@ export function Nav() {
                 onClick={logout}
               >
                 Log Out
+              </button>
+            </div>
+          )}
+          {isLogged && (
+            <div className="ms-auto me-1">
+              <button
+                type="button"
+                class="btn btn-outline-light"
+                onClick={viewCharts}
+              >
+               View My Saved Charts
               </button>
             </div>
           )}

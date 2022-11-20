@@ -25,7 +25,9 @@ function SavedCharts(){
     const [chartSelect,setChartSelect]=useState(false)
     const [chartData,setChartData]=useState([])
     const [createDate,setCreateDate]=useState('')
+    var checkLength=true;
     //var charta;
+    const navigate=useNavigate();
     async function getCharts(){
         const req=await fetch('http://localhost:4001/api/chart/getCharts',{
             headers:{
@@ -37,6 +39,11 @@ function SavedCharts(){
         
         if(data.status ==='ok'){
             console.log("status is",data.user.charts);
+            if(data.user.charts.length===0){
+                checkLength=false;
+                alert("You have no saved charts for now");
+                navigate('/')
+            }
             setChartarray(data.user.charts)
             
         }else{
@@ -45,6 +52,10 @@ function SavedCharts(){
     }
 
     useEffect(()=>{
+        const token = localStorage.getItem("token");
+        if(!token){
+            navigate('/');
+        }
         getCharts();
     },[])
     // getCharts()
@@ -76,16 +87,18 @@ function SavedCharts(){
                   xlabel={chartData[0]}
                   dataset={chartData[1]}
                   dataarray={chartData[2]}
+                  xaxis={chartData[3]}
                 />
               );
             case "bubble":
-              return <BubbleCustomize dataset={chartData[0]} dataarray={chartData[1]} />;
+              return <BubbleCustomize dataset={chartData[0]} dataarray={chartData[1]} xaxis={chartData[2]} raxis={chartData[3]}/>;
             case "line":
               return (
                 <LineCustomize
                 xlabel={chartData[0]}
                 dataset={chartData[1]}
                 dataarray={chartData[2]}
+                xaxis={chartData[3]}
                 />
               );
             case "pie":
@@ -94,6 +107,7 @@ function SavedCharts(){
                 xlabel={chartData[0]}
                 dataset={chartData[1]}
                 dataarray={chartData[2]}
+                xaxis={chartData[3]}
                 />
               );
             case "ploarArea":
@@ -102,6 +116,7 @@ function SavedCharts(){
                 xlabel={chartData[0]}
                 dataset={chartData[1]}
                 dataarray={chartData[2]}
+                xaxis={chartData[3]}
                 />
               );
             case "radar":
@@ -110,6 +125,7 @@ function SavedCharts(){
                 xlabel={chartData[0]}
                 dataset={chartData[1]}
                 dataarray={chartData[2]}
+                xaxis={chartData[3]}
                 />
               );
             case "scatter":
@@ -118,6 +134,7 @@ function SavedCharts(){
                 xlabel={chartData[0]}
                 dataset={chartData[1]}
                 dataarray={chartData[2]}
+                xaxis={chartData[3]}
                 />
               );
             case "area":
@@ -126,22 +143,27 @@ function SavedCharts(){
                 xlabel={chartData[0]}
                 dataset={chartData[1]}
                 dataarray={chartData[2]}
+                xaxis={chartData[3]}
                 />
               );
             case "arc":
-              return <Arc_Customize data_array={chartData} />;
+              return <Arc_Customize data_array={chartData[0]}  sourceNode={chartData[1]} targetNode={chartData[2]} weighht={chartData[3]}/>;
             case "chord":
-              return <Chord_Customize data_array={chartData} />;
+              return <Chord_Customize data_array={chartData[0]}  sourceNode={chartData[1]} targetNode={chartData[2]} weighht={chartData[3]}/>;
             case "sankey":
-              return <SankeyCustomize data_array={chartData} />;
+              return <SankeyCustomize data_array={chartData[0]}  sourceNode={chartData[1]} targetNode={chartData[2]} weighht={chartData[3]}/>;
             
           }
+    }
+
+    function gotoHome(){
+        navigate('/')
     }
 
     return(
         <div>
             <Nav />
-           <h1>Hello</h1>
+          
            <div>
            {
              
@@ -157,7 +179,12 @@ function SavedCharts(){
              <h3>Date : {createDate}</h3>    
             </div>}
            </div>
-           {chartSelect && displayChart()}
+           <div>
+                {chartSelect && displayChart()}
+           </div>
+           <div>
+                <button style={{width:"100px"}} onClick={() => gotoHome()}>Home Page</button>
+           </div>
         </div>
     )
 }
