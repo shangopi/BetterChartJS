@@ -26,8 +26,6 @@ const Canvas = props => {
                     ctx.strokeStyle = "red";
                     ctx.rect(margin + (parseInt((key)) + 1) * section, node.graph_y_value * y_section, 15, source[key][source_rect].total * y_section * 0.9);
                     let color = props.config.color1[source_rect];
-                    // let color = props.config.color[source_rect];
-                    //console.log(props.config.color1[source_rect]);
                     ctx.fillStyle = color;
                     ctx.fill();
                     ctx.stroke();
@@ -54,8 +52,7 @@ const Canvas = props => {
 
                         ctx.beginPath();
                         ctx.strokeStyle = color;
-                        console.log(node.destination[j][1]);
-                        ctx.lineWidth = node.destination[j][1] * 15 * props.config.arc_strength;
+                        ctx.lineWidth = 50 * props.config.arc_strength;
                         ctx.globalAlpha = props.config.opacity;
 
                         ctx.moveTo(source_x, source_y);

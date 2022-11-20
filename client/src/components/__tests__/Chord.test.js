@@ -7,7 +7,7 @@ describe('Check the Chord Chart Logic', () => {
         
         const Chord_data =[["Colombo","Galle",100],["Colombo","Kandy",20],["Kandy","Galle",120],["Colombo","Rathnapura",50],["Kandy","Rathnapura",89],["Rathnapura",'Kurunegala',300],["Galle","Rathnapura",70],['Kurunegala',"Jaffna",300]];
         const result = { "Colombo": [ -1.5707963267948966, [ "Galle", 100 ], [ "Kandy", 20 ], [ "Rathnapura", 50 ] ], "Kandy": [ -0.33093039868605556, [ "Galle", 120 ], [ "Rathnapura", 89 ] ], "Rathnapura": [ 0.28630720465508486, [ "Kurunegala", 300 ] ], "Galle": [ -1.1125850055372815, [ "Rathnapura", 70 ] ], "Kurunegala": [ 1.6582458077146502, [ "Jaffna", 300 ] ] };
-        const Result_logic = ChordLogic(Chord_data)      
+        const Result_logic = ChordLogic(Chord_data)  ;    
         expect(Result_logic).toEqual(result)
     });
     it('expect the expected algorithm result to calculated result', () => {
