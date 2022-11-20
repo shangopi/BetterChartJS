@@ -15,7 +15,7 @@ function hexToRGB(hex, alpha) {
   }
 }
  
-const PolarAreaChartView = ()=>{
+const PolarAreaChartView = (props)=>{
 
     const [title_size,set_title_size] = useState(30);
     const [font,set_font] = useState('Raleway');
@@ -25,20 +25,12 @@ const PolarAreaChartView = ()=>{
 
 
     const Pie_data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: props.xlabel,
         datasets: [
           {
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
+            data: props.dataarray,
+            
             
             borderWidth: 1,
           },
@@ -51,33 +43,31 @@ const PolarAreaChartView = ()=>{
         type: 'doughnut',      
         responsive: true,
     
+
     plugins: {
+      legend: {
+        display: show_legend,
+      },
 
-        
-            legend :{
-                display:show_legend,
-            },
-                
-          title: {
-            display: show_heading,
-            text: 'Products with most number of sales in a given period',
-            font: {
-                
-                size: title_size,
-                family: font, // Your font family
-              }
+      title: {
+        display: show_heading,
+        text: "Products with most number of sales in a given period",
+        font: {
+          size: title_size,
+          family: font, // Your font family
         },
-        
-        },   
+      },
+    },
+  };
 
         
 
-    };
 
     return ( 
       <div className='pr-5 container'>            
+
       <Row>
-      <Col> 
+        <Col>
           <Card>
               <Card.Header>Customize the Graph</Card.Header>
               <Card.Body>
@@ -148,13 +138,9 @@ const PolarAreaChartView = ()=>{
       <Col lg={6}><PolarArea config={PieCustomize} data={Pie_data} />  </Col>
       <Col lg={1}></Col>
     </Row>
-    </div>
-   );
 
-}
+    </div>
+  );
+};
 
 export default PolarAreaChartView;
-
-
- 
-

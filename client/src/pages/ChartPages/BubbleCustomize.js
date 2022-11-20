@@ -3,6 +3,7 @@ import BubbleChart from '../../components/Chart_Components/BubbleChart';
 import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import {SliderPicker } from 'react-color';
 import { useState } from 'react';
+import { useSelector } from "react-redux";
 
 function hexToRGB(hex, alpha) {
     var r = parseInt(hex.slice(1, 3), 16),
@@ -16,7 +17,10 @@ function hexToRGB(hex, alpha) {
     }
 }
 
-const BubbleChartView = ()=>{
+const BubbleChartView = (props)=>{
+    const x_axis = useSelector((state) => state.csvhandler.x_data);
+    const y_axis = useSelector((state) => state.csvhandler.y_data);
+    
     const [x_grid, set_x_grid] = useState(true);
     const [y_grid, set_y_grid] = useState(true);
     const [step_size_x,set_x_step] = useState(10);
@@ -30,11 +34,10 @@ const BubbleChartView = ()=>{
     const Bubble_data = {
       datasets: [
         {
-          label: 'Red dataset',
-          data: [{x: 100,y: 0, r: 10}, {x: 60, y: 30,r: 20 }, { x: 40,y: 60, r: 25}, {x: 80,y: 80,r: 50}, {x: 20,y: 30,r: 25}, { x: 0, y: 100,r: 5}],
-          backgroundColor:  hexToRGB(color,1),
+          label: props.dataset,
+          data: props.dataarray,
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
         },
-        
       ],
     };
 

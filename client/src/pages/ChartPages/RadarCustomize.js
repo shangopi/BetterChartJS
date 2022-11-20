@@ -1,8 +1,8 @@
-import React from 'react';
-import RadarChart from '../../components/Chart_Components/RadarChart';
-import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
-import {SliderPicker } from 'react-color';
-import { useState } from 'react';
+import React from "react";
+import RadarChart from "../../components/Chart_Components/RadarChart";
+import { Row, Col, Accordion, Card, Form } from "react-bootstrap";
+import { SliderPicker } from "react-color";
+import { useState } from "react";
 
 function hexToRGB(hex, alpha) {
   var r = parseInt(hex.slice(1, 3), 16),
@@ -16,7 +16,7 @@ function hexToRGB(hex, alpha) {
   }
 }
 
-const RadarChartView = ()=>{
+const RadarChartView = (props)=>{
 
     const [title_size,set_title_size] = useState(30);
     const [label_size,set_label_size] = useState(15);
@@ -25,76 +25,77 @@ const RadarChartView = ()=>{
     const [color,setcolor] = useState("#234400");
     const [show_heading, set_show_heading] = useState(true); 
     const [show_legend, set_show_legend] = useState(false);  
-      
-   
+
+  const RadarData = {
+    labels: props.xlabel,
+    datasets: [
+      {
+        label: props.dataset,
+        data: props.dataarray,
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  
 
 
-    const RadarData = {
-        labels: ['Thing 1', 'Thing 2', 'Thing 3', 'Thing 4', 'Thing 5', 'Thing 6'],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [2, 9, 3, 5, 2, 3],
-            backgroundColor: hexToRGB(color,1),
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1,
-          },
-          
-        ],
-      };
 
-    const RadarCustomize = {   
+  const RadarCustomize = {   
 
              
-        responsive: true,
-    
-    plugins: {
+    responsive: true,
 
-            legend :{
-                display:show_legend,
-            },
-                
-          title: {
-            display: show_heading,
-            text: 'Products with most number of sales in a given period',
-            font: {
-                
-                size: title_size,
-                family: font, // Your font family
-              }
+plugins: {
+
+        legend :{
+            display:show_legend,
         },
-        }, 
-        
-        scales: {
-            r: {
-              ticks: {
-                maxTicksLimit: step_size,
-                
-                backdropColor: "orange",
-                color: "white"
-              },
-              grid: {
-                color: "black"
-              },
-              angleLines: {
-                  color: "gray"
-              },
-              pointLabels: {
-                font: {
-                  size: label_size
-                }
-              }
+            
+      title: {
+        display: show_heading,
+        text: 'Products with most number of sales in a given period',
+        font: {
+            
+            size: title_size,
+            family: font, // Your font family
+          }
+    },
+    }, 
+    
+    scales: {
+        r: {
+          ticks: {
+            maxTicksLimit: step_size,
+            
+            backdropColor: "orange",
+            color: "white"
+          },
+          grid: {
+            color: "black"
+          },
+          angleLines: {
+              color: "gray"
+          },
+          pointLabels: {
+            font: {
+              size: label_size
             }
           }
+        }
+      }
 
-        
+    
 
-    };
+};
 
     return ( 
       <div className='pr-5 container'>            
+
       <Row>
-      <Col> 
+        <Col>
           <Card>
               <Card.Header>Customize the Graph</Card.Header>
               <Card.Body>
@@ -196,9 +197,9 @@ const RadarChartView = ()=>{
       <Col lg={6}><RadarChart config={RadarCustomize} data={RadarData} />  </Col>
       <Col lg={1}></Col>
     </Row>
-    </div>
-   );
 
-}
+    </div>
+  );
+};
 
 export default RadarChartView;

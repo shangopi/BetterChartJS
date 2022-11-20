@@ -8,6 +8,9 @@
     grid-template-columns: repeat(auto-fill, 500px);
     align-items: start;
   } */
+  body{
+    background-color: #ebeff6
+  };
 
   .csvtable {
     border-collapse: collapse;
@@ -19,7 +22,7 @@
     padding: 8px;
   }
   
-  .csvtr:nth-child(even) {background-color: #bdbff3;}
+  .csvtr:nth-child(odd) {background-color: #d9d9ed;}
   
   .drag-n-drop:after{
     content: "";
@@ -35,14 +38,11 @@
   } */
   
   .dnd-group{
-    content: "";
-    display: table;
-    
-    float: left;
-    width: 30%;
     margin: 60px;;
     padding: 10px;
     background-color: #678fdd;
+    border:10px solid rgb(177, 188, 213);
+    border-radius:8px;
   }
   
 
@@ -52,18 +52,21 @@
     align-items: center;
     min-height: 50px;
     background-color: white;
-    border-radius: 5px;
-    color: #282c34;
+    border-radius: 10px;
+    color: #3b3c3e;
     font-weight: bold;
     width:100%;
+    cursor: pointer;
   }
   .dnd-item:not(:last-of-type) {
     margin-bottom: 15px;
+    cursor: pointer;
     
   }
   .dnd-item * {  
     margin: 0;
     font-size: 1.2rem;
+    cursor: pointer;
     
   }
   .group-title {
@@ -74,5 +77,32 @@
   }
 
   .current {
-    background-color: #282c34;
+    background-color: #a4a4d0;
+  }
+  
+  .scrollable{
+    overflow-y: scroll;
+    max-height: 550px;
+  }
+
+  .still{
+    position: fixed;
+  }
+
+  .showbutton{
+    background-color: #989898; 
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    margin-left: 7%;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 40px;
+    border:5px solid rgb(38, 90, 211);
+  }
+
+
+  .showbutton:hover{
+    height: 50px;
+    border:5px solid rgb(66, 24, 236);
   }

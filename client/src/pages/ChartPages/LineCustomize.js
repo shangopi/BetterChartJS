@@ -15,7 +15,7 @@ function hexToRGB(hex, alpha) {
     }
 }
 
-const LineChartView = () => {    
+const LineChartView = (props) => {    
     const [x_grid, set_x_grid] = useState(true);
     const [y_grid, set_y_grid] = useState(true);
     const [step_size_x,set_x_step] = useState(10);
@@ -27,90 +27,88 @@ const LineChartView = () => {
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
     const [color2,setcolor2] = useState("#a47400");
+     const labels = props.xlabel;
 
 
 
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-    const Line_data = {
-      labels,
-      datasets: [
-        {
-          label: 'Dataset 1',
-          data: [12,12,32,45,67,45,23],
+  const Line_data = {
+    labels,
+    datasets: [
+      {
+        label: props.dataset,
+        data: props.dataarray,
           borderColor:  hexToRGB(color,1),
           backgroundColor:  hexToRGB(color2,1),
-        },
-        
-      ],
-    };
+      },
+    ],
+  };
 
+  const LineCustomize = {
+    indexAxis: bar_orientation,      
 
-
-    const LineCustomize = {
-        indexAxis: bar_orientation,      
-    
-        scales: {
-            x: {
-                
-                grid: {
-                    display: x_grid //x axis grid show
-                },
-               
-                ticks: {
-                    maxTicksLimit: step_size_x,
-                    
-                    maxRotation: orientation, // changing direction.. change both values to 0 if u want to change.. 
-                    minRotation: orientation,
-                    
-                    font: {
-                        size: text_size,//this change the font size of x axis,
-                        family: font, // Your font family
-                        
-                    }
-                }
+    scales: {
+        x: {
+            
+            grid: {
+                display: x_grid //x axis grid show
             },
-    
-            y: {
+           
+            ticks: {
+                maxTicksLimit: step_size_x,
                 
-                grid: {
-                    display: y_grid //x axis grid show
-                },
-                ticks: {
-                        maxTicksLimit: step_size_y,  
-                        maxRotation: orientation, // changing direction.. change both values to 0 if u want to change.. 
-                        minRotation: orientation,
-                    font: {
-                        size: text_size,//this change the font size of x axis,
-                        family: font, // Your font family
-                    }
+                maxRotation: orientation, // changing direction.. change both values to 0 if u want to change.. 
+                minRotation: orientation,
+                
+                font: {
+                    size: text_size,//this change the font size of x axis,
+                    family: font, // Your font family
+                    
                 }
             }
         },
-        
-    
-        elements: {
-            bar: {
-                borderWidth: 2,
+
+        y: {
+            
+            grid: {
+                display: y_grid //x axis grid show
             },
-        },
-        responsive: true,
-        
-        plugins: {
-            legend :{
-                display:false,
-            },
-              title: {
-                display: true,
-                text: 'Products with most number of sales in a given period',
+            ticks: {
+                    maxTicksLimit: step_size_y,  
+                    maxRotation: orientation, // changing direction.. change both values to 0 if u want to change.. 
+                    minRotation: orientation,
                 font: {
-                    
-                    size: title_size,
+                    size: text_size,//this change the font size of x axis,
                     family: font, // Your font family
-                  }
-            },
+                }
+            }
+        }
+    },
+    
+
+    elements: {
+        bar: {
+            borderWidth: 2,
         },
-    };
+    },
+    responsive: true,
+    
+    plugins: {
+        legend :{
+            display:false,
+        },
+          title: {
+            display: true,
+            text: 'Products with most number of sales in a given period',
+            font: {
+                
+                size: title_size,
+                family: font, // Your font family
+              }
+        },
+    },
+};
+
+  
 
 
 
@@ -261,4 +259,3 @@ const LineChartView = () => {
 }
  
 export default LineChartView;
-

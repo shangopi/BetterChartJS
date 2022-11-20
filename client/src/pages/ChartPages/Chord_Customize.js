@@ -1,45 +1,39 @@
 import React from 'react';
 import ChordChart from '../../components/Chart_Components/ChordChart';
-import {
-    Row,
-    Col,
-    Accordion,
-    Card,
-    Form
-} from 'react-bootstrap';
-import {
-    HuePicker
-} from 'react-color';
-import {
-    useState
-} from 'react';
+
+import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
+import {HuePicker } from 'react-color';
+import { useState } from 'react';
+import { useSelector } from "react-redux";
 
 
-const ChordChartView = () => {
-        
+const ChordChartView = (props) => {    
+    const x_axis = useSelector((state) => state.csvhandler.x_data);
+    const y_axis = useSelector((state) => state.csvhandler.y_data);
 
-        const Chord_data = [
-            ['mars', 'venus', 100],
-            ['venus', 'mars', 25],
-            ['venus', 'earth', 299],
-            ['earth', 'mars', 200],
-            ['mars', 'jupiter', 500],
-            ['jupiter', 'venus', 200],
-            ['venus', 'mercury', 100],
-            ['mercury', 'venus', 50],
-            ['earth', 'jupiter', 200],
-            ['jupiter', 'mercury', 800],
-            ['venus', 'jupiter', 100],
-            ['neptune', 'pluto', 200],
-            ['pluto', 'mars', 800],
-            ['satum', 'neptune', 100],
-            ['satum', 'venus', 130],
-            ['earth', 'pluto', 200],
-            ['mercury', 'earth', 300],
-            ['neptune', 'venus', 200],
-            ['venus', 'neptune', 300],
-            ['pluto', 'neptune', 400]
-        ];
+    const Chord_data = [
+        ['mars', 'venus', 100],
+        ['venus', 'mars', 25],
+        ['venus', 'earth', 299],
+        ['earth', 'mars', 200],
+        ['mars', 'jupiter', 500],
+        ['jupiter', 'venus', 200],
+        ['venus', 'mercury', 100],
+        ['mercury', 'venus', 50],
+        ['earth', 'jupiter', 200],
+        ['jupiter', 'mercury', 800],
+        ['venus', 'jupiter', 100],
+        ['neptune', 'pluto', 200],
+        ['pluto', 'mars', 800],
+        ['satum', 'neptune', 100],
+        ['satum', 'venus', 130],
+        ['earth', 'pluto', 200],
+        ['mercury', 'earth', 300],
+        ['neptune', 'venus', 200],
+        ['venus', 'neptune', 300],
+        ['pluto', 'neptune', 400]
+    ];
+
 
         let nodes =  new Set();
 
@@ -56,6 +50,7 @@ const ChordChartView = () => {
             color_dict[nodes[i]]= random_color;
         }
        
+
 
 
 
@@ -81,21 +76,21 @@ const ChordChartView = () => {
         }
 
       //  console.log(color);  
-        const Chord_customize = {
-            show_heading: show_heading,
-            width: width,
-            label_size: text_size + "vw",
-            label_font: font,
-            opacity: opacity,
-            arc_strength: arc_size,
-            color1: color,
-            title_font: font2,
-            title_size: title_size + "vw",
-            lineWidth: lineWidth,
-            radius : radius,
+      const Chord_customize = {
+        show_heading: show_heading,
+        width: width,
+        label_size: text_size + "vw",
+        label_font: font,
+        opacity: opacity,
+        arc_strength: arc_size,
+        color1: color,
+        title_font: font2,
+        title_size: title_size + "vw",
+        lineWidth: lineWidth,
+        radius : radius,
 
 
-        };
+    };
 
 
 
@@ -265,4 +260,3 @@ const ChordChartView = () => {
 }
  
 export default ChordChartView;
-

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 function TabPanel() {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState();
+  useEffect(() => {}, [selectedFile]);
 
   function routeToPage() {
     // to={{ pathname: "/charttype", state: selectedFile }}

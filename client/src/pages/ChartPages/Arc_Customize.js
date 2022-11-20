@@ -1,15 +1,17 @@
-import React from 'react';
-import ArcChart from '../../components/Chart_Components/ArcChart';
-import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
-import {SliderPicker } from 'react-color';
-import { useState } from 'react';
+import React from "react";
+import ArcChart from "../../components/Chart_Components/ArcChart";
+import { Row, Col, Accordion, Card, Form } from "react-bootstrap";
+import { SliderPicker } from "react-color";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
+const ArcChartView = (props) => {
+  const arcData = useSelector((state) => state.csvhandler.arc_data);
 
-const ArcChartView = () => {    
-    const [show_heading, set_show_heading] = useState(true);    
-    const [width,set_width] = useState(950);
-    const [circle_size,set_circle_size] = useState(5);
-    const [arc_size,set_arc_size] = useState(25);
+  const [show_heading, set_show_heading] = useState(true);
+  const [width, set_width] = useState(950);
+  const [circle_size, set_circle_size] = useState(5);
+  const [arc_size, set_arc_size] = useState(25);
 
     const [text_size,set_text_size] = useState("1.5");
     const [title_size,set_title_size] = useState("2");
@@ -19,15 +21,10 @@ const ArcChartView = () => {
     const [color,setcolor] = useState("#BBB3F8");
     const [color2,setcolor2] = useState("#76F943");
 
+  const Arc_data = props.data_array;
 
-
-
-
-    const Arc_data = [["Colombo","Galle",100],["Colombo","Kandy",20],["Kandy","Galle",120],["Colombo","Rathnapura",50],["Kandy","Rathnapura",89],["Rathnapura",'Kurunegala',300],["Galle","Rathnapura",70],['Kurunegala',"Jaffna",300]];
-
-    //will be sent to chart component for customization purpose
-    const Arc_customize = {
-        show_heading : show_heading,
+  const Arc_customize = {
+    show_heading : show_heading,
         width : width,
         label_size : text_size+"vw",
         label_font : font,
@@ -38,12 +35,9 @@ const ArcChartView = () => {
         title_font : font2,
         title_size : title_size+"vw",
         orientation : orientation,
+  };
 
-        
-    };
-
-
-
+ 
 
     return ( 
         <div className='pr-5 '>            
@@ -185,11 +179,10 @@ const ArcChartView = () => {
                 
          </Col> 
         <Col className="pl-5" lg={8}><ArcChart config={Arc_customize} data={Arc_data} />  </Col>
-      </Row>
-      </div>
-     );
-     
-}
- 
-export default ArcChartView;
 
+      </Row>
+    </div>
+  );
+};
+
+export default ArcChartView;

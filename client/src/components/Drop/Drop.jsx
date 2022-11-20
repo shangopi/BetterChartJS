@@ -1,13 +1,21 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { useDropzone } from "react-dropzone";
 import { saveCSV } from "../../redux/csvhandler";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Drop(props) {
-  const { setSelectedFile, selectedFile, routeToPage } = props;
+  const { setSelectedFile, selectedFile } = props;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const testFunc = () =>{
+    navigate("/charttype" , {
+      state: { data: selectedFile },
+    });
+
+  }
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
@@ -57,14 +65,15 @@ function Drop(props) {
         <ul>{files}</ul>
       </aside>
       <div className="col offset-10 pb-3">
-        <Link
+        {/* <Link
           style={{ textDecoration: "none" }}
-          to={{ pathname: "/charttype" }}
+          to="/charttype" 
           state={{ data: selectedFile }}
           // onClick={routeToPage}
         >
           <Button variant="outline-dark">Submit</Button>
-        </Link>
+        </Link> */}
+        <Button onClick={testFunc} variant="outline-dark">Submit</Button>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { chooseChart } from "../../redux/csvhandler";
 import { useLocation } from "react-router-dom";
 import Card from "react-bootstrap/Card";
@@ -19,7 +19,6 @@ import chordImg from "../../assets/graphImages/chord.PNG";
 function ChartSet() {
   const location = useLocation();
   const dispatch = useDispatch();
-  console.log("State is: ", location.state?.data);
   return (
     <div className="container">
       <div className="row">
@@ -43,6 +42,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("bar"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={barImg} />
@@ -57,6 +57,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("bubble"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={bubbleImg} />
@@ -71,6 +72,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("line"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={lineImg} />
@@ -87,6 +89,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("pie"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={pieImg} />
@@ -101,6 +104,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("polar"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={polarImg} />
@@ -115,6 +119,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("radar"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={radarImg} />
@@ -129,6 +134,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("scatter"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={scatterImg} />
@@ -145,6 +151,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("arc"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={arcImg} />
@@ -159,6 +166,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("chord"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={chordImg} />
@@ -173,6 +181,7 @@ function ChartSet() {
             style={{ textDecoration: "none" }}
             onClick={() => dispatch(chooseChart("sankey"))}
             to="/showdata"
+            state={{ file: location.state?.data }}
           >
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={sankeyImg} />

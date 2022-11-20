@@ -5,7 +5,7 @@ import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 
 
-const PieChartView = ()=>{
+const PieChartView = (props)=>{
 
     const [title_size,set_title_size] = useState(30);
     const [font,set_font] = useState('Raleway');
@@ -17,11 +17,11 @@ const PieChartView = ()=>{
 
 
     const Pie_data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels : props.xlabel,
         datasets: [
           {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: props.dataset,
+            data:props.dataarray,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -40,8 +40,7 @@ const PieChartView = ()=>{
             ],
             borderWidth: 1,
           },
-          
-          
+
         ],
       };
 
