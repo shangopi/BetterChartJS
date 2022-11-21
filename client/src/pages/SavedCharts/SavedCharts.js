@@ -15,6 +15,7 @@ import Arc_Customize from "../ChartPages/Arc_Customize";
 import SankeyCustomize from "../ChartPages/SankeyCustomize"
 import { TabTitle } from "../../utils/GeneralFunctions";
 import Nav from "../../components/Navbar/Nav";
+import './SavedCharts.css'
 
 function SavedCharts(){
   TabTitle("Saved Charts - BetterChartJS");
@@ -161,24 +162,47 @@ function SavedCharts(){
     }
 
     return(
-        <div>
-            <Nav />
-          
-           <div>
-           {
-             
-             chartArray.map((va,vai) => {
-             return <div><button style={{width:"100px"}} onClick={() => displayChartDetails(va)}>{va.title}</button></div>;
-           })}
-           </div>
-           <div>
-            {chartSelect && 
+        <div style={{height:'1000px'}}>
+            
             <div>
-             <h3>Title : {title}</h3>   
-             <h3>Chart Type : {chartType}</h3>
-             <h3>Date : {createDate}</h3>    
-            </div>}
-           </div>
+            <Nav />
+            </div>
+            
+          <div style={{height:"500px",margin:"10%"}}>
+            <div style={{ float: "left", width: "30%"}}>
+                <div className="Savescrollable">
+                {   chartArray.map((va,vai) => {
+                return <div ><button style={{backgroundColor: "#bbcff0", 
+                color: "black",
+                textAlign: "center",
+                fontSize: "15px",
+                marginLeft:" 7%",
+                cursor: "pointer",
+                borderRadius: "5px",
+                width:"200px"}} onClick={() => displayChartDetails(va)}>{va.title}</button></div>;
+            })}
+                </div>
+            
+            </div>
+            <div style={{
+                marginTop:"100px",
+                float: "right",
+                width: "50%",
+                marginRight:"100px",
+                backgroundColor:"#bbcff0",
+                border:"10px solid rgb(177, 188, 213)",
+                borderRadius:"5px",
+                minHeight:"250px"
+              }}>
+                {chartSelect && 
+                <div style={{paddingLeft:"100px",paddingTop:"50px",paddingBottom:"50px"}}>
+                <h4>Title : {title}</h4>   
+                <h4 >Chart Type : {chartType}</h4>
+                <h4>Date : {createDate}</h4>    
+                </div>}
+            </div>
+          </div>
+          
            <div>
                 {chartSelect && displayChart()}
            </div>
