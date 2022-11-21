@@ -21,9 +21,11 @@ const ArcChartView = (props) => {
     const [color,setcolor] = useState("#BBB3F8");
     const [color2,setcolor2] = useState("#76F943");
     const targetNode = props.targetNode;
-    const sourceNode = props.sourceNode; //////////////////////////////////////////////////////
+    const sourceNode = props.sourceNode; 
     const weight =props.weight;
   const Arc_data = props.data_array;
+
+  const heading = "How " + sourceNode + "and " + targetNode + " interconnects";
 
   const Arc_customize = {
     show_heading : show_heading,
@@ -180,7 +182,7 @@ const ArcChartView = (props) => {
             
                 
          </Col> 
-        <Col className="pl-5" lg={8}><ArcChart config={Arc_customize} data={Arc_data} />  </Col>
+        <Col className="pl-5" lg={8}><ArcChart heading={heading} config={Arc_customize} data={Arc_data} />  </Col>
 
       </Row>
       <br></br>

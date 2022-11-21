@@ -32,9 +32,11 @@ function hexToRGB(hex, alpha) {
     const [color,setcolor] = useState("#234400");
     const [color2,setcolor2] = useState("#124490");
 
-
     const labels = props.xlabel;
-    const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
+    const xaxis=props.xaxis; 
+    const heading = "How "+ props.dataset + " Changes with "+props.dataset ;
+
+    console.log(props);
   const Area_data = {
     labels,
     datasets: [
@@ -91,7 +93,7 @@ function hexToRGB(hex, alpha) {
       },
       title: {
         display: true,
-        text: "Chart.js Area Chart",
+        text: heading,
         font: {
           size: title_size,
           family: font, // Your font family

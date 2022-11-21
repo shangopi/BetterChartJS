@@ -15,6 +15,7 @@ const ChordChartView = (props) => {
     const targetNode = props.targetNode;
     const sourceNode = props.sourceNode; //////////////////////////////////////////////////////
     const weight =props.weight;
+    const heading = "How "+ targetNode + " and "+sourceNode + " interconnects" ;
 
         let nodes =  new Set();
 
@@ -234,7 +235,7 @@ const ChordChartView = (props) => {
                 
          </Col> 
          
-        <Col lg={8}><ChordChart config={Chord_customize} data={Chord_data} />  </Col>
+        <Col lg={8}><ChordChart heading = {heading} config={Chord_customize} data={Chord_data} />  </Col>
       </Row>
       <br></br>
       <br></br>

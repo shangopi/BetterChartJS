@@ -15,6 +15,7 @@ const PieChartView = (props)=>{
     const [show_legend, set_show_legend] = useState(true);    
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
 
+    const heading = "How "+ xaxis + " Changes with "+props.dataset ;
 
     const Pie_data = {
         labels : props.xlabel,
@@ -43,7 +44,7 @@ const PieChartView = (props)=>{
                 
           title: {
             display: show_heading,
-            text: 'Products with most number of sales in a given period',
+            text: heading,
             font: {
                 
                 size: title_size,

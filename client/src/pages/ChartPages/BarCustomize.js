@@ -20,7 +20,6 @@ function hexToRGB(hex, alpha) {
 const BarChartView = (props) => {  
     const x_axis = useSelector((state) => state.csvhandler.x_data);
     const y_axis = useSelector((state) => state.csvhandler.y_data);
-    
     const [x_grid, set_x_grid] = useState(true);
     const [y_grid, set_y_grid] = useState(true);
     const [step_size_x,set_x_step] = useState(10);
@@ -36,6 +35,7 @@ const BarChartView = (props) => {
     // const labels =['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
     const labels = props.xlabel;
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
+    const heading = "How "+ y_axis + " Changes with "+props.dataset ;
 
 const Bar_data = {
     labels,
@@ -108,7 +108,7 @@ const Bar_data = {
             },
               title: {
                 display: true,
-                text: 'Products with most number of sales in a given period',
+                text: heading,
                 font: {
                     
                     size: title_size,

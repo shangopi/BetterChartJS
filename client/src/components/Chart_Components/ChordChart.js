@@ -210,7 +210,7 @@ const Canvas = props => {
 
         return ( 
             <div>
-             {props.config.show_heading && <h2 className={'mt-5 text-center '} style={{fontFamily : props.config.title_font, fontSize: props.config.title_size}}> Sample Chord Diagram</h2> }
+             {props.config.show_heading && <h2 className={'mt-5 text-center '} style={{fontFamily : props.config.title_font, fontSize: props.config.title_size}}> {props.heading}</h2> }
             
              <br></br>
              <div  style={{ display: "flex",    justifyContent: "center", alignItems: "center"}}>
