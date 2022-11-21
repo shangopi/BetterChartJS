@@ -38,6 +38,7 @@ export function Nav() {
   function logout() {
     setIsLogged(false);
     localStorage.removeItem("token");
+    navigate("/")
   }
   function viewCharts(){
     navigate('/savedCharts')

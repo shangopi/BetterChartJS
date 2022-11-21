@@ -583,11 +583,12 @@ const ShowData = () => {
       <div
         style={{
           overflow: "auto",
-          marginLeft: "10%",
-          marginRight: "10%",
-          marginTop: "5%",
+          // marginLeft: "10%",
+          // marginRight: "10%",
+          // marginTop: "5%",
           height: "500px",
-          border: "20px solid rgb(177, 188, 213)",
+          margin: "auto",
+          width: "50%",
         }}
       >
         <thead className="csvtable">
@@ -877,14 +878,14 @@ const ShowData = () => {
         {/* {showCustomize==true && <BarCustomize/>}  */}
       </div>
       {isLogged && showCustomize && (
-        <div>
-          <input
+        <div style={{paddingBottom:"100px"}}>
+          <input className="showbuttontwo"
             type="text"
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <button
+          <button className="showbutton"
             onClick={() => {
               checkSizeTitle();
             }}
@@ -893,13 +894,14 @@ const ShowData = () => {
           </button>
         </div>
       )}
-      {isLogged && (
+      {/* {isLogged && (
         <div>
           <form onSubmit={logOut}>
             <input type="submit" value="Log Out" />
           </form>
         </div>
-      )}
+      )} */}
+
 
     </>
   );

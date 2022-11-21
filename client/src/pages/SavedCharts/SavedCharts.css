@@ -1,0 +1,9 @@
+body{
+    background-color: #ebeff6;
+    height:1000px;
+  };
+
+  .Savescrollable{
+    overflow-y: scroll;
+    max-height: 200px;
+  }
