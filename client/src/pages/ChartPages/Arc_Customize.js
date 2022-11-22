@@ -9,7 +9,7 @@ const ArcChartView = (props) => {
   const arcData = useSelector((state) => state.csvhandler.arc_data);
 
   const [show_heading, set_show_heading] = useState(true);
-  const [width, set_width] = useState(950);
+  const [width, set_width] = useState(800);
   const [circle_size, set_circle_size] = useState(5);
   const [arc_size, set_arc_size] = useState(25);
 
@@ -44,9 +44,8 @@ const ArcChartView = (props) => {
  
 
     return ( 
-        <div className='pr-5 '>            
+        <div className='pr-5 container'>            
         <Row>
-        <Col lg={1}> </Col>
         <Col lg={3}> 
             <Card >
                 <Card.Header>Customize the Graph</Card.Header>
@@ -71,7 +70,7 @@ const ArcChartView = (props) => {
                             <Row>
                             <Col>  <Form.Label> Adjust Graph Width </Form.Label> </Col>
                             <Col> 
-                                <Form.Range  onChange={(e) => {set_width(e.target.value)}} defaultValue={950} min='400'  max='950' />
+                                <Form.Range  onChange={(e) => {set_width(e.target.value)}} defaultValue={800} min='400'  max='950' />
                                
                             </Col>
                             </Row>
@@ -182,7 +181,7 @@ const ArcChartView = (props) => {
             
                 
          </Col> 
-        <Col className="pl-5" lg={8}><ArcChart heading={heading} config={Arc_customize} data={Arc_data} />  </Col>
+        <Col className="pl-5" lg={9}><ArcChart heading={heading} config={Arc_customize} data={Arc_data} />  </Col>
 
       </Row>
       <br></br>

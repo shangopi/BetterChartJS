@@ -2,13 +2,15 @@ import React from "react";
 import ScatterCustomize from "./../ChartPages/ScatterCustomize";
 import Nav from "../../components/Navbar/Nav";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 const label = [0, 1, 2, 3, 4, 5, 6];
 const dataset = [0, 3, 7, 12, 18, 30, 45.6];
 
 const Graph = function () {
   return (
-    <ScatterCustomize xlabel={label} dataset="Velocity" dataarray={dataset} />
+    <ScatterCustomize xaxis="Elapsed Time" xlabel={label} dataset="Velocity" dataarray={dataset} />
   );
 };
 
@@ -19,16 +21,18 @@ function BeginnerScatterChart() {
     <div>
       <Nav />
       <div className="m-5">
+      <Container>
         <h1>Scatter Charts</h1>
         <hr />
         <br />
-        <p className="lead px-3">
-          A scatter chart (also called a scatterplot, scatter graph, scatter
+        <Alert className="lead px-3" variant="success" >
+        A scatter chart (also called a scatterplot, scatter graph, scatter
           plot, scattergram, or scatter diagram) is a type of plot or
           mathematical diagram using Cartesian coordinates to display values for
           typically two variables for a set of data.If the points are coded
           (color/shape/size), one additional variable can be displayed.
-        </p>
+        </Alert>
+        
         <br />
         <h3>Example</h3>
         <br />
@@ -95,11 +99,14 @@ function BeginnerScatterChart() {
         </p>
         <br />
         <br />
+        </Container>
         <Graph />
+        <Container>
         <br />
         <hr />
-        <p className="p-3">
-          The relationship between variables is called correlation. Correlation
+        <br></br>
+        <Alert className="p-3" variant="success" >
+        The relationship between variables is called correlation. Correlation
           is just another word for “relationship.” For example, how much you
           weigh is related (correlated) to how much you eat. There are two type
           of correlation: positive correlation and negative correlation. If data
@@ -107,8 +114,9 @@ function BeginnerScatterChart() {
           and y values the data points are positively correlated, like in the
           above graph. If the graph starts off with high y-values and continues
           to low y-values then the graph is negatively correlated.
-        </p>
-        <p className="p-3 pt-0">
+
+          <hr></hr>
+
           A scatter plot can be used either when one continuous variable is
           under the control of the experimenter and the other depends on it or
           when both continuous variables are independent. If a parameter exists
@@ -119,7 +127,11 @@ function BeginnerScatterChart() {
           no dependent variable exists, either type of variable can be plotted
           on either axis and a scatter plot will illustrate only the degree of
           correlation (not causation) between two variables.
-        </p>
+        </Alert>
+        <br></br>
+        <br></br>
+        </Container>
+        
       </div>
     </div>
   );

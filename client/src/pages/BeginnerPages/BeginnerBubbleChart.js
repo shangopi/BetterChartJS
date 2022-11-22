@@ -2,6 +2,8 @@ import React from "react";
 import BubbleCustomize from "./../ChartPages/BubbleCustomize";
 import Nav from "../../components/Navbar/Nav";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 const dataset = [
   [5, 5500, 3],
@@ -12,7 +14,7 @@ const dataset = [
 ];
 
 const Graph = function () {
-  return <BubbleCustomize dataset="Market Share" dataarray={dataset} />;
+  return <BubbleCustomize  xaxis="Sales" raxis="Percentage of Market Share"   dataset="Market Share" dataarray={dataset} />;
 };
 
 function BeginnerBubbleChart() {
@@ -22,17 +24,16 @@ function BeginnerBubbleChart() {
     <div>
       <Nav />
       <div className="m-5">
+        <Container>
         <h1>Bubble Charts</h1>
         <hr />
         <br />
-        <p className="lead px-3">
-          A bubble chart is a type of chart that displays three dimensions of
-          data. Each entity with its triplet (v1, v2, v3) of associated data is
-          plotted as a disk that expresses two of the vi values through the
-          disk's xy location and the third through its size. Bubble charts can
-          facilitate the understanding of social, economical, medical, and other
-          scientific relationships.
-        </p>
+        <Alert className="lead px-3" variant="success" >
+        A bubble chart is a type of chart that displays three dimensions of data. Each entity with its triplet (v1, v2, v3) of associated data is plotted as a disk that expresses two of the vi values through the disk's xy location and the third through its size. Bubble charts can facilitate the understanding of social, economical, medical, and other scientific relationships.
+
+
+        </Alert>
+        
         <br />
         <h3>Example</h3>
         <br />
@@ -93,18 +94,31 @@ function BeginnerBubbleChart() {
         <p className="lead">
           &emsp;<u>Bubble Graph</u>
         </p>
+        </Container>
         <br />
         <br />
         <Graph />
         <br />
+        <Container>
         <hr />
-        <p className="p-3">
+        <br></br>
+        <Alert className="p-3" variant="success" >
+        Bubble charts can be considered a variation of the scatter plot, in
+          which the data points are replaced with bubbles.The metaphoric
+          representation of data values as disk areas cannot be extended for
+          displaying values that are negative or zero.
+
+          <hr></hr>
+
           Bubble charts can be considered a variation of the scatter plot, in
           which the data points are replaced with bubbles.The metaphoric
           representation of data values as disk areas cannot be extended for
           displaying values that are negative or zero.
-        </p>
-        <p className="p-3 pt-0"></p>
+        </Alert>
+        </Container>
+        <br></br>
+        <br></br>
+        
       </div>
     </div>
   );

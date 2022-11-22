@@ -2,6 +2,8 @@ import React from "react";
 import ChordCustomize from "./../ChartPages/Chord_Customize";
 import Nav from "../../components/Navbar/Nav";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 const dataset = [
   ["mars", "venus", 100],
@@ -27,7 +29,7 @@ const dataset = [
 ];
 
 const Graph = function () {
-  return <ChordCustomize data_array={dataset} />;
+  return <ChordCustomize sourceNode="Starting Planet" targetNode="Destination Planet" data_array={dataset} />;
 };
 
 function BeginnerChordChart() {
@@ -37,15 +39,17 @@ function BeginnerChordChart() {
     <div>
       <Nav />
       <div className="m-5">
+        <Container>
         <h1>Chord Diagrams</h1>
         <hr />
         <br />
-        <p className="lead px-3">
-          A chord diagram is a graphical method of displaying the
+        <Alert className="lead px-3" variant="success" >
+        A chord diagram is a graphical method of displaying the
           inter-relationships between data in a matrix. The data are arranged
           radially around a circle with the relationships between the data
           points typically drawn as arcs connecting the data.
-        </p>
+        </Alert>
+        
         <br />
         <h3>Example</h3>
         <br />
@@ -198,20 +202,28 @@ function BeginnerChordChart() {
         </p>
         <br />
         <br />
+        </Container>
         <Graph />
+        <Container>
         <br />
         <hr />
-        <p className="p-3">
-          Chord diagrams are useful for showing relationships between entities
+        <br></br>
+        <Alert className="p-3" variant="success" >
+        Chord diagrams are useful for showing relationships between entities
           and their relative magnitudes in comparison to alternative arcs. As a
           result, chord diagrams are popular in migration studies, economic
           flows, and genome studies.
-        </p>
-        <p className="p-3 pt-0">
+
+          <hr></hr>
+
           Chord diagrams are eye catching and quite popular in data
           visualization. They allow to visualize weigthed relationships between
           several entities.
-        </p>
+        </Alert>
+        <br></br>
+        <br></br>
+        </Container>
+       
       </div>
     </div>
   );

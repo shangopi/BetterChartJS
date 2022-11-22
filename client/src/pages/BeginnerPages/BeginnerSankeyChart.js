@@ -2,6 +2,8 @@ import React from "react";
 import SankeyCustomize from "./../ChartPages/SankeyCustomize";
 import Nav from "../../components/Navbar/Nav";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 const dataset = [
   ["Fire", "Machine 1", 5],
@@ -23,16 +25,18 @@ function BeginnerSankeyChart() {
     <div>
       <Nav />
       <div className="m-5">
+      <Container>
         <h1>Sankey Diagrams</h1>
         <hr />
         <br />
-        <p className="lead px-3">
-          Sankey diagrams are a type of flow diagram in which the width of the
+        <Alert className="lead px-3" variant="success" >
+        Sankey diagrams are a type of flow diagram in which the width of the
           arrows is proportional to the flow rate. Sankey diagrams can also
           visualize the energy accounts, material flow accounts on a regional or
           national level, and cost breakdowns. The diagrams are often used in
           the visualization of material flow analysis.
-        </p>
+        </Alert>
+        
         <br />
         <h3>Example</h3>
         <br />
@@ -101,18 +105,32 @@ function BeginnerSankeyChart() {
         </p>
         <br />
         <br />
+        </Container>
         <Graph />
+        <Container>
         <br />
         <hr />
-        <p className="p-3">
+        <br></br>
+        <Alert className="p-3" variant="success" >
+        Sankey diagrams emphasize the major transfers or flows within a
+          system. They help locate the most important contributions to a flow.
+          They often show conserved quantities within defined system boundaries.
+          Therefore, sankey diagrams are often used in fields of science,
+          especially physics. They are used to represent energy inputs, useful
+          output, and wasted output.
+          <hr></hr>
+
           Sankey diagrams emphasize the major transfers or flows within a
           system. They help locate the most important contributions to a flow.
           They often show conserved quantities within defined system boundaries.
           Therefore, sankey diagrams are often used in fields of science,
           especially physics. They are used to represent energy inputs, useful
           output, and wasted output.
-        </p>
-        <p className="p-3 pt-0"></p>
+        </Alert>
+        <br></br>
+        <br></br>
+        </Container>
+        
       </div>
     </div>
   );

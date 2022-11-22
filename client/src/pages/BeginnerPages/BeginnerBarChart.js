@@ -2,13 +2,16 @@ import React from "react";
 import BarCustomize from "./../ChartPages/BarCustomize";
 import Nav from "../../components/Navbar/Nav";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Alert from 'react-bootstrap/Alert';
+
+import Container from 'react-bootstrap/Container';
 
 const label = ["Comedy", "Romance", "Action", "Drama", "SciFi"];
 const dataset = [4, 5, 6, 1, 4];
 
 const Graph = function () {
   return (
-    <BarCustomize xlabel={label} dataset="Movie Types" dataarray={dataset} />
+    <BarCustomize xaxis="Vote" xlabel={label} dataset="Movie Types" dataarray={dataset} />
   );
 };
 
@@ -19,18 +22,20 @@ function BeginnerBarChart() {
     <div>
       <Nav />
       <div className="m-5">
+        <Container>
         <h1>Bar Charts</h1>
         <hr />
         <br />
-        <p className="lead px-3">
-          A bar chart or bar graph is a chart or graph that presents categorical
+        <Alert className="lead px-3" variant="success" >
+        A bar chart or bar graph is a chart or graph that presents categorical
           data with rectangular bars with heights or lengths proportional to the
           values that they represent. A bar graph shows comparisons among
           discrete categories. One axis of the chart shows the specific
           categories being compared, and the other axis represents a measured
           value. Some bar graphs present bars clustered in groups of more than
           one, showing the values of more than one measured variable.
-        </p>
+        </Alert>
+       
         <br />
         <h3>Example</h3>
         <br />
@@ -82,22 +87,29 @@ function BeginnerBarChart() {
         </p>
         <br />
         <br />
+        </Container>
         <Graph />
+        <Container>
         <br />
         <hr />
-        <p className="p-3">
-          It is a really good way to show relative sizes: we can see which types
+        <Alert className="p-3" variant="success" >
+        It is a really good way to show relative sizes: we can see which types
           of movie are most liked, and which are least liked, at a glance. We
           can use bar graphs to show the relative sizes of many things, such as
           what type of car people have, how many customers a shop has on
           different days and so on.
-        </p>
-        <p className="p-3 pt-0">
+
+          <hr></hr>
+
           Bar Graphs are good when your data is in categories (such as "Comedy",
           "Drama", etc). But when you have continuous data (such as a person's
           height) then use a Histogram. It is best to leave gaps between the
           bars of a Bar Graph, so it doesn't look like a Histogram.
-        </p>
+        </Alert>
+        <br></br>
+        <br></br>
+        </Container>
+
       </div>
     </div>
   );

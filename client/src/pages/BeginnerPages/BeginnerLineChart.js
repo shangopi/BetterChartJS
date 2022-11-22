@@ -2,13 +2,15 @@ import React from "react";
 import LineCustomize from "./../ChartPages/LineCustomize";
 import Nav from "../../components/Navbar/Nav";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 const label = [0, 1, 2, 3, 4, 5, 6];
 const dataset = [0, 3, 7, 12, 18, 30, 45.6];
 
 const Graph = function () {
   return (
-    <LineCustomize xlabel={label} dataset="Velocity" dataarray={dataset} />
+    <LineCustomize xaxis="Elapsed Time"  xlabel={label} dataset="Velocity" dataarray={dataset} />
   );
 };
 
@@ -19,15 +21,17 @@ function BeginnerLineChart() {
     <div>
       <Nav />
       <div className="m-5">
+      <Container>
         <h1>Line Charts</h1>
         <hr />
         <br />
-        <p className="lead px-3">
-          A line chart or line graph or curve chart is a type of chart which
+        <Alert className="lead px-3" variant="success" >
+        A line chart or line graph or curve chart is a type of chart which
           displays information as a series of data points called 'markers'
           connected by straight line segments. It is a basic type of chart
           common in many fields.
-        </p>
+        </Alert>
+        
         <br />
         <h3>Example</h3>
         <br />
@@ -88,20 +92,28 @@ function BeginnerLineChart() {
         </div>
         <br />
         <br />
+        <hr></hr>
         <br />
         <p className="lead">
           &emsp;<u>Line Graph</u>
         </p>
         <br />
+        
         <br />
+        </Container>
         <Graph />
+        <Container>
+
         <br />
         <hr />
-        <p className="p-3">
-          It is similar to a scatter plot except that the measurement points are
+        <br></br>
+        <Alert className="p-3" variant="success" >
+        It is similar to a scatter plot except that the measurement points are
           ordered (typically by their x-axis value) and joined with straight
           line segments.
-          <br />
+
+          <hr></hr>
+
           Understanding the process described by the data in the table is aided
           by producing a graph or line chart of speed versus time. Such a
           visualisation appears in the figure to the right. This visualization
@@ -112,7 +124,11 @@ function BeginnerLineChart() {
           t. This can be misunderstood as showing speed to be a variable that is
           dependent only on time. This would however only be true in the case of
           an object being acted on only by a constant force acting in a vacuum.
-        </p>
+        </Alert>
+        <br></br>
+        <br></br>
+        </Container>
+        
       </div>
     </div>
   );
