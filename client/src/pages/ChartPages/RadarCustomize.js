@@ -26,7 +26,9 @@ const RadarChartView = (props)=>{
     const [show_heading, set_show_heading] = useState(true); 
     const [show_legend, set_show_legend] = useState(false);  
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
-  const RadarData = {
+  
+    const heading = "How "+ xaxis + " Changes with "+props.dataset ;
+    const RadarData = {
     labels: props.xlabel,
     datasets: [
       {
@@ -56,7 +58,7 @@ plugins: {
             
       title: {
         display: show_heading,
-        text: 'Products with most number of sales in a given period',
+        text: heading,
         font: {
             
             size: title_size,

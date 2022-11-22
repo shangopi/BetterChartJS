@@ -1,7 +1,7 @@
 import Papa from "papaparse";
 import "./ShowData.css";
 import React, { useState, useRef, useEffect } from "react";
-import Navbar from "../../components/Navbar/Nav";
+import Nav from "../../components/Navbar/BasicNav";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { saveXdata, saveYdata, saveArcdata } from "../../redux/csvhandler";
@@ -574,7 +574,7 @@ const ShowData = () => {
 
   return (
     <>
-      <Navbar />
+      <Nav />
       {/* <button onClick={ load }>load</button>
             <h2>text:</h2> */}
       <div style={{ margin: "50px" }}>
@@ -902,9 +902,7 @@ const ShowData = () => {
         </div>
       )} */}
 
-        {/* <div>
-          <button style={{width:"100px"}} onClick={() => gotoHome()}>Home Page</button>
-        </div> */}
+
     </>
   );
 };

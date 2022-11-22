@@ -28,6 +28,7 @@ const ScatterChartView = (props)=>{
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
+    const heading = "How "+ xaxis + " Changes with "+props.dataset ;
 
     const daarray=[];
   console.log("x label",props.xlabel);
@@ -98,7 +99,7 @@ const ScatterChartView = (props)=>{
       },
         title: {
           display: true,
-          text: 'Products with most number of sales in a given period',
+          text: heading,
           font: {
               
               size: title_size,

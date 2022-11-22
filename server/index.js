@@ -11,6 +11,10 @@ const mongoose=require('mongoose')
 
 
 
+var MongoDB = mongoose.connect('mongodb+srv://gopiadmin:gopigopi123@atlascluster.v3nwvkb.mongodb.net/ChartJs');
+
+
+
 // app.use('/api/registerUser',registerRouter)
 // app.use('/api/loginUser',loginRouter)
 // app.use('/api/chart',chartController)
