@@ -17,7 +17,7 @@ function ChartSet() {
   return (
     <div className="container border p-3">
       <div className="row m-auto">
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/areachart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={areaImg} />
@@ -27,7 +27,7 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/barchart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={barImg} />
@@ -37,7 +37,7 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/bubblechart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={bubbleImg} />
@@ -47,7 +47,7 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/linechart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={lineImg} />
@@ -57,9 +57,8 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-      </div>
-      <div className="row mt-2 m-auto">
-        <div className="col-3 p-1">
+      
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/piechart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={pieImg} />
@@ -69,7 +68,7 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/polarareachart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={polarImg} />
@@ -79,7 +78,7 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/radarchart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={radarImg} />
@@ -89,7 +88,7 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/scatterchart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={scatterImg} />
@@ -99,9 +98,8 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-      </div>
-      <div className="row mt-2 justify-content-center">
-        <div className="col-3 p-1">
+      
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/arcchart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={arcImg} />
@@ -111,7 +109,7 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/chordchart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={chordImg} />
@@ -121,7 +119,7 @@ function ChartSet() {
             </Card>
           </Link>
         </div>
-        <div className="col-3 p-1">
+        <div className="col-xs-6 col-md-6 col-lg-4 col-xl-3 p-1">
           <Link style={{ textDecoration: "none" }} to="/sankeychart">
             <Card style={{ width: "8rem" }} className="m-0">
               <Card.Img variant="top" src={sankeyImg} />
