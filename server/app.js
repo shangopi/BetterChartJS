@@ -14,6 +14,6 @@ app.use(json())
 app.use('/api/registerUser',registerRouter)
 app.use('/api/loginUser',loginRouter)
 app.use('/api/chart',chartController)
-mongoose.connect('mongodb://localhost:27017/ChartJs')
+//mongoose.connect('mongodb://localhost:27017/ChartJs')
 
 module.exports= app;
