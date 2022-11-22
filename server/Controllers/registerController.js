@@ -12,6 +12,7 @@ const registerUser =async (req,res)=>{
             password:newPassword,
             })
             res.json({status:'ok'});
+            
     } catch (error) {
         res.json({status:'error',error:error});
     }   
