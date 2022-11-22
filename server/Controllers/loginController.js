@@ -10,6 +10,10 @@ const loginUser=async (req,res)=>{
     if (user){
         isPasswordValid = await bcrypt.compare(req.body.password,user.password);
     }
+    else{
+        console.log("Fail");
+        return res.json({status: 'error', user: false})
+    }
     
 
     if(isPasswordValid){
