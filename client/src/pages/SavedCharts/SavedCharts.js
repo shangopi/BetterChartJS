@@ -50,7 +50,7 @@ function SavedCharts(){
         if(data.status ==='ok'){
             console.log("status is",data.user.charts);
             if(data.user.charts.length===0){
-                checkLength=false;
+               
                 setisEmpty(true)
             }
             else{
