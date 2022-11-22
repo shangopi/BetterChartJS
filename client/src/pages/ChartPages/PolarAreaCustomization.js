@@ -23,7 +23,7 @@ const PolarAreaChartView = (props)=>{
     const [show_legend, set_show_legend] = useState(true);    
    
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
-    const heading = "How "+ xaxis + " Changes with "+props.dataset ;
+    const heading = "How "+props.dataset  + " Changes with "+ xaxis;
 
     const Pie_data = {
         labels: props.xlabel,

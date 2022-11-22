@@ -27,7 +27,7 @@ const RadarChartView = (props)=>{
     const [show_legend, set_show_legend] = useState(false);  
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
   
-    const heading = "How "+ xaxis + " Changes with "+props.dataset ;
+    const heading = "How "+props.dataset  + " Changes with "+ xaxis;
     const RadarData = {
     labels: props.xlabel,
     datasets: [

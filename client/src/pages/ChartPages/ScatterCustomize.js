@@ -28,7 +28,7 @@ const ScatterChartView = (props)=>{
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
-    const heading = "How "+ xaxis + " Changes with "+props.dataset ;
+    const heading = "How "+props.dataset  + " Changes with "+ xaxis;
 
     const daarray=[];
   console.log("x label",props.xlabel);
