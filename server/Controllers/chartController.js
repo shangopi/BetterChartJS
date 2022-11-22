@@ -42,8 +42,6 @@ const createChart = async(req,res)=>{
     }
 }
 
-const deleteChart = async(req,res)=>{
 
-}
 
 module.exports={createChart,getChart,deleteChart}

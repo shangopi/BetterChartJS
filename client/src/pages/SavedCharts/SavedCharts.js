@@ -36,11 +36,10 @@ function SavedCharts(){
     const [chartData,setChartData]=useState([]);
     const [isEmpty,setisEmpty]=useState(true)
     const [createDate,setCreateDate]=useState('')
-    var checkLength=true;
     //var charta;
     const navigate=useNavigate();
     async function getCharts(){
-        const req=await fetch('http://localhost:4001/api/chart/getCharts',{
+        const req=await fetch('http://localhost:4001/api/chart/getCharts',{ //getting the chart
             headers:{
                 'x-access-token': localStorage.getItem('token'),
             },
@@ -79,6 +78,7 @@ function SavedCharts(){
     //         charta=user.charts})
     
     console.log("My chart is",chartArray);
+    //set chart details
     function displayChartDetails(user){
         setTitle(user.title)
         setChartType(user.chartType)
@@ -93,7 +93,7 @@ function SavedCharts(){
         }
         console.log("Came in to the function",user)
     }
-
+    //display the saved chart
     function displayChart(){
         switch (chartType) {
             case "bar":

@@ -7,7 +7,13 @@ const app = require('./app')
 app.get('/',(req,res)=>{
     res.send(process.env);
  })
-mongoose.connect('mongodb+srv://gopiadmin:gopigopi123@atlascluster.v3nwvkb.mongodb.net/ChartJs')
+
+try {
+    mongoose.connect('mongodb+srv://gopiadmin:gopigopi123@atlascluster.v3nwvkb.mongodb.net/ChartJs')   
+} catch (error) {
+   console.log("error in the connection",error) 
+}
+
 
 const port = process.env.PORT || 4001;
 
