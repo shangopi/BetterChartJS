@@ -32,7 +32,7 @@ const BubbleChartView = (props)=>{
     const [color,setcolor] = useState("#234400");
     const xaxis=props.xaxis; //////////////////////////////////////////////////////////////
     const raxis=props.raxis; ///////////////////////////////////////////////////////////////
-    const heading = "some heading here";
+    const heading = "How "+ props.dataset + " changes with " + xaxis+ " and radius is represented by "+raxis ;
 
     const Bubble_data = {
       datasets: [

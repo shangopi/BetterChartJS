@@ -30,7 +30,7 @@ const LineChartView = (props) => {
      const labels = props.xlabel;
      const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
 
-     const heading = "How "+ xaxis + " Changes with "+props.dataset ;
+     const heading = "How "+ props.dataset + " Changes with "+xaxis ;
 
   const Line_data = {
     labels,

@@ -60,6 +60,18 @@ export function Nav() {
               BetterChartJS
             </Navbar.Brand>
           </Link>
+          
+          {isLogged && (
+            <div className="ms-auto me-1">
+              <button
+                type="button"
+                class="btn btn-outline-light"
+                onClick={viewCharts}
+              >
+               View My Saved Charts
+              </button>
+            </div>
+          )}
           {!isLogged && (
             <div className="ms-auto me-3">
               <button
@@ -90,17 +102,6 @@ export function Nav() {
                 onClick={logout}
               >
                 Log Out
-              </button>
-            </div>
-          )}
-          {isLogged && (
-            <div className="ms-auto me-1">
-              <button
-                type="button"
-                class="btn btn-outline-light"
-                onClick={viewCharts}
-              >
-               View My Saved Charts
               </button>
             </div>
           )}

@@ -2,6 +2,8 @@ import React from "react";
 import ArcCustomize from "./../ChartPages/Arc_Customize";
 import Nav from "../../components/Navbar/Nav";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 const dataset = [
   ["mars", "venus", 100],
@@ -27,7 +29,7 @@ const dataset = [
 ];
 
 const Graph = function () {
-  return <ArcCustomize data_array={dataset} />;
+  return <ArcCustomize sourceNode="Starting Planet" targetNode="Destination Planet" data_array={dataset} />;
 };
 
 function BeginnerArcChart() {
@@ -37,18 +39,20 @@ function BeginnerArcChart() {
     <div>
       <Nav />
       <div className="m-5">
+      <Container>
         <h1>Arc Diagrams</h1>
         <hr />
         <br />
-        <p className="lead px-3">
-          An arc diagram is a style of graph drawing, in which the vertices of a
+        <Alert className="lead px-3" variant="success" >
+        An arc diagram is a style of graph drawing, in which the vertices of a
           graph are placed along a line in the Euclidean plane, with edges being
           drawn as semicircles in one or both of the two halfplanes bounded by
           the line, or as smooth curves formed by sequences of semicircles. In
           some cases, line segments of the line itself are also allowed as
           edges, as long as they connect only vertices that are consecutive
           along the line.
-        </p>
+        </Alert>
+        
         <br />
         <h3>Example</h3>
         <br />
@@ -193,25 +197,42 @@ function BeginnerArcChart() {
             </table>
           </div>
         </div>
+       
+        <br />
+          <hr></hr>
         <br />
         <br />
-        <br />
+      
         <p className="lead">
           &emsp;<u>Arc Diagram</u>
         </p>
+        </Container>
         <br />
         <br />
+        
         <Graph />
+
+        <Container>
         <br />
         <hr />
-        <p className="p-3">
-          A possible variation in arc diagrams consists to make the links wider
+        <br></br>
+        <Alert className="p-3" variant="success" >
+        A possible variation in arc diagrams consists to make the links wider
           when the connection is stronger. To do so you need a weighted network
           where each connection as a weight.
-        </p>
-        <p className="p-3 pt-0">
-          The order of nodes is the key for arc diagrams.
-        </p>
+
+          <hr></hr>
+
+          Area charts, when used in the correct way, provide instantly visible
+          information. The viewer can see a range of values that change over
+          time. They look great, with big blocks of color that make them
+          attractive and easy to interpret. The colors visually represent
+          volume, making a correctly used area chart highly understandable.
+        </Alert>
+        <br></br>
+        <br></br>
+        </Container>
+        
       </div>
     </div>
   );

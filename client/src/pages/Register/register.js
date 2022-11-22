@@ -4,14 +4,22 @@ import Nav from "../../components/Navbar/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
 
 function Register() {
   const [firstName,setFirstName]=useState('');
   const [lastName,setLastName]=useState('');
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
+  const [loading,setloading] = useState(false);
+  const [isok, setisok] = useState(false);
   const navigate=useNavigate() 
   async function registerUser(event){
+    setisok(false)
+    setloading(true)
     event.preventDefault()
 
     const response = await fetch('http://localhost:4001/api/registerUser/register',{
@@ -31,6 +39,9 @@ function Register() {
     const data=await response.json();
     console.log(data);
     if(data.status === 'ok'){
+
+      setloading(false)
+      setisok(true)
         navigate('/login')
     }
   }
@@ -39,12 +50,22 @@ function Register() {
   return (
     <div>
       <Nav />
+      <Container>
       <div className="m-5">
-        <h1>SignUp</h1>
+      <h1>SignUp</h1>
         <hr />
         <br />
         <br />
-        <div className="container col-6 offset-1">
+      <Row>
+      <Col md={6}>
+          <img  className="img-fluid" 
+     src={"https://cdni.iconscout.com/illustration/premium/thumb/presenting-chart-5831836-4859637.png"     } 
+     alt="logo"/>
+          </Col>
+        <Col  md={6}>
+      <div className="m-5">
+        
+        <div className="offset-1">
           <Form onSubmit={registerUser}>
             <Form.Group class="mb-3">
               <Form.Label>First Name</Form.Label>
@@ -87,8 +108,20 @@ function Register() {
               SignUp
             </Button>
           </Form>
+          <br></br>
+          <br></br>
+          {isok && <Alert className="lead px-3" variant="success" >
+               Your Sign up is Successful.. Please Login..
+        </Alert> }
+        {loading && <Alert className="lead px-3" variant="warning" >
+               Loading ... Please wait.. 
+        </Alert> }
         </div>
       </div>
+      </Col>
+      </Row>
+      </div>
+      </Container>
     </div>
   );
 }

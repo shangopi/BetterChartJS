@@ -15,7 +15,16 @@ import Arc_Customize from "../ChartPages/Arc_Customize";
 import SankeyCustomize from "../ChartPages/SankeyCustomize"
 import { TabTitle } from "../../utils/GeneralFunctions";
 import Nav from "../../components/Navbar/Nav";
-import './SavedCharts.css'
+import './SavedCharts.css';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
+
+
 
 function SavedCharts(){
   TabTitle("Saved Charts - BetterChartJS");
@@ -24,7 +33,8 @@ function SavedCharts(){
     const [title,setTitle]=useState('')
     const  [chartType,setChartType]=useState('')
     const [chartSelect,setChartSelect]=useState(false)
-    const [chartData,setChartData]=useState([])
+    const [chartData,setChartData]=useState([]);
+    const [isEmpty,setisEmpty]=useState(true)
     const [createDate,setCreateDate]=useState('')
     var checkLength=true;
     //var charta;
@@ -42,10 +52,14 @@ function SavedCharts(){
             console.log("status is",data.user.charts);
             if(data.user.charts.length===0){
                 checkLength=false;
-                alert("You have no saved charts for now");
-                navigate('/')
+                setisEmpty(true)
             }
+            else{
+              setisEmpty(false)
             setChartarray(data.user.charts)
+
+            }
+            
             
         }else{
             alert(data.error)}
@@ -162,53 +176,87 @@ function SavedCharts(){
     }
 
     return(
-        <div style={{height:'1000px'}}>
+        <div  >
             
             <div>
             <Nav />
             </div>
-            
-          <div style={{height:"500px",margin:"10%"}}>
-            <div style={{ float: "left", width: "30%"}}>
-                <div className="Savescrollable">
-                {   chartArray.map((va,vai) => {
-                return <div ><button style={{backgroundColor: "#bbcff0", 
-                color: "black",
-                textAlign: "center",
-                fontSize: "15px",
-                marginLeft:" 7%",
-                cursor: "pointer",
-                borderRadius: "5px",
-                width:"200px"}} onClick={() => displayChartDetails(va)}>{va.title}</button></div>;
+            <div>
+                <br></br>
+                
+
+                <br></br>
+              <Container>
+
+              <Breadcrumb>
+                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                
+                <Breadcrumb.Item active>Saved Charts</Breadcrumb.Item>
+              </Breadcrumb>
+              {isEmpty && <br></br> }
+              {!isEmpty &&  <h3 className="text-center"> Please Pick a Chart</h3> }
+              {isEmpty &&  <Alert className="text-center" variant="danger">
+          You have not saved any charts
+        </Alert> }
+                <Row className="text-center"> 
+                  
+
+                  {   chartArray.map((va,vai) => {
+                return  <Col xs={6} lg={2} >
+                  <Button className="mt-5 " variant="success" size="lg" onClick={() => displayChartDetails(va)}>{va.title}</Button>
+                   </Col> ;
             })}
-                </div>
+                            
+            </Row>
             
-            </div>
-            <div style={{
-                marginTop:"100px",
-                float: "right",
-                width: "50%",
-                marginRight:"100px",
-                backgroundColor:"#bbcff0",
-                border:"10px solid rgb(177, 188, 213)",
-                borderRadius:"5px",
-                minHeight:"250px"
-              }}>
-                {chartSelect && 
-                <div style={{paddingLeft:"100px",paddingTop:"50px",paddingBottom:"50px"}}>
-                <h4>Title : {title}</h4>   
-                <h4 >Chart Type : {chartType}</h4>
-                <h4>Date : {createDate}</h4>    
-                </div>}
-            </div>
-          </div>
+            {chartSelect &&  <br></br> }
+            {chartSelect &&  <br></br> }
+            {chartSelect &&  <br></br> }
+            {chartSelect &&  <br></br> }
+            {chartSelect && 
+          <Row>
+            <Col></Col>
+            <Col className="text-center" sm={6} lg={4} >
+            <Alert variant="success">
+              <Alert.Heading> Selected Chart : {title}</Alert.Heading>
+              <p>
+              Chart Type : {chartType} Chart
+              </p>
+              <hr />
+              <p className="mb-0">
+              Date : {createDate}
+              </p>
+            </Alert>
+            </Col>
+            <Col></Col>
+            </Row>
+        } 
+
+            <br></br>
+            <br></br>
+            <hr></hr>
+            <br></br>
+            <br></br>
           
-           <div>
+            
+              </Container>
+              <div>
                 {chartSelect && displayChart()}
            </div>
+           <Container>
            <div>
-                <button style={{width:"100px"}} onClick={() => gotoHome()}>Home Page</button>
+              <Button size="lg" onClick={() => gotoHome()} variant="outline-primary">Go Home</Button>
+                
            </div>
+           <br></br>
+           <br></br>
+           
+           </Container>
+            </div>
+            
+          
+          
+           
         </div>
     )
 }
