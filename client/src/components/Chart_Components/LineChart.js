@@ -26,6 +26,7 @@ ChartJS.register(
 const LineChart = (props) => {
   //code for downloading the chart
   const ref = useRef(null);
+  //exporting charts
   const downloadImage = useCallback(() => {
     const link = document.createElement("a");
     link.download = "bar_chart.png";

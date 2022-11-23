@@ -6,17 +6,18 @@ import { useState } from 'react';
 
 
 const PieChartView = (props)=>{
-
+//here customization features are initalized and will be managed using use state hooks
     const [title_size,set_title_size] = useState(30);
     const [font,set_font] = useState('Raleway');
     const [color,setcolor] = useState("#234400");
     const [color2,setcolor2] = useState("#124490");
     const [show_heading, set_show_heading] = useState(true); 
-    const [show_legend, set_show_legend] = useState(true);    
+    const [show_legend, set_show_legend] = useState(true); 
+       //we will get props and will initialize it
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
-
+//adding heading using props
     const heading = "How "+props.dataset  + " Changes with "+xaxis ;
-
+    //data also will be obtained from props
     const Pie_data = {
         labels : props.xlabel,
         datasets: [
@@ -29,7 +30,7 @@ const PieChartView = (props)=>{
 
         ],
       };
-
+//customization page will change these attributes
     const PieCustomize = {   
 
         type: 'doughnut',      

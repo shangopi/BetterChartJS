@@ -4,6 +4,7 @@ import { Row, Col, Accordion, Card, Form } from "react-bootstrap";
 import { SliderPicker } from "react-color";
 import { useState } from "react";
 
+//this function will be used to convert rgba colors to hexadecimal colors
 function hexToRGB(hex, alpha) {
   var r = parseInt(hex.slice(1, 3), 16),
       g = parseInt(hex.slice(3, 5), 16),
@@ -19,24 +20,24 @@ function hexToRGB(hex, alpha) {
   
 
   const AreaChartView = (props) => {
-
+//here customization features are initalized and will be managed using use state hooks
     const [x_grid, set_x_grid] = useState(true);
     const [y_grid, set_y_grid] = useState(true);
     const [step_size_x,set_x_step] = useState(10);
     const [step_size_y,set_y_step] = useState(10);
     const [bar_orientation,set_bar_orientation] = useState('x');
     const [text_size,set_text_size] = useState(14);
+    //here customization features are initalized and will be managed using use state hooks
     const [title_size,set_title_size] = useState(30);
     const [font,set_font] = useState('Raleway');
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
     const [color2,setcolor2] = useState("#124490");
-
+    //we will get props and will initialize it
     const labels = props.xlabel;
     const xaxis=props.xaxis; 
     const heading = "How "+ props.dataset + " Changes with "+xaxis;
-
-    console.log(props);
+    //data also will be obtained from data
   const Area_data = {
     labels,
     datasets: [
@@ -49,9 +50,9 @@ function hexToRGB(hex, alpha) {
       },
     ],
   };
-  
+  //customization page will change these attributes
     const AreaCustomize = {
-    indexAxis: bar_orientation,
+    indexAxis: bar_orientation, //orientation of axis
     scales: {
       x: {
         grid: {
@@ -86,16 +87,16 @@ function hexToRGB(hex, alpha) {
       },
     },
 
-    responsive: true,
+    responsive: true, //mobile responsive
     plugins: {
       legend: {
-        position: "top",
+        position: "top", //position of legend
       },
       title: {
         display: true,
-        text: heading,
+        text: heading, //inputting heading
         font: {
-          size: title_size,
+          size: title_size, //titile size
           family: font, // Your font family
         },
       },

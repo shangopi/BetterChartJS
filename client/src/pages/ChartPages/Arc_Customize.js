@@ -6,13 +6,13 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const ArcChartView = (props) => {
-  const arcData = useSelector((state) => state.csvhandler.arc_data);
-
+    
+//here customization features are initalized and will be managed using use state hooks
   const [show_heading, set_show_heading] = useState(true);
   const [width, set_width] = useState(800);
   const [circle_size, set_circle_size] = useState(5);
   const [arc_size, set_arc_size] = useState(25);
-
+//here customization features are initalized and will be managed using use state hooks
     const [text_size,set_text_size] = useState("1.5");
     const [title_size,set_title_size] = useState("2");
     const [font,set_font] = useState('Raleway');
@@ -20,13 +20,17 @@ const ArcChartView = (props) => {
     const [orientation,set_orientation] = useState(90);    
     const [color,setcolor] = useState("#BBB3F8");
     const [color2,setcolor2] = useState("#76F943");
+
+    //we will get props and will initialize it
     const targetNode = props.targetNode;
     const sourceNode = props.sourceNode; 
     const weight =props.weight;
+    //data also will be obtained from data
   const Arc_data = props.data_array;
-
+//initalizing heading
   const heading = "How " + sourceNode + "and " + targetNode + " interconnects";
 
+  //will be sent to chart page
   const Arc_customize = {
     show_heading : show_heading,
         width : width,

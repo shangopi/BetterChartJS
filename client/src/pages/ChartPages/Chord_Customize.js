@@ -4,29 +4,29 @@ import ChordChart from '../../components/Chart_Components/ChordChart';
 import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import {HuePicker } from 'react-color';
 import { useState } from 'react';
-import { useSelector } from "react-redux";
 
 
 const ChordChartView = (props) => {    
-    const x_axis = useSelector((state) => state.csvhandler.x_data);
-    const y_axis = useSelector((state) => state.csvhandler.y_data);
-
-    const Chord_data = props.data_array;
+    
+    //we will get props and will initialize it
+    const Chord_data = props.data_array;  //data also will be obtained from props
     const targetNode = props.targetNode;
     const sourceNode = props.sourceNode; //////////////////////////////////////////////////////
     const weight =props.weight;
-    const heading = "How "+ targetNode + " and "+sourceNode + " interconnects" ;
-
+    const heading = "How "+ targetNode + " and "+sourceNode + " interconnects" ;   //adding heading using props
+    //to assign colors for each node, we will use set .. it can skip double entries
         let nodes =  new Set();
-
+        //adding source and destination to set
         for (var i = 0; i < Chord_data.length; i++) {            
             nodes.add( Chord_data[i][0]);
             nodes.add( Chord_data[i][1]);
         }
+        //we convert  set into array
         nodes = Array.from(nodes);
         let color_array = [];
         var color_dict = {};
         let random_color = "#FFF";
+        //assign color for each node
         for (var i = 0; i < nodes.length; i++) {           
             random_color = '#' + (Math.random().toString(16) + "000000").substring(2, 8);
             color_array.push(random_color);
@@ -35,7 +35,7 @@ const ChordChartView = (props) => {
        
 
 
-
+ //here customization features are initalized and will be managed using use state hooks
 
 
         const [show_heading, set_show_heading] = useState(true);
@@ -46,10 +46,12 @@ const ChordChartView = (props) => {
         const [title_size, set_title_size] = useState("2");
         const [font, set_font] = useState('Montserrat');
         const [font2, set_font2] = useState('Raleway');
+         //here customization features are initalized and will be managed using use state hooks
         const [color, setcolor] = useState(color_dict);
         const [lineWidth,setLineWidth] = useState(50);
         const [radius,setRadius] = useState(250);
 
+            //when user changes color picker, it will update respective color using use state hooks
         function handle_color_change(i,color1){
             color_array[nodes.findIndex(rank => rank === i)] = color1;
             let temp = nodes[i] ;
@@ -58,7 +60,7 @@ const ChordChartView = (props) => {
             
         }
 
-      //  console.log(color);  
+      //  will be sent to chart page 
       const Chord_customize = {
         show_heading: show_heading,
         width: width,

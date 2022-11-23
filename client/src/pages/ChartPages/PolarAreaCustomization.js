@@ -2,7 +2,7 @@ import React from 'react';
 import PolarArea from '../../components/Chart_Components/PolarAreaChart';
 import {Row, Col,Accordion, Card,Form} from 'react-bootstrap';
 import { useState } from 'react';
-
+//this function will be used to convert rgba colors to hexadecimal colors
 function hexToRGB(hex, alpha) {
   var r = parseInt(hex.slice(1, 3), 16),
       g = parseInt(hex.slice(3, 5), 16),
@@ -16,15 +16,15 @@ function hexToRGB(hex, alpha) {
 }
  
 const PolarAreaChartView = (props)=>{
-
+//here customization features are initalized and will be managed using use state hooks
     const [title_size,set_title_size] = useState(30);
     const [font,set_font] = useState('Raleway');
     const [show_heading, set_show_heading] = useState(true); 
     const [show_legend, set_show_legend] = useState(true);    
-   
+       //we will get props and will initialize it
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
     const heading = "How "+props.dataset  + " Changes with "+ xaxis;
-
+    //data also will be obtained from data
     const Pie_data = {
         labels: props.xlabel,
         datasets: [
@@ -38,7 +38,7 @@ const PolarAreaChartView = (props)=>{
         ]
         
       };
-
+  //customization page will change these attributes
     const PieCustomize = {   
 
         type: 'doughnut',      

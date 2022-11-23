@@ -24,6 +24,7 @@ ChartJS.register(
 
 const RadarChart = (props) => {    
   const ref = useRef(null);
+  //exporting charts
   const downloadImage = useCallback(()=>{
       const link = document.createElement("a");
       link.download = "pie_chart.png";
