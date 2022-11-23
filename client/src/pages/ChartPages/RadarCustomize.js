@@ -3,6 +3,7 @@ import RadarChart from "../../components/Chart_Components/RadarChart";
 import { Row, Col, Accordion, Card, Form } from "react-bootstrap";
 import { SliderPicker } from "react-color";
 import { useState } from "react";
+//this function will be used to convert rgba colors to hexadecimal colors
 
 function hexToRGB(hex, alpha) {
   var r = parseInt(hex.slice(1, 3), 16),
@@ -17,17 +18,20 @@ function hexToRGB(hex, alpha) {
 }
 
 const RadarChartView = (props)=>{
-
+//here customization features are initalized and will be managed using use state hooks
     const [title_size,set_title_size] = useState(30);
     const [label_size,set_label_size] = useState(15);
     const [font,set_font] = useState('Raleway');
     const [step_size,set_step_size] = useState(6);
+        //here customization features are initalized and will be managed using use state hooks
     const [color,setcolor] = useState("#234400");
     const [show_heading, set_show_heading] = useState(true); 
     const [show_legend, set_show_legend] = useState(false);  
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
-  
+      //we will get props and will initialize it
+  //initalaizing heading
     const heading = "How "+props.dataset  + " Changes with "+ xaxis;
+    //data also will be obtained from data
     const RadarData = {
     labels: props.xlabel,
     datasets: [
@@ -44,7 +48,7 @@ const RadarChartView = (props)=>{
   
 
 
-
+//customization page will change these attributes
   const RadarCustomize = {   
 
              

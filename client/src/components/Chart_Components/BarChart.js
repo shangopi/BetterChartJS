@@ -24,6 +24,7 @@ ChartJS.register(
 const BarChart = (props) => {    
     //code for downloading the chart
     const ref = useRef(null);
+    //export chart
     const downloadImage = useCallback(()=>{
         const link = document.createElement("a");
         link.download = "bar_chart.png";

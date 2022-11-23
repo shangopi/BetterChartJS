@@ -6,24 +6,28 @@ import { useState } from 'react';
 
 
 const SankeyChartView = (props) => {    
-
+//we will get props and will initialize it
     const Sankey_data =  props.data_array;
-    console.log(Sankey_data);
+    //to assign colors for each node, we will use set .. it can skip double entries
     let nodes =  new Set();
+     //adding source and destination to set
     for (var i = 0; i < Sankey_data.length; i++) {            
         nodes.add( Sankey_data[i][0]);
         nodes.add(Sankey_data[i][1]);
         Sankey_data[i][2] = parseInt(Sankey_data[i][2]);
     }
+     //we convert  set into array
     nodes = Array.from(nodes);
     let color_array = [];
     var color_dict = {};
     let random_color = "#FFF";
+    //assign color for each node
     for (var i = 0; i < nodes.length; i++) {           
         random_color = '#' + (Math.random().toString(16) + "000000").substring(2, 8);
         color_array.push(random_color);
         color_dict[nodes[i]]= random_color;
     }
+ //here customization features are initalized and will be managed using use state hooks
 
     const [show_heading, set_show_heading] = useState(true);    
     const [width,set_width] = useState(1);
@@ -31,6 +35,8 @@ const SankeyChartView = (props) => {
     const [arc_size,set_arc_size] = useState(0.7);
     const [opacity,set_opacity] = useState(0.4);
     const [text_size,set_text_size] = useState("1.5");
+     //here customization features are initalized and will be managed using use state hooks
+
     const [title_size,set_title_size] = useState("2");
     const [font,set_font] = useState('Raleway');
     const [font2,set_font2] = useState('Raleway');
@@ -46,7 +52,6 @@ const SankeyChartView = (props) => {
     function handle_color_change(i,color1){
         color_array[nodes.findIndex(rank => rank === i)] = color1;
         let temp = nodes[i] ;
-        //console.log(i,color1);
         setcolor({...color, [i] : color1});
         
     }

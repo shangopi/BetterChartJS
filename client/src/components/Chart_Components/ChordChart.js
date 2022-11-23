@@ -17,19 +17,25 @@ function drawArc(c1, c2, x1, y1, x2, y2) {
 
 
 function findAngle(c1, c2, r, x1, y1) {
+    //we need to fidn the coordinates of points x1 and x2 which are in the circle centered at c1 and c2 and having radius r
+    //finding thetta using sin inverse
     let thetta = Math.asin(Math.abs((x1 - c1) / r))
+    //if first quarter  cycle
     if (x1 > c1 && y1 < c2) {
         return thetta;
 
     }
+    //if second quarter  cycle
     if (x1 > c1 && y1 > c2) {
         return Math.PI - thetta;
 
     }
+    //if third quarter  cycle
     if (x1 < c1 && y1 > c2) {
         return Math.PI + thetta;
 
     }
+    //if fourth quarter  cycle
     if (x1 < c1 && y1 < c2) {
         return 2 * Math.PI - thetta;
 
@@ -37,9 +43,6 @@ function findAngle(c1, c2, r, x1, y1) {
 }
 
 const Canvas = props => {
-
-        //labels for the cahrt
-        const label = ['Source', 'Target', 'Volume'];
         //data will be given from chartSet.jsx
         let data1 = props.data;
         
@@ -81,12 +84,18 @@ const Canvas = props => {
 
 
         const draw = ctx => {
+            //to enable customization features... 
+            //customization data will be sent using props
+            //here we are intailizign them
             let radius = props.config.radius;
             let lineWidth = props.config.lineWidth;
+            //since canvas starts counting anle in -pi/2 .. so we also do it
             let sum = -Math.PI / 2;
             let oldsum = -Math.PI / 2;
+            //angle is average of sum and oldsum.. labels of nodes will be placed here
             let angle = 0;
             let coordinate = [];
+            //here we iterate the keys
             for (var key in in_out) {
                
                 //to use sum's previous data we declare oldsum
@@ -96,57 +105,67 @@ const Canvas = props => {
                 //drawing spaces
                 ctx.beginPath();
                 ctx.strokeStyle = "#FFF";
+                //drawing the space arc part
                 ctx.arc(550, 350, radius, oldsum, sum);
                 ctx.lineWidth = lineWidth;
                 ctx.stroke();
 
                 //implementing nodes
-                oldsum = sum
-                console.log(total);
-                console.log(in_out[key]);
+                oldsum = sum;
+                //adding space for space
                 sum = oldsum + 2 * Math.PI * in_out[key] * (100 - space) / (100 * total);
-                console.log(sum);
 
                 //implementing title
                 angle = (oldsum + sum) / 2;
+                //finding the coordinates of the  labels for nodes using sines and cosines
                 coordinate = [550 + 350 * Math.sin(angle + Math.PI / 2), 350 - 320 * Math.cos(angle + Math.PI / 2)];
-
+                
                 if (out[key]) {
                     out[key][0] = oldsum;
                 }
                 ctx.beginPath();
-                
+                //we get color from config
                 let color1 = props.config.color1[key] ;
                 
 
               
                 ctx.strokeStyle = color1;
+                //we draw the circle part for 
                 ctx.arc(550, 350, radius, oldsum, sum);
-                
+                ///will be gooten from props
                 ctx.lineWidth = lineWidth;
                 ctx.stroke();
+                //dest_list contain all the destination details for each source
                 let dest_list = [...out[key]];
                 
                 for (var temp in dest_list) {
-                                     
+                      //if selected destiantion is non empty                  
                     if (temp != 0) {
+                        //since we already initalized the sum and old sum as -pi/2 .. we need to add pi/2 for all calculation
+                        // finding  start and end angles for souce and destination
                         let source_initial_angle = out[key][0] + Math.PI / 2;                        
                         let source_final_angle = source_initial_angle + 2 * Math.PI * dest_list[temp][1] * (100 - space) / (100 * total);
                         let dest_initial_angle = out[dest_list[temp][0]][0] + Math.PI / 2;
                         let dest_final_angle = dest_initial_angle + 2 * Math.PI * dest_list[temp][1] * (100 - space) / (100 * total);
+                        //we get average angle 
                         let source_angle = (source_initial_angle + source_final_angle) / 2;
                         let dest_angle = (dest_initial_angle + dest_final_angle) / 2;
+                        //to get tangent
+                        //we find  coordinates using sines and cosines
                         let source_coordinate = [550 + (radius-lineWidth/2) * Math.sin(source_angle), 350 - (radius-lineWidth/2) * Math.cos(source_angle)];
                         let dest_coordinate = [550 + (radius-lineWidth/2) * Math.sin(dest_angle), 350 - (radius-lineWidth/2) * Math.cos(dest_angle)];
+                        //we get coordinates of perpendicualr circle details
                         let output = drawArc(550, 350, source_coordinate[0], source_coordinate[1], dest_coordinate[0], dest_coordinate[1]);
-                      
+                        //we find angle using coordinates
                         let arc_start_angle = findAngle(output[0], output[1], output[2], source_coordinate[0], source_coordinate[1]);
 
                         let dest_start_angle = findAngle(output[0], output[1], output[2], dest_coordinate[0], dest_coordinate[1]);
 
                         ctx.beginPath();
                         ctx.strokeStyle = color1;
+                        //we need to find the minimum arc .. 
                         if (arc_start_angle <= dest_start_angle) {
+                            //if less than pi..then keep the same angles
                             if (dest_start_angle - arc_start_angle <= Math.PI) {
                                 ctx.arc(output[0], output[1], output[2], arc_start_angle - Math.PI / 2, dest_start_angle - Math.PI / 2);
                             } else {
@@ -154,6 +173,7 @@ const Canvas = props => {
                             }
 
                         } else {
+                            //if not then swap  the angles
                             if (2 * Math.PI + dest_start_angle - arc_start_angle <= Math.PI) {
                                 ctx.arc(output[0], output[1], output[2], arc_start_angle - Math.PI / 2, dest_start_angle - Math.PI / 2);
                             } else {

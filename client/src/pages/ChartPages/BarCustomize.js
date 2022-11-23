@@ -5,6 +5,7 @@ import {SliderPicker } from 'react-color';
 import { useState } from 'react';
 import { useSelector } from "react-redux";
 
+//this function will be used to convert rgba colors to hexadecimal colors
 function hexToRGB(hex, alpha) {
     var r = parseInt(hex.slice(1, 3), 16),
         g = parseInt(hex.slice(3, 5), 16),
@@ -18,11 +19,13 @@ function hexToRGB(hex, alpha) {
 }
 
 const BarChartView = (props) => {  
+    //here customization features are initalized and will be managed using use state hooks
     const x_axis = useSelector((state) => state.csvhandler.x_data);
     const y_axis = useSelector((state) => state.csvhandler.y_data);
     const [x_grid, set_x_grid] = useState(true);
     const [y_grid, set_y_grid] = useState(true);
     const [step_size_x,set_x_step] = useState(10);
+        //here customization features are initalized and will be managed using use state hooks
     const [step_size_y,set_y_step] = useState(10);
     const [bar_orientation,set_bar_orientation] = useState('x');
     const [text_size,set_text_size] = useState(14);
@@ -30,13 +33,12 @@ const BarChartView = (props) => {
     const [font,set_font] = useState('Raleway');
     const [orientation,set_orientation] = useState(0);    
     const [color,setcolor] = useState("#234400");
-
-
-    // const labels =['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+    //we will get props and will initialize it
     const labels = props.xlabel;
     const xaxis=props.xaxis; /////////////////////////////////////////////////////////////////////////////////////////////
+   //adding heading using props
     const heading = "How "+ props.dataset + " Changes with "+xaxis ;
-
+    //data also will be obtained from props
 const Bar_data = {
     labels,
     datasets: [

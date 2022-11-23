@@ -13,6 +13,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = (props) => {  
     //code for downloading the chart
    const ref = useRef(null);
+   //exporting charts
    const downloadImage = useCallback(()=>{
        const link = document.createElement("a");
        link.download = "pie_chart.png";
