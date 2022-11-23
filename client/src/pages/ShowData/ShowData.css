@@ -1,0 +1,118 @@
+/* .drag-n-drop {
+    padding-left: 100px;
+    padding-right:50px;
+    display: grid;
+    gap: 0.1%;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(auto-fill, 500px);
+    align-items: start;
+  } */
+  body{
+    background-color: #ebeff6
+  };
+
+  .csvtable {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .csvth,.csvtd {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .csvtr:nth-child(odd) {background-color: #d9d9ed;}
+  
+  .drag-n-drop:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* .dnd-group {
+    background-color: #49505e;
+    border-radius: 10px;
+    padding: 10px;
+    width:20%
+  } */
+  
+  .dnd-group{
+    margin: 60px;;
+    padding: 10px;
+    background-color: #678fdd;
+    border:10px solid rgb(177, 188, 213);
+    border-radius:8px;
+  }
+  
+
+  .dnd-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    background-color: white;
+    border-radius: 10px;
+    color: #3b3c3e;
+    font-weight: bold;
+    width:100%;
+    cursor: pointer;
+  }
+  .dnd-item:not(:last-of-type) {
+    margin-bottom: 15px;
+    cursor: pointer;
+    
+  }
+  .dnd-item * {  
+    margin: 0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    
+  }
+  .group-title {
+    text-align: center;
+    margin-bottom: .5rem;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .current {
+    background-color: #a4a4d0;
+  }
+  
+  .scrollable{
+    overflow-y: scroll;
+    max-height: 550px;
+  }
+
+  .still{
+    position: fixed;
+  }
+
+  .showbutton{
+    background-color: #989898; 
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    margin-left: 7%;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 40px;
+    border:5px solid rgb(38, 90, 211);
+  }
+.showbuttontwo{
+  background-color: #eae4e4; 
+  color: rgb(6, 6, 6);
+  text-align: center;
+  font-size: 20px;
+  margin-left: 7%;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 40px;
+  border:5px solid rgb(38, 90, 211);
+}
+
+  .showbutton:hover{
+    height: 50px;
+    border:5px solid rgb(66, 24, 236);
+  }
