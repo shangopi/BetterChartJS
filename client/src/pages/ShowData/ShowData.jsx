@@ -19,6 +19,15 @@ import SankeyCustomize from "../ChartPages/SankeyCustomize"
 import { useNavigate } from "react-router-dom";
 import jwtdecode from "jwt-decode";
 import { TabTitle } from "../../utils/GeneralFunctions";
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Row from 'react-bootstrap/Row';
+import Alert from 'react-bootstrap/Alert';
+
+import Jumbotron from 'react-bootstrap/Row';
 
 const chartsFromChartJs = ["area", "bar", "line", "pie", "polar", "radar"];
 
@@ -858,7 +867,7 @@ const ShowData = () => {
               style={{ textDecoration: "none" }}
               to={{ pathname: { pathname } }}
             > */}
-            <button
+            <button 
               className="showbutton"
               onClick={() => {
                 load();
@@ -871,27 +880,46 @@ const ShowData = () => {
           </div>
         )}
       </div>
-      <div>
+      <div style={{backgroundColor: "#f7f7f5"}}>
         {console.log("customixee:", showCustomize)}
         {showCustomize == true && show()}
         {/* <BarCustomize xlabel={x_axis[xVariable]} dataset={yVariable[0]} dataarray={y_axis[yVariable[0]]}/>}  */}
         {/* {showCustomize==true && <BarCustomize/>}  */}
       </div>
       {isLogged && showCustomize && (
-        <div style={{paddingBottom:"100px"}}>
-          <input className="showbuttontwo"
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button className="showbutton"
-            onClick={() => {
+       
+
+        <div className="ml-5" style={{paddingLeft:"20vw",paddingTop:"50px", paddingBottom:"100px",backgroundColor: "#ffffff"}}>
+
+          <h2>Save your chart</h2>
+          <h4 className="lead">We will keep your charts in your account !!</h4>
+          <br></br>
+          <Jumbotron>
+          <Form>
+      <Row className="text-center align-items-center ">
+        
+        <Col  xs="auto">
+          <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
+            Username
+          </Form.Label>
+          <InputGroup className="mb-2">
+            <InputGroup.Text  >Your Graph title is</InputGroup.Text>
+            <Form.Control value={title}
+            onChange={(e) => setTitle(e.target.value)} id="inlineFormInputGroup" placeholder="Enter title" />
+          </InputGroup>
+        </Col>
+        
+        <Col xs="auto">
+          <Button onClick={() => {
               checkSizeTitle();
-            }}
-          >
+            }} variant="warning" className="mb-2">
             Save
-          </button>
+          </Button>
+        </Col>
+      </Row>
+    </Form>
+    </Jumbotron>
+         
         </div>
       )}
       {/* {isLogged && (
