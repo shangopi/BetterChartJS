@@ -12,17 +12,17 @@ const Canvas = props => {
   const draw = ctx => {
     const x1= 70; //diagram staring position
     const x2 =props.config.width; //diagram ending position
-    const l = (x2-x1)/(allNodesNo-1);
-    const highest_weight=Math.max(...weights);
+    const l = (x2-x1)/(allNodesNo-1);       //The width between two nodes
+    const highest_weight=Math.max(...weights);  //Th highest arc size
 
 
   
-    for(let i = 0;i< allNodeList.length;i++){
+    for(let i = 0;i< allNodeList.length;i++){  //Drawing the circle for evry node
         ctx.beginPath();
 
         ctx.fillStyle="#000000"
-        ctx.arc(x1+i*l, radius_max , props.config.circle_size , 0, 2*Math.PI,true);
-        ctx.fill();
+        ctx.arc(x1+i*l, radius_max , props.config.circle_size , 0, 2*Math.PI,true); //x axis,yaxis of the center,radius size,the degree of the circle
+        ctx.fill();             
 
         
         
@@ -31,12 +31,12 @@ const Canvas = props => {
         ctx.fillStyle= "#000000";
         ctx.textAlign = "center";
         if(props.config.orientation == 0){
-            ctx.fillText(allNodeList[i],x1+i*l,radius_max + 30)
+            ctx.fillText(allNodeList[i],x1+i*l,radius_max + 30) //Designing the labels
         }
         else{
             ctx.save();
             ctx.translate(x1+i*l - 6,radius_max + 30);
-            ctx.rotate(0.5*Math.PI);
+            ctx.rotate(0.5*Math.PI);                    //labels vertical
 
             var rText = allNodeList[i];
             ctx.textAlign = "left";
@@ -48,32 +48,32 @@ const Canvas = props => {
 
         ctx.beginPath();
         ctx.moveTo(x1,radius_max );
-        ctx.lineTo(x2,radius_max );
+        ctx.lineTo(x2,radius_max ); //desiging the line
         ctx.stroke();
     }
 
     
-    for(let i=0;i<data.length;i++){
+    for(let i=0;i<data.length;i++){      //desiging the arc for every node in the data
        
-        var source_position = allNodeList.indexOf(data[i][0]);
-        var target_position = allNodeList.indexOf(data[i][1]);
+        var source_position = allNodeList.indexOf(data[i][0]);  //source Node
+        var target_position = allNodeList.indexOf(data[i][1]);  //Target Node
         var x=x1 + source_position*l;
-        var num= ((Number(data[i][2]))/highest_weight)*props.config.arc_strength;
-        var radius = ((target_position-source_position)*l/2);
+        var num= ((Number(data[i][2]))/highest_weight)*props.config.arc_strength;    //The width of the arc 
+        var radius = ((target_position-source_position)*l/2);  
         if(Math.abs(radius)>radius_max){
-            set_max(Math.abs(radius)+40);
+            set_max(Math.abs(radius)+40);              //setting the maximum radius of the chart
             
         }
         
         ctx.beginPath();
         ctx.lineWidth=num;
         ctx.strokeStyle=props.config.color1;
-        if (radius<0){
+        if (radius<0){                                              //CHecking whether the arc going bacwards
             ctx.strokeStyle=props.config.color2;
             ctx.arc(x+radius, radius_max , -radius, 0, Math.PI,true);
         }
         else{
-            ctx.arc(x+radius, radius_max , radius, 0, Math.PI,true);
+            ctx.arc(x+radius, radius_max , radius, 0, Math.PI,true);   //arc going forward
         }
         ctx.stroke();
     }
