@@ -1,5 +1,5 @@
 const express = require("express");
-//const mongoose=require('mongoose')
+const mongoose=require('mongoose')
 const app = express();
 const cors = require('cors');
 const { json } = require("express");
@@ -14,5 +14,11 @@ app.use(json())
 app.use('/api/registerUser',registerRouter)
 app.use('/api/loginUser',loginRouter)
 app.use('/api/chart',chartController)
+try {
+    mongoose.connect('mongodb://localhost:27017/ChartJs')
+} catch (error) {
+    console.log("error",error)
+}
+
 
 module.exports= app;

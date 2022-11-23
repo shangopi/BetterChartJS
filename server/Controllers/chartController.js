@@ -24,27 +24,24 @@ const createChart = async(req,res)=>{
     })
 
     if(user){
-        const chart =await Chart.model.create({
-        title:req.body.title,
-        chartType:req.body.chart,
-        data: req.body.chartdataarray,
-        })
-        if(chart){
+        try {
+            const chart =await Chart.model.create({
+                title:req.body.title,
+                chartType:req.body.chart,
+                data: req.body.chartdataarray,
+            })
             user.charts.push(chart)
             user.save();
             res.json({status:'ok'});
-        }
-        else{
+        } catch (error) {
             res.json({status:'chart error'});
-        }   
+        }
     }
     else{
         res.json({status:'User Error'})
     }
 }
 
-const deleteChart = async(req,res)=>{
 
-}
 
-module.exports={createChart,getChart,deleteChart}
+module.exports={createChart,getChart}

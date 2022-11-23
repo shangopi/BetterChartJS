@@ -22,7 +22,7 @@ function Login() {
     setloading(true);
     setisok(false);
       setiswrong(false);
-    const response = await fetch("http://localhost:4001/api/loginUser/login", {
+    const response = await fetch("http://localhost:4001/api/loginUser/login", {   //login the user
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ function Login() {
     const data = await response.json();
     if (data.user) {
       console.log("This is dataaaa", data);
-      localStorage.setItem("token", data.user);
+      localStorage.setItem("token", data.user);  //set the token on localstorage
       setisok(true);
       setloading(false);
       setiswrong(false);

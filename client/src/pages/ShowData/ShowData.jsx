@@ -80,9 +80,7 @@ const ShowData = () => {
   const [inputTitle, setInputTitle] = useState("");
   let chartdataarray = [];
   const navigate = useNavigate();
-  const arr = [];
-  //const arr=[];
-  // var count;
+  
   var chartType;
 
   if (chartsFromChartJs.includes(chart)) {
@@ -94,8 +92,8 @@ const ShowData = () => {
   } else if (chartBubble.includes(chart)) {
     chartType = "Bubble";
   }
-  //var chartType ='ArcChart'
-  const [checkBool, setCheckBool] = useState(false);
+ 
+  const [checkBool, setCheckBool] = useState(false);  //boolean to check whether all the elements in the data value are numericals
 
   useEffect(() => {
     fetch(csvFile)
@@ -105,22 +103,9 @@ const ShowData = () => {
 
         var data = Array(Papa.parse(responseText));
         var out = data[0]["data"];
-        //var textY_arr = [];
         setText(out[0]);
         setTableData(out.slice(1, out.length - 1));
-        // label_a.map((va, vai) => { //No of coloumns = label_a.length
-        //   var state = true;
-        //   for (var i = 0; i < data_a.length; i++) {           //No of rows = data_a.length
-        //     if (isNaN(data_a[i][vai])) {
-        //       state = false;
-        //       break;
-        //     }
-        //   }
-        //   if (state === true) {
-        //     textY_arr.push(va);
-        //   }
-        // });
-        //setTextY(textY_arr);
+        
         const token = localStorage.getItem("token");
         if (token) {
           const user = jwtdecode(token);
@@ -136,9 +121,9 @@ const ShowData = () => {
         }
       });
   }, []);
-
+//fetching the url to save the chart
   async function saveChart() {
-    const response = await fetch("http://localhost:4001/api/chart/saveChart", {
+    const response = await fetch("http://localhost:4001/api/chart/saveChart", {  
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -154,21 +139,9 @@ const ShowData = () => {
     const data = await response.json();
   }
 
-  // const load = async function(){
-  //     await fetch( csvFile )
-  // .then( response =>  response.text() )
-  // .then( responseText => {
-  //     // -- parse csv
-  //     var data =Array(Papa.parse(responseText));
-  //     var out=data[0]['data'];
-  //     setText(out[0]);
-  //     setTableData(out.slice(1,out.length-1));
-  //     console.log('data:', (text));
-  // })
-  // };
 
-  //passes "x" or "Y" and column number
-  //1st text use state has to be loaded
+
+//Push the data values for arrays for the selected data values
   const arrayPush = function (axis) {
     const arr = [];
     const arrx = [];
@@ -212,7 +185,7 @@ const ShowData = () => {
       setArcData(arr);
     }
   };
-
+//function to execute the proceed button
   const load = () => {
     if (chartType === "ChartJs" || chartType === "Scatter") {
       arrayPush("x");
@@ -395,7 +368,7 @@ const ShowData = () => {
       return true;
     }
   };
-
+//returns true if some node has not got a valid data set
   const fullfill = () => {
     var b =
       sourceNode === "Source Node" ||
@@ -408,17 +381,17 @@ const ShowData = () => {
       );
     return b;
   };
-
+//drag n drop - > 
   const handleDragStart = (e, params) => {
     console.log("drag starting", params);
-    dragItem.current = params;
-    dragNode.current = e.target;
+    dragItem.current = params; //index
+    dragNode.current = e.target; //the label
     dragNode.current.addEventListener("dragend", handleDragEnd);
     setTimeout(() => {
       setDragging(true);
     }, 0);
   };
-
+//drag n drop-> stores the values in nodes
   const handleDragEnter = (e, params, i, t) => {
     console.log("Enteringg drag", params);
     const currentItem = dragItem.current;
@@ -441,22 +414,9 @@ const ShowData = () => {
       var bool = check(variable, 1, t);
       console.log("State : ", bool);
       setCheckBool(bool);
-      //setYVariable(text[currentItem["variNameI"]]);
-      // console.log("current item is",text[currentItem["variNameI"]]);
-      // arrayPush('y',currentItem["variNameI"]);
-      // console.log("Array",y_axis);
     }
-    // if(e.target !== dragNode.current){
-    //     console.log("Target is not the same");
-    //     setList(oldList=>{
-    //         let newList = JSON.parse(JSON.stringify(oldList));
-    //         newList[params.grpI].items.splice(params.itemI,0,newList[currentItem.grpI].items.splice(currentItem.itemI,1)[0]);
-    //         dragItem.current = params;
-    //         return newList;
-    //     })
-    // }
   };
-
+//drag n drop end
   const handleDragEnd = () => {
     console.log("Ending Drag");
     setDragging(false);
@@ -464,7 +424,7 @@ const ShowData = () => {
     dragItem.current = null;
     dragNode.current = null;
   };
-
+//change color of the item when dragged
   const getStyles = (params, i) => {
     if (dragItem.current.variNameI === params.variNameI && i == 0) {
       return "current dnd-item";
@@ -473,7 +433,7 @@ const ShowData = () => {
     }
     return "dnd-item";
   };
-
+//display the respective chart
   const show = function () {
     switch (chart) {
       case "bar":
@@ -566,11 +526,9 @@ const ShowData = () => {
     localStorage.removeItem("token");
     setIsLogged(false);
   }
-
+//checking whether the title names length is valid
   async function checkSizeTitle() {
     if (title.length > 0) {
-      //setTitle(inputTitle)
-      //setInputTitle('')
       await saveChart();
       setTitle("");
     } else {
@@ -584,17 +542,12 @@ const ShowData = () => {
   return (
     <>
       <Nav />
-      {/* <button onClick={ load }>load</button>
-            <h2>text:</h2> */}
       <div style={{ margin: "50px" }}>
         <h2>CSV Data Table</h2>
       </div>
       <div
         style={{
           overflow: "auto",
-          // marginLeft: "10%",
-          // marginRight: "10%",
-          // marginTop: "5%",
           height: "500px",
           margin: "auto",
           width: "50%",
@@ -603,17 +556,7 @@ const ShowData = () => {
         <thead className="csvtable">
           <tr className="csvtr">
             {text.map((va, vai) => {
-              // var state = true;
-              // for (var i = 0; i < tableData.length; i++) {           //No of rows = data_a.length
-              //   if (isNaN(tableData[i][vai])) {
-              //     state = false;
-              //     break;
-              //   }
-              // }
-              // if (state === true ) {
-              //   arr.push(va);
-              // }
-              return <th className="csvth">{va}</th>;
+              return <th className="csvth">{va}</th>;              /////displays the table
             })}
           </tr>
         </thead>
